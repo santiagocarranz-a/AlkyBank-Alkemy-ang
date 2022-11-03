@@ -10,6 +10,7 @@ import { IconsModule } from '@core/icons/icons.module';
 import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
+import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     SharedModule,
     MaterialModule,
     HttpClientModule,
-    IconsModule
+    IconsModule,
+    InterceptorModule
   ],
   providers: [],
   bootstrap: [AppComponent]
