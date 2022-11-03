@@ -1,0 +1,26 @@
+<mat-card>
+    <mat-card-title>
+        <img src="https://www.alkemy.org/static/media/alkemyLogo.2daef856.svg">
+    </mat-card-title>
+    <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)="send()">
+            <p>
+                <mat-form-field>
+                    <input type="text" matInput placeholder="Email" formControlName="email">
+                </mat-form-field>
+            </p>
+            <p>
+                <mat-form-field>
+                    <input type="password" id="typePasswordX" type="password" matInput placeholder="Password"
+                        formControlName="password">
+                </mat-form-field>
+            </p>
+            <div class="buttons">
+                <button class="Login" type="submit" mat-button>Login</button>
+                <button class="Register" type="button" mat-button routerLink="/registro">Register</button>
+                <button class="ForgotPass" type="button" mat-button>Forgot Password</button>
+
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>
