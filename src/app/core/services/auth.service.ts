@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { User, UserAuth } from '../model/interfaces';
 
@@ -8,9 +8,15 @@ import { User, UserAuth } from '../model/interfaces';
   providedIn: 'root',
 })
 export class AuthService {
-  private baseUrl = environment.apiBase;
 
-  constructor(private http: HttpClient) {}
+  private baseUrl = environment.apiBase;
+  currentUserSubject: BehaviorSubject<any>;
+
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<any>(
+      JSON.parse(localStorage.getItem('user') || '{}')
+    )
+  }
 
   login(userAuth: UserAuth): Observable<UserAuth> {
     return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, userAuth)
@@ -20,6 +26,14 @@ export class AuthService {
         }
         return user;
       }))
+  }
+
+  get userAuth() {
+    return this.currentUserSubject.value;
+  }
+
+  loggedIn() {
+    return localStorage.getItem('user');
   }
 
   logout() {
