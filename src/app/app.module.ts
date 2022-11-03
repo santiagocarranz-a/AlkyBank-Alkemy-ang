@@ -9,11 +9,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { IconsModule } from '@core/icons/icons.module';
 import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
