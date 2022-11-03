@@ -24,18 +24,13 @@ export class LoginComponent {
   });
 
   send() {
-    const userAuth: UserAuth = {
-      email: this.form.get('email')?.value,
-      password: this.form.get('password')?.value
-    }
-    this.authService.login(userAuth).subscribe(
-      user => {
-        this.sweetalert.SuccessAlert();
-        this.router.navigate(['/dashboard']);
-      },
-      err => {
-        this.sweetalert.ErrorAlert
-      }
-    )
+    const {email, password}  = this.form.value
+  this.authService.login(email, password).subscribe(data => {
+
+    this.router.navigate(['banco/dashboard'])
+  }, error => {
+    console.log(error)
+    this.sweetalert.ErrorAlert()
+  })
   }
 }

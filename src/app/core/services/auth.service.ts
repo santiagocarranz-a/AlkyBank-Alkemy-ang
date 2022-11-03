@@ -12,8 +12,8 @@ export class AuthService {
 
   constructor(private http: HttpClient) {}
 
-  login(userAuth: UserAuth): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, userAuth)
+  login(email:string, password:string): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, {email, password})
       .pipe(map(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
@@ -26,8 +26,14 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
-  registro(user: User): Observable<UserAuth> {
-    const url = `${this.baseUrl}/users`
-    return this.http.post<UserAuth>(url, user)
+  registro(
+    first_name: string,
+    last_name: string,
+    email: string,
+    password: string)
+    {
+    const url = `${this.baseUrl}/users`;
+    const body = { first_name, last_name, email, password };
+    return this.http.post(url, body)
   }
 }

@@ -4,6 +4,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
 import { AlertsComponent } from './components/alerts/alerts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthRoutingModule } from '../auth/auth-routing.module';
+import { BancoRoutingModule } from '../banco/banco-routing.module';
+import { HomeComponent } from './components/home/home.component';
 
 
 
@@ -11,14 +13,17 @@ import { AuthRoutingModule } from '../auth/auth-routing.module';
   declarations: [
     PageNotFoundComponent,
     AlertsComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
-    AuthRoutingModule
+    AuthRoutingModule,
+    BancoRoutingModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ]
 })
 export class SharedModule { }
