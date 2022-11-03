@@ -1,28 +1,24 @@
 <header>
-    <nav>
-      <ul>
-        <li>
-          <img class="p-4" src="assets/img/logoblanco.png">
-        </li>
-  
-
-        <button mat-icon-button class="block lg:hidden mr-5" aria-label="Open responsive nav" (click)="toggleMenu()">
-          <mat-icon>menu</mat-icon>
-        </button>
-  
-        <li class="menu" [class.is-open]="isOpen">
-          <a class="menu-item" routerLink="banco/home" href="">Home</a>
-          <a class="menu-item" href="">Ingresos</a>
-          <a class="menu-item" href="">Egresos</a>
-          <a class="menu-item" href="">Enviar Dinero</a>
-          <a class="menu-item" routerLink="banco/plazos" href="">Plazos fijos</a>
-          <a class="menu-item" href="">Contactos</a>
-          <a class="menu-item" href="">Perfil</a>
-          <a class="menu-item" href="">Billeteras</a>
-          <a class="menu-item" (click)="logout()">Salir</a>
-          <a class="menu-item" href="">Mi perfil</a>
-        </li>
-  
-      </ul>
-    </nav>
-  </header>
+  <nav>
+    <ul>
+      <li>
+        <img class="p-4" src="assets/img/logoblanco.png">
+      </li>
+      <button mat-icon-button class="block lg:hidden mr-5" aria-label="Open responsive nav" (click)="toggleMenu()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <li class="menu" [class.is-open]="isOpen">
+        <a class="menu-item" routerLink="banco/home" href="">Home</a>
+        <a class="menu-item" href="">Ingresos</a>
+        <a class="menu-item" href="">Egresos</a>
+        <a class="menu-item" href="">Enviar Dinero</a>
+        <a class="menu-item" routerLink="banco/plazos" href="">Plazos fijos</a>
+        <a class="menu-item" href="">Contactos</a>
+        <a class="menu-item" href="">Perfil</a>
+        <a class="menu-item" href="">Billeteras</a>
+        <a class="menu-item" (click)="logout()">Salir</a>
+        <a class="menu-item" href="">Mi perfil</a>
+      </li>
+    </ul>
+  </nav>
+</header>
