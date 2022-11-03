@@ -5,9 +5,10 @@
           <img class="p-4" src="assets/img/logoblanco.png">
         </li>
   
-        <li class="burguer" (click)="toggleMenu()">
-          <i class="material-icons"> {{isOpen ? "close" : "menu"}}</i>
-        </li>
+
+        <button mat-icon-button class="block lg:hidden mr-5" aria-label="Open responsive nav" (click)="toggleMenu()">
+          <mat-icon>menu</mat-icon>
+        </button>
   
         <li class="menu" [class.is-open]="isOpen">
           <a class="menu-item" routerLink="banco/home" href="">Home</a>
