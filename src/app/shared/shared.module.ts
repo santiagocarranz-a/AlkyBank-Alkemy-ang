@@ -5,6 +5,8 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { MaterialModule } from '../material/material.module';
+import { HomeComponent } from './components/home/home.component';
+
 
 
 
@@ -12,7 +14,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     PageNotFoundComponent,
     AlertsComponent,
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +23,8 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    HomeComponent
   ]
 })
 export class SharedModule { }
