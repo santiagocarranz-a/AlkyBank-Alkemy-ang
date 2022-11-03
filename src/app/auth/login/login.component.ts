@@ -31,7 +31,7 @@ export class LoginComponent {
     this.authService.login(userAuth).subscribe(
       user => {
         this.sweetalert.SuccessAlert();
-        this.router.navigate(['/dashboard']);
+        this.router.navigate(['/banco/dashboard']);
       },
       err => {
         this.sweetalert.ErrorAlert

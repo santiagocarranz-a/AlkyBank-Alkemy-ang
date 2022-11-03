@@ -7,10 +7,13 @@ import { AuthModule } from './auth/auth.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { IconsModule } from '@core/icons/icons.module';
+import { HomeComponent } from './pages/home/home.component';
+import { MaterialModule } from './material/material.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -18,6 +21,7 @@ import { IconsModule } from '@core/icons/icons.module';
     BrowserAnimationsModule,
     AuthModule,
     SharedModule,
+    MaterialModule,
     HttpClientModule,
     IconsModule
   ],

@@ -7,19 +7,19 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthGuard implements CanActivate, CanLoad {
-  
+
   constructor(
     private authService: AuthService,
     private router: Router
   ) { }
-  
+
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     if(localStorage.getItem('user')){
       return true;
     } else {
-      this.router.navigate(['/home']);
+      this.router.navigate(['']);
       return false;
     }
   }
@@ -29,7 +29,7 @@ export class AuthGuard implements CanActivate, CanLoad {
       if(localStorage.getItem('user')){
         return true;
       } else {
-        this.router.navigate(['/home']);
+        this.router.navigate(['']);
         return false;
       }
   }
