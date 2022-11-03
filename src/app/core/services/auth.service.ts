@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map, Observable } from 'rxjs';
+import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { User, UserAuth } from '../model/interfaces';
 
@@ -8,12 +8,18 @@ import { User, UserAuth } from '../model/interfaces';
   providedIn: 'root',
 })
 export class AuthService {
+
   private baseUrl = environment.apiBase;
+  currentUserSubject: BehaviorSubject<any>;
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.currentUserSubject = new BehaviorSubject<any>(
+      JSON.parse(localStorage.getItem('user') || '{}')
+    )
+  }
 
-  login(userAuth: UserAuth): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, userAuth)
+  login(email: string, password: string): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, { email, password })
       .pipe(map(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
@@ -22,12 +28,25 @@ export class AuthService {
       }))
   }
 
+  get userAuth() {
+    return this.currentUserSubject.value;
+  }
+
+  loggedIn() {
+    return localStorage.getItem('user');
+  }
+
   logout() {
     localStorage.removeItem('user');
   }
 
-  registro(user: User): Observable<UserAuth> {
-    const url = `${this.baseUrl}/users`
-    return this.http.post<UserAuth>(url, user)
+  registro(
+    first_name: string,
+    last_name: string,
+    email: string,
+    password: string) {
+    const url = `${this.baseUrl}/users`;
+    const body = { first_name, last_name, email, password };
+    return this.http.post(url, body)
   }
 }
