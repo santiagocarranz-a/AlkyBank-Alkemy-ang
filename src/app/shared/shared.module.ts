@@ -5,6 +5,7 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { MaterialModule } from '../material/material.module';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 
@@ -12,7 +13,8 @@ import { MaterialModule } from '../material/material.module';
   declarations: [
     PageNotFoundComponent,
     AlertsComponent,
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ],
   imports: [
     CommonModule,
@@ -20,7 +22,8 @@ import { MaterialModule } from '../material/material.module';
     MaterialModule
   ],
   exports: [
-    HeaderComponent
+    HeaderComponent,
+    FooterComponent
   ]
 })
 export class SharedModule { }
