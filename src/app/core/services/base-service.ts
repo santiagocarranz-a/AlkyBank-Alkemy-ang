@@ -12,15 +12,20 @@ export class BaseServicesService {
   constructor(private http: HttpClient) { }
 
 
-  resetPassword(id:number, password:string){
-
-    const url = `${this.baseApi}/users/resetPassword/${id}`
-    const body = {password}
-    return this.http.patch(url, body)
+  resetPasswordById(id: number, password: string) {
+    const url = `${this.baseApi}/users/resetPassword/${id}`;
+    return this.http.patch(url, { password });
   }
 
-  getUserId(id:number){
-    const url = `${this.baseApi}/users/${id}`
-    return this.http.get(url)
-  }
+  // resetPassword(id:number, password:string){
+
+  //   const url = `${this.baseApi}/users/resetPassword/${id}`
+  //   const body = {password}
+  //   return this.http.patch(url, body)
+  // }
+
+  // getUserId(id:number){
+  //   const url = `${this.baseApi}/users/${id}`
+  //   return this.http.get(url)
+  // }
 }

@@ -18,21 +18,20 @@ export class ResetPasswordComponent implements OnInit {
     private activate:ActivatedRoute) { }
 
   ngOnInit(): void {
-   this.activate.params
-   .pipe(
-    switchMap( ({id}) => this.base.getUserId(id))
-   )
-
 }
   form: FormGroup = new FormGroup({
-  email: new FormControl('', [Validators.required, Validators.email]),
+  userId: new FormControl('', [Validators.required, Validators.email]),
   password: new FormControl('', [Validators.required]),
   confirmPassword: new FormControl('', [Validators.required]),
 
 });
 
-resetPassword(){
-
-}
+  resetPassword(){
+    if(this.form.invalid){
+      return;
+    } else {
+      this.base.resetPasswordById(this.form.value.userId, this.form.value.password)
+    }
+  }
 
 }

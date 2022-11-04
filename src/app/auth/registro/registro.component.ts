@@ -33,11 +33,15 @@ export class RegistroComponent {
 
 
    register(){
-    const {first_name, email, password, last_name}  = this.miFormulario.value
-    this.auth.registro(first_name, last_name, email, password).subscribe(data => {
-      this.router.navigate(['auth/login'])
-      console.log(data)
-    })
+      this.isSubmitted = true;
+      if(this.miFormulario.invalid){
+        return;
+      }
+      this.auth.registro(this.miFormulario.value)
+      .subscribe(data => {
+        this.router.navigate(['/auth/login'])
+        console.log(data)
+      })
    }
 
    openDialog(){

@@ -40,13 +40,8 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
-  registro(
-    first_name: string,
-    last_name: string,
-    email: string,
-    password: string) {
+  registro(user: User) {
     const url = `${this.baseUrl}/users`;
-    const body = { first_name, last_name, email, password };
-    return this.http.post(url, body)
+    return this.http.post(url, user);
   }
 }
