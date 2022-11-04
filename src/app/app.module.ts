@@ -11,7 +11,6 @@ import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +26,7 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
     MaterialModule,
     HttpClientModule,
     IconsModule,
-    InterceptorModule
+    InterceptorModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

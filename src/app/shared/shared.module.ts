@@ -7,7 +7,6 @@ import { MaterialModule } from '../material/material.module';
 import { FooterComponent } from './components/footer/footer.component';
 
 
-
 @NgModule({
   declarations: [
     AlertsComponent,
@@ -17,7 +16,7 @@ import { FooterComponent } from './components/footer/footer.component';
   imports: [
     CommonModule,
     AuthRoutingModule,
-    MaterialModule
+    MaterialModule,
   ],
   exports: [
     HeaderComponent,
