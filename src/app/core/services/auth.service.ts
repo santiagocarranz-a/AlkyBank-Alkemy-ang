@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { User, UserAuth } from '../model/interfaces';
+import { UserRegister, UserAuth } from '../model/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -40,7 +40,7 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
-  registro(user: User) {
+  registro(user: UserRegister) {
     const url = `${this.baseUrl}/users`;
     return this.http.post(url, user);
   }

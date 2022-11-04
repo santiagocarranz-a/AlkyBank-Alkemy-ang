@@ -1,10 +1,5 @@
 export const navbarData = [
     {
-        ruta: '/home',
-        icon: 'person',
-        label: 'Inicio'
-    },
-    {
         ruta: '#',
         icon: 'school',
         label: 'Ingresos'
@@ -28,11 +23,6 @@ export const navbarData = [
         ruta: '#',
         icon: 'folder_copy',
         label: 'Contactos'
-    },
-    {
-        ruta: '/banco/dashboard',
-        icon: 'folder_copy',
-        label: 'Perfil'
     },
     {
         ruta: '#',
