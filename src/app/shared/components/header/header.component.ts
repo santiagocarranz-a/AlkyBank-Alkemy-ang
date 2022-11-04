@@ -6,14 +6,13 @@ import { Router } from '@angular/router';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   isOpen: boolean = false
+  sidebarItems:any
 
-  constructor(private router:Router) { }
-
-  ngOnInit(): void {
-  }
+  constructor(private router:Router,
+  ){}
 
   toggleMenu(){
     this.isOpen = !this.isOpen;
