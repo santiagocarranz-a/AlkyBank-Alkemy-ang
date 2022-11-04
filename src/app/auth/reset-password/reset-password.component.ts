@@ -1,6 +1,9 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {switchMap} from 'rxjs/operators'
+import {FormGroup, Validators, FormControl} from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { BaseServicesService } from '@core/services/base-service';
 
 @Component({
   selector: 'ab-reset-password',
@@ -9,38 +12,27 @@ import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 })
 export class ResetPasswordComponent implements OnInit {
 
-  resetPasswordForm: FormGroup = new FormGroup({});
+  // resetPasswordForm: FormGroup = new FormGroup({});
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private base:BaseServicesService,
+    private activate:ActivatedRoute) { }
 
   ngOnInit(): void {
+   this.activate.params
+   .pipe(
+    switchMap( ({id}) => this.base.getUserId(id))
+   )
 
-    this.resetPasswordForm = this.formBuilder.group({
-      email: ['', Validators.compose([Validators.required, Validators.email])],
-      password: ['', Validators.required],
-      confirmPassword: ['', Validators.required],
-    });
+}
+  form: FormGroup = new FormGroup({
+  email: new FormControl('', [Validators.required, Validators.email]),
+  password: new FormControl('', [Validators.required]),
+  confirmPassword: new FormControl('', [Validators.required]),
 
-  }
+});
 
-  get email(){
-    return this.resetPasswordForm.get('email');
-  }
+resetPassword(){
 
-  get password(){
-    return this.resetPasswordForm.get('password');
-  }
-
-  get confirmPassword(){
-    return this.resetPasswordForm.get('confirmPassword');
-  }
-
-  submitResetPassword(){
-    if(this.resetPasswordForm.valid){
-      console.table(this.resetPasswordForm)
-      this.resetPasswordForm.reset();
-    }
-  };
-
+}
 
 }
