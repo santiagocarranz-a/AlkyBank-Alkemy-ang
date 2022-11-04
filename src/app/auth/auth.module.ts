@@ -7,11 +7,13 @@ import { RegistroComponent } from './registro/registro.component';
 import { TerminosComponent } from './registro/components/terminos/terminos.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MaterialModule } from '../material/material.module';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
 @NgModule({
   declarations: [
     LoginComponent,
     RegistroComponent,
-    TerminosComponent
+    TerminosComponent,
+    ResetPasswordComponent
   ],
   imports: [
     CommonModule,
