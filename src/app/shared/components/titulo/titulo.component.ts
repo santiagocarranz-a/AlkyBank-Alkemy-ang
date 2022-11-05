@@ -20,10 +20,10 @@ currentRoute: string
         this.currentRoute = event.url;        
         console.log(this.currentRoute)   
       }
-      this.currentRoute = this.currentRoute.replace(/^\//, "")
-      if(this.currentRoute == "home"){
+      if(this.currentRoute == "/home"){
         this.currentRoute = ""
       }
+      this.currentRoute = this.currentRoute.replace(/^\//, "").replace("banco", "Home")   
       this.innerRoutes = this.currentRoute.split("/")
       console.log(this.innerRoutes.length)
 
