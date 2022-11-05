@@ -3,14 +3,14 @@ import * as AuthActions from '../auth.actions/auth.actions';
 
 export interface UserAuthState {
   type: boolean,
-  user: '',
+  email: '',
   token: Array<any>,
   error: string,
 }
 
 const initialUserState: UserAuthState = {
   type: false,
-  user: '',
+  email: '',
   token: [],
   error: '',
 }

@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserAuth } from '@core/model/interfaces';
 import { AuthService } from '@core/services/auth.service';
+import { Store } from '@ngrx/store';
 import { AlertsComponent } from '../../shared/components/alerts/alerts.component';
+import * as Auth from '../auth-store/auth.actions/auth.actions';
+
 @Component({
   selector: 'ab-login',
   templateUrl: './login.component.html',
@@ -15,7 +17,8 @@ export class LoginComponent {
 
   constructor(
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private store: Store<any>
   ) { }
 
   form: FormGroup = new FormGroup({
@@ -28,11 +31,7 @@ export class LoginComponent {
     if (email === '' || password === '') {
       this.sweetalert.ErrorAlert()
     } else {
-      this.authService.login(email, password).subscribe(data => {
-        this.router.navigate(['banco/dashboard']).then(() => {
-          window.location.reload();
-        });
-      })
+      this.store.dispatch(Auth.LogIn())
     }
   }
 }

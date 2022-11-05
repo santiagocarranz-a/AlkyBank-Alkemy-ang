@@ -12,10 +12,25 @@ export class AuthEffects {
   LogIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType('[LogIn] LogIn'),
-      catchError(error => of(error({ error })))
-    );
-    }
-  )
+      mergeMap((action: any) => {
+        return this.authService.login(action.email, action.password).pipe(
+          map((user: UserAuth) => {
+            return { type: '[LogIn] LogIn Success', payload: user };
+          }),
+          map(user => {
+            if (user) {
+              localStorage.setItem('user', JSON.stringify(user));
+            }
+            return user;
+          }),
+          catchError((error: any) => {
+            return of({ type: '[LogIn] LogIn Error', payload: error });
+          })
+        );
+      }),
+    )
+  } )
+
 
 
   constructor(
