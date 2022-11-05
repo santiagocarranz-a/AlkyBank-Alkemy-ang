@@ -29,7 +29,6 @@ export class LoginComponent {
       this.sweetalert.ErrorAlert()
     } else {
       this.authService.login(email, password).subscribe(data => {
-        console.log(data)
         this.router.navigate(['banco/dashboard']).then(() => {
           window.location.reload();
         });
