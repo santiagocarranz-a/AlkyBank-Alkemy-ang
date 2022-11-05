@@ -25,7 +25,7 @@ currentRoute: string
       }
       this.currentRoute = this.currentRoute.replace(/^\//, "").replace("banco", "Home")   
       this.innerRoutes = this.currentRoute.split("/")
-      console.log(this.innerRoutes.length)
+
 
       
 
