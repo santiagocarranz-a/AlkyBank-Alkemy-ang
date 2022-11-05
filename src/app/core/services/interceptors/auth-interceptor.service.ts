@@ -7,29 +7,36 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { AuthService } from '../auth.service';
+import { LocalStorageService } from '../local-storage.service';
 
 
 
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
 
-  constructor(private authSVC: AuthService) {}
+  constructor(private authSVC: AuthService,
+    private local:LocalStorageService) {}
 
   intercept(
       req: HttpRequest<any>,
       next: HttpHandler
     ): Observable<HttpEvent<any>> {
       const currentUser = this.authSVC.userAuth;
-      const isAuthenticated = currentUser && currentUser.user;
+      // const isAuthenticated = currentUser && currentUser.user;
 
-      if(isAuthenticated) {
+      const data = this.local.getToken()
+      if(data) {
+        // req = req.clone({
+        //   setHeaders: {
+        //     Autorization: `Bearer ${data}`
+        //   }
+        // });
         req = req.clone({
-          setHeaders: {
-            Autorization: `Bearer ${currentUser.user}`
-          }
-        });
+          headers: req.headers.set('Authorization',
+                    'Bearer ' + data)
+        })
+        console.log("Token interceptor", data);
       }
-      console.log(currentUser);
       return next.handle(req);
   }
 

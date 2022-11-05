@@ -24,19 +24,15 @@ export class LoginComponent {
   });
 
   send() {
-
-    const {email, password}  = this.form.value
-  this.authService.login(email, password).subscribe(data => {
-
-    this.router.navigate(['banco/dashboard'])
-  }, error => {
-    console.log(error)
-    this.sweetalert.ErrorAlert()
-  })
+    const { email, password } = this.form.value
+    if (email === '' || password === '') {
+      this.sweetalert.ErrorAlert()
+    } else {
+      this.authService.login(email, password).subscribe(data => {
+        this.router.navigate(['banco/dashboard']).then(() => {
+          window.location.reload();
+        });
+      })
+    }
   }
 }
-
-
-
-
-
