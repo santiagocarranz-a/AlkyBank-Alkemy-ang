@@ -24,7 +24,7 @@ export class HeaderComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.usuario()
+     this.usuario()
   }
 
   constructor(private router:Router,
@@ -34,13 +34,14 @@ export class HeaderComponent implements OnInit {
   }
 
 
-    //  usuario(){
-    //   if(this.ifLoggedIn){
-    //      this.base.getPerfil().subscribe(data => {
-    //       this.dataUsuario = data
-    //      })
-    //   }
-    //   }
+     usuario(){
+      if(this.ifLoggedIn){
+         this.base.getPerfil().subscribe(data => {
+          this.dataUsuario = data
+          console.log(this.dataUsuario)
+         })
+      }
+      }
 
 
 
