@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { BancoRoutingModule } from './banco-routing.module';
-import { MaterialModule } from '../material/material.module';
+import { MaterialModule } from '../../material/material.module';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
-
+import { NgChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -13,7 +13,8 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component';
   imports: [
     CommonModule,
     BancoRoutingModule,
-    MaterialModule
+    MaterialModule,
+    NgChartsModule,
   ]
 })
 export class BancoModule { }

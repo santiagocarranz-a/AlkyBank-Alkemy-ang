@@ -11,3 +11,9 @@ export interface User {
     roleId: number;
     points: number;
 }
+export interface UserRegister {
+    first_name: string;
+    last_name: string;
+    email: string;
+    password: string;
+}

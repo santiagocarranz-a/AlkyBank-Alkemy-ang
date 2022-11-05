@@ -1,0 +1,132 @@
+<header class="relative overflow-hidden">
+    <div class="absolute bg-sky-600 h-32 w-full inset-0 -z-10"></div>
+    <div class="pt-4 pb-80 sm:pt-8 sm:pb-40 lg:pb-48">
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
+            <div class="text-3xl font-medium text-white">
+                <h1>¡Buenas tardes {{userProfile?.first_name}} {{userProfile?.last_name}}!</h1>
+            </div>
+            <div class="grid mt-4 sm:mt-6 gap-5 xl:grid-row-3 xl:grid-cols-3 lg:gap-10 lg:mt-8">
+                <mat-card
+                    class="py-10 row-span-2 lg:col-span-2 flex flex-col divide-y gap-5 lg:px-0 lg:flex-row lg:py-10 lg:divide-y-0 lg:divide-x lg:gap-0 lg:h-[22rem]">
+                    <div class="flex-1 lg:px-10 flex items-center">
+                        <div class="w-96 h-56 m-auto bg-red-100 rounded-xl relative text-white">
+                            <img class="relative object-cover w-full h-full rounded-xl"
+                                src="https://i.imgur.com/kGkSg1v.png">
+                            <div class="w-full px-8 absolute top-8">
+                                <div class="flex justify-between">
+                                    <div class="">
+                                        <p class="font-light">Nombre</p>
+                                        <p class="font-medium tracking-widest">Sebas P</p>
+                                    </div>
+                                    <img class="w-14 h-14" src="https://i.imgur.com/bbPHJVe.png" />
+                                </div>
+                                <div class="pt-1">
+                                    <p class="font-light">Numero de tarjeta</p>
+                                    <p class="font-medium tracking-more-wider">
+                                        4642 3489 9867 7632
+                                    </p>
+                                </div>
+                                <div class="pt-6 pr-6">
+                                    <div class="flex justify-between">
+                                        <div class="">
+                                            <p class="font-light text-xs">Desde</p>
+                                            <p class="font-medium tracking-wider text-sm">15/11</p>
+                                        </div>
+                                        <div class="">
+                                            <p class="font-light text-xs">Hasta</p>
+                                            <p class="font-medium tracking-wider text-sm">25/03</p>
+                                        </div>
+                                        <div class="">
+                                            <p class="font-light text-xs">CVV</p>
+                                            <p class="font-bold tracking-more-wider text-sm">
+                                                ···
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="px-5 flex-1 pt-2.5 lg:px-10 flex flex-col gap-6 lg:gap-0 lg:justify-between">
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-400">ID de usuario</h2>
+                            <p class="text-2xl font-bold text-gray-700">09821308123232</p>
+                        </div>
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-400">Mi balance:</h2>
+                            <div class="flex">
+                                <h3 *ngIf="hideCurrency === false" class="text-4xl font-bold">{{currentUser.points |
+                                    currency}}</h3>
+                                <h3 *ngIf="hideCurrency === true" class="text-4xl font-bold"> $ *** </h3>
+                                <button mat-icon-button (click)="showCurrencyFn()">
+                                    <mat-icon
+                                        [ngClass]="{'text-black': hideCurrency === true, 'text-gray-400': hideCurrency === false}">
+                                        visibility</mat-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="flex gap-5">
+                            <button mat-raised-button class="w-full bg-sky-600 text-white">Recargar</button>
+                            <button mat-raised-button class="w-full bg-sky-600 text-white">Transferir</button>
+                        </div>
+                    </div>
+                </mat-card>
+                <mat-card class="h-[22rem]">
+                    <div class="flex flex-col items-center justify-center">
+                        <h2 class="text-xl font-bold mb-2">Análisis de gastos</h2>
+                        <canvas baseChart [type]="'doughnut'" [datasets]="pieChartDatasets" [labels]="pieChartLabels"
+                            [options]="pieChartOptions" [plugins]="pieChartPlugins" [legend]="pieChartLegend">
+                        </canvas>
+                    </div>
+                </mat-card>
+            </div>
+            <div>
+                <table mat-table
+       [dataSource]="dataSource" multiTemplateDataRows
+       class="mat-elevation-z8">
+  <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+    <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+    <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+  </ng-container>
+  <ng-container matColumnDef="expand">
+    <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button aria-label="expand row" (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
+        <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
+        <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+  <ng-container matColumnDef="expandedDetail">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
+      <div class="example-element-detail"
+           [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
+        <div class="example-element-diagram">
+          <div class="example-element-position"> {{element.position}} </div>
+          <div class="example-element-symbol"> {{element.symbol}} </div>
+          <div class="example-element-name"> {{element.name}} </div>
+          <div class="example-element-weight"> {{element.weight}} </div>
+        </div>
+        <div class="example-element-description">
+          {{element.description}}
+          <span class="example-element-description-attribution"> -- Wikipedia </span>
+        </div>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
+  <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
+      class="example-element-row"
+      [class.example-expanded-row]="expandedElement === element"
+      (click)="expandedElement = expandedElement === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+</table>
+            </div>
+        </div>
+    </div>
+</header>

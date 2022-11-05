@@ -6,7 +6,7 @@ a{
   cursor:pointer;
 }
 header{
-  background-color: #0369A1;
+  background-color: #4527A0;
 
 }
 ul{
@@ -69,31 +69,31 @@ ul{
 }
 
 
-// .menu{
-//   display:flex;
-//   align-items: center;
+ .menu{
+   display:flex;
+   align-items: center;
 
-//   @media(max-width:768px){
-//     display:none;
+   @media(max-width:768px){
+     display:none;
 
-//     &.is-open{
-//       display:block;
-//       position:absolute;
-//       top: #{$menuHeight + 2 };
-//       width:100%;
+     &.is-open{
+       display:block;
+       position:absolute;
+       top: #{$menuHeight + 2 };
+       width:100%;
 
 
-//       .menu-item{
-//         border-bottom:1px solid #cccc;
-//       }
-//     }
-//   }
+       .menu-item{
+         border-bottom:1px solid #cccc;
+       }
+     }
+   }
 
-//   .menu-item{
-//     padding:0 0.1rem;
-//     height:$menuHeight;
-//     line-height:$menuHeight;
-//     display:block;
+   .menu-item{
+     padding:0 0.1rem;
+     height:$menuHeight;
+     line-height:$menuHeight;
+     display:block;
 
-//   }
-// }
+   }
+ }

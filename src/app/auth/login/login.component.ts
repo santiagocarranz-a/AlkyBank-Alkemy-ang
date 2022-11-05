@@ -24,6 +24,7 @@ export class LoginComponent {
   });
 
   send() {
+
     const {email, password}  = this.form.value
   this.authService.login(email, password).subscribe(data => {
 
@@ -34,3 +35,8 @@ export class LoginComponent {
   })
   }
 }
+
+
+
+
+

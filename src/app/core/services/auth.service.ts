@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '@env/environment';
-import { User, UserAuth } from '../model/interfaces';
+import { UserRegister, UserAuth, User } from '../model/interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -18,8 +18,8 @@ export class AuthService {
     )
   }
 
-  login(email:string, password:string): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, {email, password})
+  login(email: string, password: string): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, { email, password })
       .pipe(map(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
@@ -40,14 +40,14 @@ export class AuthService {
     localStorage.removeItem('user');
   }
 
-  registro(
-    first_name: string,
-    last_name: string,
-    email: string,
-    password: string)
-    {
+  registro(user: UserRegister) {
     const url = `${this.baseUrl}/users`;
-    const body = { first_name, last_name, email, password };
-    return this.http.post(url, body)
+    return this.http.post(url, user);
+  }
+
+  getUsersID(id: number): Observable<User> {
+    return this.http.get<User>(`${this.baseUrl}/users/${id}`).pipe(
+      map(data => data)
+    )
   }
 }
