@@ -12,7 +12,7 @@ export class LocalStorageService {
   }
 
   getToken(){
-    const {accessToken} = JSON.parse(localStorage.getItem('user') as string )
+    const accessToken = JSON.parse(localStorage.getItem('user') as string )
     return accessToken
 
   }

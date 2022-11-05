@@ -61,16 +61,9 @@ userProfile: User | undefined;
   public pieChartPlugins = [];
 
   ngOnInit(): void {
-    this.getUserProfile();
   }
 
-  getUserProfile() {
-    this.authService.getUsersID(262).subscribe({
-      next: (response : User) => {
-        this.userProfile = response;
-      }
-    })
-  }
+
 
 
 

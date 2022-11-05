@@ -23,8 +23,6 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
     BrowserAnimationsModule,
     AuthModule,
     SharedModule,
-    HttpClientModule,
-    InterceptorModule,
     MaterialModule,
     HttpClientModule,
     IconsModule,

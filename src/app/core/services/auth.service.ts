@@ -44,10 +44,4 @@ export class AuthService {
     const url = `${this.baseUrl}/users`;
     return this.http.post(url, user);
   }
-
-  getUsersID(id: number): Observable<User> {
-    return this.http.get<User>(`${this.baseUrl}/users/${id}`).pipe(
-      map(data => data)
-    )
-  }
 }
