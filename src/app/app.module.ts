@@ -1,3 +1,8 @@
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthEffects } from './auth/auth-store/auth.effects/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducers } from './auth/auth-store/auth.reducers/auth.reducers';
+import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,6 +16,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
+
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +34,11 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
     HttpClientModule,
     IconsModule,
     InterceptorModule,
+    StoreModule.forRoot({ auth: authReducers}),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+    })
   ],
   providers: [],
   bootstrap: [AppComponent]
