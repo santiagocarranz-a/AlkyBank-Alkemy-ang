@@ -6,14 +6,15 @@ import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
-
+import { TituloComponent } from './components/titulo/titulo.component';
 
 @NgModule({
   declarations: [
     AlertsComponent,
     HeaderComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
+    TituloComponent
   ],
   imports: [
     CommonModule,
@@ -22,7 +23,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   ],
   exports: [
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    TituloComponent
   ]
 })
 export class SharedModule { }
