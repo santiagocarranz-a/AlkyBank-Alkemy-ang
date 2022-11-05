@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { UserRegister, UserAuth } from '../model/interfaces';
+import { LocalStorageService } from './local-storage.service';
 
 @Injectable({
   providedIn: 'root',
@@ -12,7 +13,7 @@ export class AuthService {
   private baseUrl = environment.apiBase;
   currentUserSubject: BehaviorSubject<any>;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private local:LocalStorageService) {
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('user') || '{}')
     )
@@ -33,11 +34,11 @@ export class AuthService {
   }
 
   loggedIn() {
-    return localStorage.getItem('user');
+    this.local.getToken()
   }
 
   logout() {
-    localStorage.removeItem('user');
+    this.local.removeToken()
   }
 
   registro(user: UserRegister) {
