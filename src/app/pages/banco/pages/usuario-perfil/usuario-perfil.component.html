@@ -1,1 +1,13 @@
-<p>usuario-perfil works!</p>
+<div class="contenedor">
+    <mat-card class="tarjeta" *ngIf="dataUsuario!=null">
+        <div mat-card-avatar><img mat-card-image src="" class="circular"></div>
+        <mat-card-title>{{dataUsuario.last_name}}, {{dataUsuario.first_name}}</mat-card-title>
+      <mat-card-content>
+        
+        <p>Email:{{dataUsuario.email}}</p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-flat-button  color="primary">Editar</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
