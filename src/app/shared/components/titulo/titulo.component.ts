@@ -7,27 +7,29 @@ import { Router, NavigationEnd, Event } from '@angular/router';
   styleUrls: ['./titulo.component.scss']
 })
 export class TituloComponent {
+  ifLoggedIn:boolean = false
+
 //all routes
 
 //current route variable
 innerRoutes:string[]= []
 currentRoute: string
 
-  constructor(private router: Router) { 
+  constructor(private router: Router) {
+    this.ifLoggedIn = localStorage.getItem('user') ? true : false;
     this.currentRoute = "";
     this.router.events.subscribe((event: Event) => {
       if(event instanceof NavigationEnd){
-        this.currentRoute = event.url;        
-        console.log(this.currentRoute)   
+        this.currentRoute = event.url;
+        console.log(this.currentRoute)
       }
       if(this.currentRoute == "/home"){
         this.currentRoute = ""
       }
-      this.currentRoute = this.currentRoute.replace(/^\//, "").replace("banco", "Home")   
+      this.currentRoute = this.currentRoute.replace(/^\//, "").replace("banco", "Home")
       this.innerRoutes = this.currentRoute.split("/")
 
 
-      
 
     });
   }
