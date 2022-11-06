@@ -4,6 +4,7 @@ import { User } from '@core/model/interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
 import { ChartOptions } from 'chart.js';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import { BaseServicesService } from '@core/services/base-service';
 @Component({
   selector: 'ab-dashboard',
   templateUrl: './dashboard.component.html',
@@ -21,16 +22,15 @@ export class DashboardComponent implements OnInit {
 userProfile: User | undefined;
 
   hideCurrency: boolean = false;
-  currentUser: User = {
-    first_name: 'Sebas',
-    last_name: 'Prueba',
-    email: 'test@test.com',
-    password: '',
-    roleId: 1,
-    points: 5000,
+  dataUsuario:User = {
+    id:0,
+    first_name:'',
+    last_name:'',
+    email:'',
+    password:'',
+    points:0,
+    roleId:0
   }
-  completeName: string = this.currentUser.first_name + ' ' + this.currentUser.last_name;
-
 
   dataSource = ELEMENT_DATA;
   columnsToDisplay = ['operacion', 'monto', 'usuarioId', 'concepto', 'fecha'];
@@ -38,7 +38,8 @@ userProfile: User | undefined;
   expandedElement!: PeriodicElement | null;
 
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private base:BaseServicesService
   ) { }
 
   public pieChartOptions: ChartOptions<'doughnut'> = {
@@ -61,6 +62,7 @@ userProfile: User | undefined;
   public pieChartPlugins = [];
 
   ngOnInit(): void {
+    this.usuario()
   }
 
 
@@ -72,7 +74,14 @@ userProfile: User | undefined;
   showCurrencyFn() {
     this.hideCurrency = !this.hideCurrency;
   }
-}
+  usuario(){
+       this.base.getPerfil().subscribe(data => {
+        this.dataUsuario = data
+        console.log(this.dataUsuario)
+       })
+    }
+    }
+
 
 export interface PeriodicElement {
   name: string;
@@ -125,7 +134,3 @@ const ELEMENT_DATA: TransaccionesAUsuarios[] = [
     usuarioId: '7235234'
   }
 ];
-
-
-
-

@@ -6,8 +6,8 @@ import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { MaterialModule } from '../material/material.module';
 import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { SidebarComponent } from './components/sidebar/sidebar.component';
-
+import { TituloComponent } from './components/titulo/titulo.component';
+import { AvatarComponent } from './components/avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -15,8 +15,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    SidebarComponent
-
+    TituloComponent,
+    AvatarComponent
   ],
   imports: [
     CommonModule,
@@ -26,7 +26,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
   exports: [
     HeaderComponent,
     HomeComponent,
-    FooterComponent
+    FooterComponent,
+    TituloComponent
   ]
 })
 export class SharedModule { }
