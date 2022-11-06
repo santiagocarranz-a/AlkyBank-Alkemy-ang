@@ -1,23 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ChartConfiguration, ChartData, ChartEvent, ChartType } from 'chart.js';
 import { BaseChartDirective } from 'ng2-charts';
-import {animate, state, style, transition, trigger} from '@angular/animations';
 
 import DataLabelsPlugin from 'chartjs-plugin-datalabels';
 
 @Component({
   selector: 'ab-balance-chart',
   templateUrl: './balance-chart.component.html',
-  styleUrls: ['./balance-chart.component.scss'],
-  animations: [
-    trigger('detailExpand', [
-      state('collapsed', style({height: '0px', minHeight: '0'})),
-      state('expanded', style({height: '*'})),
-      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
-    ]),
-  ],
+  styleUrls: ['./balance-chart.component.scss']
 })
 export class BalanceChartComponent implements OnInit {
+
 
   constructor() { }
 
@@ -32,7 +25,7 @@ export class BalanceChartComponent implements OnInit {
     scales: {
       x: {},
       y: {
-        min: 10
+        min: 0,
       }
     },
     plugins: {
@@ -66,5 +59,7 @@ export class BalanceChartComponent implements OnInit {
   public chartHovered({ event, active }: { event?: ChartEvent, active?: {}[] }): void {
     console.log(event, active);
   }
+
+
 
 }

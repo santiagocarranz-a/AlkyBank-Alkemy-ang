@@ -32,11 +32,6 @@ export class RegistroComponent {
    }
 
 
-
-
-
-
-
    register(){
       this.isSubmitted = true;
       if(this.miFormulario.invalid){
