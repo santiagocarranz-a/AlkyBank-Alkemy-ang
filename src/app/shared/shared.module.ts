@@ -9,13 +9,14 @@ import { FooterComponent } from './components/footer/footer.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 
+
 @NgModule({
   declarations: [
     AlertsComponent,
     HeaderComponent,
     HomeComponent,
     FooterComponent,
-    SidebarComponent
+    SidebarComponent,
 
   ],
   imports: [

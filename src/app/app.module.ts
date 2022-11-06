@@ -15,7 +15,7 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,
