@@ -18,3 +18,7 @@ export interface UserRegister {
     email: string;
     password: string;
 }
+
+export interface AccessToken {
+  user: string;
+}

@@ -31,7 +31,7 @@ export class LoginComponent {
     if (email === '' || password === '') {
       this.sweetalert.ErrorAlert()
     } else {
-      this.store.dispatch(Auth.LogIn())
+      this.store.dispatch(Auth.LogIn({email, password}))
     }
   }
 }
