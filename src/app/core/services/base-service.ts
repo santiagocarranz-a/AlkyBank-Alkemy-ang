@@ -28,7 +28,10 @@ export class BaseServicesService {
     const url = `${this.baseApi}/auth/me`
     return this.http.get<User>(url)
   }
-
+  getUsers():Observable<User[]>{
+    const url = `${this.baseApi}/users`
+    return this.http.get<User[]>(url)
+  }
   //  getUserId(id:number):Observable<User>{
   //    const url = `${this.baseApi}/users/${id}`
   //    return this.http.get<User>(url)

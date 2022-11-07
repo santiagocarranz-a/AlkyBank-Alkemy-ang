@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
 import { environment } from '@env/environment';
 import { UserRegister, UserAuth } from '../model/interfaces';
 import { LocalStorageService } from './local-storage.service';
@@ -43,6 +43,8 @@ export class AuthService {
 
   registro(user: UserRegister) {
     const url = `${this.baseUrl}/users`;
-    return this.http.post(url, user);
+    return this.http.post(url, user).pipe(
+      catchError(error => of(false))
+    )
   }
 }

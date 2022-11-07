@@ -12,6 +12,7 @@ import { BankAccountComponent } from './pages/dashboard/components/bank-account/
 import { PieChartComponent } from './pages/dashboard/components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './pages/dashboard/components/line-chart/line-chart.component';
 import { AddBankAccountComponent } from './pages/dashboard/components/bank-account/components/add-bank-account/add-bank-account.component';
+import { ContactsComponent } from './pages/contacts/contacts.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ ProfileComponent,
     BankAccountComponent,
     PieChartComponent,
     LineChartComponent,
-    AddBankAccountComponent
+    AddBankAccountComponent,
+    ContactsComponent
   ],
   imports: [
     CommonModule,

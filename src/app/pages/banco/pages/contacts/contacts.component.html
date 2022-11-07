@@ -1,0 +1,51 @@
+
+<div class="flex flex-col">
+    <div class="overflow-x-auto sm:-mx-6 lg:-mx-8">
+      <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+        <div class="overflow-hidden">
+          <table class="min-w-full text-center" >
+            <thead class="border-b">
+              <tr>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                  Nombre
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                  Email
+                </th>
+                <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4">
+                  Enviar dinero
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b" *ngFor="let user of user">
+                <td class="text-sm text-gray-900 font-medium px-6 py-4 whitespace-nowrap border border-slate-300">
+                  {{user.first_name}} {{user.last_name}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border border-slate-300">
+                  {{user.email}}
+                </td>
+                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap border border-slate-300">
+                  <button type="button" class="py-2 px-3 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Enviar</button>
+                </td>
+              </tr>
+            </tbody>
+          
+          </table>
+          <mat-paginator [length]="length"
+          [pageSize]="pageSize"
+          [pageSizeOptions]="pageSizeOptions"
+          (page)="pageEvent = $event"
+          aria-label="Select page">
+          </mat-paginator>
+          <div *ngIf="pageEvent">
+            <h5>Page Change Event Properties</h5>
+            <div>List length: {{pageEvent.length}}</div>
+            <div>Page size: {{pageEvent.pageSize}}</div>
+            <div>Page index: {{pageEvent.pageIndex}}</div>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </div>
