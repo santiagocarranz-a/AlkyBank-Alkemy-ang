@@ -16,6 +16,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
+import { environment } from '../environments/environment';
 
 
 @NgModule({
@@ -34,11 +35,13 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
     HttpClientModule,
     IconsModule,
     InterceptorModule,
-    StoreModule.forRoot({ auth: authReducers}),
+    StoreModule.forRoot({}),
+    StoreModule.forFeature( 'AuthState', authReducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
-    })
+    }),
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]

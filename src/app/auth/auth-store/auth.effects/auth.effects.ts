@@ -21,7 +21,7 @@ export class AuthEffects {
             return { type: '[LogIn] LogIn Success', payload: user};
           }),
           tap((user) => {
-            this.route.navigateByUrl('/banco/dashboard')
+            return this.route.navigateByUrl('/banco/dashboard')
           }),
           catchError((error) => {
             return of({ type: '[LogIn] LogIn Error', payload: error})
@@ -37,6 +37,18 @@ export class AuthEffects {
       tap((user) => {
         localStorage.setItem('user', user.type)
         this.route.navigateByUrl('/banco/dashboard')
+      })
+    )
+  })
+
+  Logout$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(AuthActions.Logout),
+      tap((user) => {
+
+        this.route.navigateByUrl('auth/login').then(() => {
+        window.location.reload();
+    });
       })
     )
   })

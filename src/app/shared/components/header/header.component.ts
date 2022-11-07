@@ -2,9 +2,11 @@ import { AuthService } from '@core/services/auth.service';
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User } from '@core/model/interfaces';
+import { User, AccessToken } from '@core/model/interfaces';
 import { BaseServicesService } from '@core/services/base-service';
 import { navbarData } from '../navigation';
+import { Store } from '@ngrx/store';
+import * as AuthActions from '../../../auth/auth-store/auth.actions/auth.actions'
 @Component({
   selector: 'ab-header',
   templateUrl: './header.component.html'
@@ -24,7 +26,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(private router: Router,
     private base: BaseServicesService,
-    private activate: ActivatedRoute) {
+    private activate: ActivatedRoute,
+    private store: Store<any>) {
     this.ifLoggedIn = localStorage.getItem('user') ? true : false;
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
   }
@@ -38,10 +41,7 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    localStorage.removeItem('user')
-    this.router.navigate(['auth/login']).then(() => {
-      window.location.reload();
-    });
+    this.store.dispatch(AuthActions.Logout())
   }
 
   showSideBar() {

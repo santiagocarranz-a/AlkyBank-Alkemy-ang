@@ -9,7 +9,7 @@ export const LogIn = createAction (
 
 export const LoggedIn = createAction (
   '[LoggedIn] LoggedIn',
-  props<{user: AccessToken}>()
+  props<{loggedIn: boolean}>()
 )
 
 export const Register = createAction (
@@ -19,6 +19,6 @@ export const Register = createAction (
 
 export const Logout = createAction (
   '[Logout] Logout',
-  props<{isLogin: boolean}>
+  props<{user: AccessToken}>
 )
 
