@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
+import { Transactions } from '@core/model/interfacesTransactions';
 
 @Component({
   selector: 'ab-transactions',
@@ -13,27 +14,59 @@ export class TransactionsComponent implements OnInit {
   correspondeIngreso:any;
   idMonto: any;
   fecha:string = ''
-
+  hourAndDate:string=""
+  UserID:number=0
 
   constructor(public modalSS:TransactionsService) { }
 
+
+
+
+
+
+  funcASD(){
+    console.log("II")
+  }
+  
+  
+
+
+  sendDataForm(monto:any,concepto:string){
+
+    //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
+    
+    const formData : Transactions = {
+      amount: monto,
+      concept: concepto,
+      date: this.hourAndDate,
+      type: 'payment',
+      accountId: 23,
+      userId: 4,
+      to_account_id: 5
+    }
+
+    this.modalSS.postTransaction(formData).subscribe((data)=>{
+      console.log(data)
+    })
+  }
+  
+
+
+
   obtenerFecha (){
     //FECHA//
-    
     let date = new Date()
     let day = date.getDate()
     let month = date.getMonth() + 1
     let year = date.getFullYear()
     
-    if(month < 10){
-      this.fecha = `${year}-0${month}-${day}`
+    if(month < 10 && day < 10){
+      this.fecha = `${year}-0${month}-0${day}`
       console.log(this.fecha)
     }else{
       this.fecha = `${year}-${month}-${day}`
       console.log(this.fecha)
     }
-    
-    
     //HORA//
     let timeHour = date.getHours()
     let timeMinutes = date.getMinutes().toString()
@@ -48,27 +81,13 @@ export class TransactionsComponent implements OnInit {
       clockSet = `${timeHour}:${timeMinutes}:${timeSecond}` 
     }
     console.log(clockSet)
+
+    this.hourAndDate = this.fecha +" "+ clockSet
+    console.log(this.hourAndDate)
   }
-  
-  
-  
-  validar(monto:any,concepto:string){
-    //monto
-    if(monto >0 ){
-      console.log("BIEN:monto es mayor a cero")
-      console.log(monto)
-    }else{
-      console.log("MAL:monto tiene que ser mayor a 0")
-    }
-    
-    //concepto
-    if(concepto!=""){
-      console.log("BIEN:Concepto corresponde")
-    }
-    else{
-      console.log("MAL:es necesario el concepto")
-    }
-  }
+
+
+
 
   ngOnInit(): void {
     this.modalSS.$modal.subscribe((valor)=>{

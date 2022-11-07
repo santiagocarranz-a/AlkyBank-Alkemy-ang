@@ -17,8 +17,8 @@ export class BankAccountComponent implements OnInit {
     private modalSS: TransactionsService,
   ) { }
 
-
-//MODAL//
+  
+  //MODAL//
   modalRecargar(){
     this.modalSS.$modal.emit(true)
     this.dialog.open(TransactionsComponent)
@@ -30,9 +30,8 @@ export class BankAccountComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
 
-    
+  ngOnInit(): void {
   }
 
   toggleTabs($tabNumber: number) {

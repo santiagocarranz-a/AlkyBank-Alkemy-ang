@@ -10,7 +10,14 @@
 </mat-form-field>
 
 <mat-form-field appearance="fill">
-    <mat-label>Select</mat-label>
+    <mat-label>Destinario</mat-label>
+    <mat-select id="idSelect">
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+    </mat-select>
+</mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Tipo de cuenta</mat-label>
     <mat-select id="idSelect">
         <mat-option value="one">First option</mat-option>
         <mat-option value="two">Second option</mat-option>
@@ -23,6 +30,6 @@
 </mat-form-field>
 <div class="button">
     <button mat-button color="warn" mat-dialog-close >Salir</button>
-    <button mat-button color="primary" (click)="validar(idMonto.value,idConcepto.value)">Listo!</button>
+    <button mat-button color="primary" (click)="sendDataForm(idMonto.value,idConcepto.value)">Listo!</button>
 </div>
 
