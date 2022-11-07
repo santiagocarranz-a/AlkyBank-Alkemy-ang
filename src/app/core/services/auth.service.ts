@@ -13,15 +13,15 @@ export class AuthService {
   private baseUrl = environment.apiBase;
   currentUserSubject: BehaviorSubject<any>;
 
-  constructor(private http: HttpClient, private local:LocalStorageService) {
+  constructor(private http: HttpClient, private local: LocalStorageService) {
     this.currentUserSubject = new BehaviorSubject<any>(
       JSON.parse(localStorage.getItem('user') || '{}')
     )
   }
 
-  login(email: string, password: string): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, { email, password })
-      .pipe(map(user => {
+  login(user: UserAuth): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, user)
+      .pipe(tap(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
         }
