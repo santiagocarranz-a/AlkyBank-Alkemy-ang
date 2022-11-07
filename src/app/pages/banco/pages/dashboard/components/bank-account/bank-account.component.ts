@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddBankAccountComponent } from './components/add-bank-account/add-bank-account.component';
+import { TransactionsService } from '@core/services/banco/transactions.service';
+import { TransactionsComponent } from '@shared/components/formTransactions/transactions.component';
 
 @Component({
   selector: 'ab-bank-account',
@@ -11,8 +13,23 @@ export class BankAccountComponent implements OnInit {
   openTab = 1;
   hideCurrency: boolean = false;
   constructor(
-    public dialog: MatDialog
+    public dialog: MatDialog,
+    private modalSS: TransactionsService,
   ) { }
+
+  
+  //MODAL//
+  modalRecargar(){
+    this.modalSS.$modal.emit(true)
+    this.dialog.open(TransactionsComponent)
+  }
+
+  modalTransferir(){
+    this.modalSS.$modal.emit(false)
+    this.dialog.open(TransactionsComponent)
+  }
+
+
 
   ngOnInit(): void {
   }
