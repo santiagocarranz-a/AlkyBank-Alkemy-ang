@@ -25,6 +25,7 @@ dataSource!:MatTableDataSource<User[]>
 
   ngOnInit(): void {
     this.getUser()
+    
   }
   getUser(){
     this.base.getUsers().subscribe((res:any)=>{
@@ -34,4 +35,8 @@ dataSource!:MatTableDataSource<User[]>
       this.dataSource.paginator = this.paginator
     })
   }
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+}
 }

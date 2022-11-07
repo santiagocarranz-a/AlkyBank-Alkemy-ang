@@ -1,9 +1,10 @@
+<mat-form-field appearance="standard">
+  <mat-label>Filter</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Search columns" #input>
+</mat-form-field>
+
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
-  <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-  <!-- Position Column -->
   <ng-container matColumnDef="first_name">
     <th mat-header-cell *matHeaderCellDef> Nombre</th>
     <td class="nombre" mat-cell *matCellDef="let element"> {{element.first_name}} {{element.last_name}} </td>
