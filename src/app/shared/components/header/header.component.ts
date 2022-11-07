@@ -2,11 +2,11 @@ import { AuthService } from '@core/services/auth.service';
 import { JsonPipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { User, AccessToken } from '@core/model/interfaces';
+import { User } from '@core/model/interfaces';
 import { BaseServicesService } from '@core/services/base-service';
 import { navbarData } from '../navigation';
 import { Store } from '@ngrx/store';
-import * as AuthActions from '../../../auth/auth-store/auth.actions/auth.actions'
+import * as Auth from '../../../auth/auth-store/auth.actions/auth.actions';
 @Component({
   selector: 'ab-header',
   templateUrl: './header.component.html'
@@ -41,7 +41,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.store.dispatch(AuthActions.Logout())
+    this.store.dispatch(Auth.Logout())
+    // localStorage.removeItem('user')
+    // this.router.navigate(['auth/login']).then(() => {
+    //   window.location.reload();
+    // });
   }
 
   showSideBar() {

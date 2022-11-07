@@ -1,7 +1,7 @@
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import { AuthEffects } from './auth/auth-store/auth.effects/auth.effects';
 import { EffectsModule } from '@ngrx/effects';
-import { authReducers } from './auth/auth-store/auth.reducers/auth.reducers';
+import { authReducers, UserAuthStateKey } from './auth/auth-store/auth.reducers/auth.reducers';
 import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -17,6 +17,7 @@ import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
 import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 
 @NgModule({
@@ -36,12 +37,13 @@ import { environment } from '../environments/environment';
     IconsModule,
     InterceptorModule,
     StoreModule.forRoot({}),
-    StoreModule.forFeature( 'AuthState', authReducers),
+    StoreModule.forFeature(UserAuthStateKey, authReducers),
     EffectsModule.forRoot([AuthEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
     }),
-    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production })
+    StoreDevtoolsModule.instrument({ maxAge: 25, logOnly: environment.production }),
+    StoreRouterConnectingModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

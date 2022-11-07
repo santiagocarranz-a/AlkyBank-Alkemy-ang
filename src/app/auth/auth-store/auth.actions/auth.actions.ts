@@ -1,4 +1,3 @@
-import { AccessToken } from '@core/model/interfaces';
 import { createAction, props } from '@ngrx/store';
 
 
@@ -7,18 +6,12 @@ export const LogIn = createAction (
   props<{email: string, password: string}>()
 )
 
-export const LoggedIn = createAction (
-  '[LoggedIn] LoggedIn',
-  props<{loggedIn: boolean}>()
-)
-
 export const Register = createAction (
   '[Register] Register',
   props<{first_name: string, last_name: string, email: string, password: string}>
 )
 
 export const Logout = createAction (
-  '[Logout] Logout',
-  props<{user: AccessToken}>
+  '[Logout] Logout Success'
 )
 

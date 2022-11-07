@@ -1,9 +1,8 @@
-import { LoggedIn } from './../auth.actions/auth.actions';
 import { UserAuth, AccessToken } from '@core/model/interfaces';
 import { Injectable } from "@angular/core";
 import { AuthService } from '@core/services/auth.service';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, catchError, of, map, switchMap, tap } from 'rxjs';
+import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap } from 'rxjs';
 import * as AuthActions from '../auth.actions/auth.actions'
 import { Router } from '@angular/router';
 
@@ -21,37 +20,27 @@ export class AuthEffects {
             return { type: '[LogIn] LogIn Success', payload: user};
           }),
           tap((user) => {
-            return this.route.navigateByUrl('/banco/dashboard')
+            return this.route.navigate(['/banco/dashboard'])
           }),
           catchError((error) => {
             return of({ type: '[LogIn] LogIn Error', payload: error})
           })
-          );
-        }),
-        )
-      } )
-
-  LoggedIn$ = createEffect(() => {
-    return this.actions$.pipe(
-      ofType(AuthActions.LoggedIn),
-      tap((user) => {
-        localStorage.setItem('user', user.type)
-        this.route.navigateByUrl('/banco/dashboard')
-      })
+        );
+      }),
     )
   })
 
   Logout$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.Logout),
-      tap((user) => {
-
-        this.route.navigateByUrl('auth/login').then(() => {
-        window.location.reload();
-    });
+      tap(() => {
+        this.route.navigateByUrl('/auth/login')
+        return this.authService.logout();
       })
     )
-  })
+  },
+  { dispatch: false }
+  )
 
 
       // map((user: UserAuth) => {
