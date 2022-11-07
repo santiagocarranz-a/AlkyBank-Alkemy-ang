@@ -27,7 +27,7 @@ export class RegistroComponent {
   constructor(
     private fb: FormBuilder,
     private router: Router,
-    private auth:AuthService,
+    private authService:AuthService,
     public dialog:MatDialog) {
    }
 
@@ -42,7 +42,7 @@ export class RegistroComponent {
       if(this.miFormulario.invalid){
         return;
       }
-      this.auth.registro(this.miFormulario.value)
+      this.authService.registro(this.miFormulario.value)
       .subscribe(data => {
         this.router.navigate(['/auth/login'])
         console.log(data)
