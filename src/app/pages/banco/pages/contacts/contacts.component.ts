@@ -20,7 +20,7 @@ pageSizeOptions: number[] = [5, 10, 25, 100];
   constructor(private base:BaseServicesService, private route:Router) { }
 
   ngOnInit(): void {
-    
+
     this.getUser()
   }
   setPageSizeOptions(setPageSizeOptionsInput: string) {
@@ -34,7 +34,7 @@ pageSizeOptions: number[] = [5, 10, 25, 100];
       const{data,nextPage}=res
       this.user=data,nextPage
       return console.log (data,nextPage)
-      
+
     })
   }
 
