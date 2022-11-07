@@ -1,0 +1,28 @@
+<H1 mat-dialog-title *ngIf="correspondeIngreso; else egreso">Recargar</H1>
+
+<ng-template #egreso>
+    <H1 mat-dialog-title >Transferir</H1>
+</ng-template>
+
+<mat-form-field appearance="fill">
+    <mat-label>Monto</mat-label>
+    <input matInput type="number" #idMonto ="">
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Select</mat-label>
+    <mat-select id="idSelect">
+        <mat-option value="one">First option</mat-option>
+        <mat-option value="two">Second option</mat-option>
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field appearance="fill">
+    <mat-label>Concepto</mat-label>
+    <textarea matInput maxlength="35" #idConcepto></textarea>
+</mat-form-field>
+<div class="button">
+    <button mat-button color="warn" mat-dialog-close >Salir</button>
+    <button mat-button color="primary" (click)="validar(idMonto.value,idConcepto.value)">Listo!</button>
+</div>
+
