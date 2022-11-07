@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuth } from '@core/model/interfaces';
 import { AuthService } from '@core/services/auth.service';
@@ -18,6 +18,11 @@ export class LoginComponent implements OnInit {
     private formBuilder: FormBuilder
   ) { }
 
+  // form: FormGroup = new FormGroup({
+  //   email: new FormControl('', [Validators.required, Validators.email]),
+  //   password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+  // });
+
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],
@@ -26,15 +31,15 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    if (this.loginForm.invalid) {
-      this.sweetalert.ErrorAlert()
-    } else {
+    if (this.loginForm.valid) {
       const user: UserAuth = this.loginForm.value
       this.authService.login(user).subscribe(data => {
         this.router.navigate(['banco/dashboard']).then(() => {
           window.location.reload();
         });
-      })
+      }, error => {
+        this.sweetalert.ErrorAlert()
+      });
     }
   }
 }

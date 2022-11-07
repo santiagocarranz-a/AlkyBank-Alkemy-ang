@@ -7,10 +7,22 @@
                 <mat-form-field>
                     <mat-label>Email</mat-label>
                     <input type="email" matInput placeholder="example@example.com" formControlName="email">
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('required')">
+                        El email es <strong>requerido</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].hasError('email')">
+                        El email es <strong>invalido</strong>
+                    </mat-error>
                 </mat-form-field>
                 <mat-form-field>
                     <mat-label>Contraseña</mat-label>
                     <input type="password" id="typePasswordX" matInput formControlName="password">
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('required')">
+                        La contraseña es <strong>requerida</strong>
+                    </mat-error>
+                    <mat-error *ngIf="loginForm.controls['password'].hasError('minlength')">
+                        La contraseña debe tener al menos <strong>6 caracteres</strong>
+                    </mat-error>
                 </mat-form-field>
             <div class="buttons flex gap-5 justify-center">
                 <button class="bg-sky-500 text-white" (click)="login()" mat-button>Login</button>
