@@ -32,11 +32,6 @@ export class RegistroComponent {
    }
 
 
-
-
-
-
-
    register(){
       this.isSubmitted = true;
       if(this.miFormulario.invalid){
@@ -44,8 +39,13 @@ export class RegistroComponent {
       }
       this.authService.registro(this.miFormulario.value)
       .subscribe(data => {
+        if(data){
         this.router.navigate(['/auth/login'])
         console.log(data)
+        } else {
+          this.sweetalert.datosDuplicadosAlert()
+          return
+        }
       })
    }
 

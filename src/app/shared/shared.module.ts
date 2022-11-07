@@ -9,6 +9,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 
+
 @NgModule({
   declarations: [
     AlertsComponent,

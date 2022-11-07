@@ -1,8 +1,6 @@
-import { UserRegister } from './../../../../core/model/interfaces';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@core/model/interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
-import { ChartOptions } from 'chart.js';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { BaseServicesService } from '@core/services/base-service';
 @Component({
@@ -18,10 +16,6 @@ import { BaseServicesService } from '@core/services/base-service';
   ],
 })
 export class DashboardComponent implements OnInit {
-
-userProfile: User | undefined;
-
-  hideCurrency: boolean = false;
   dataUsuario:User = {
     id:0,
     first_name:'',
@@ -31,7 +25,7 @@ userProfile: User | undefined;
     points:0,
     roleId:0
   }
-
+ 
   dataSource = ELEMENT_DATA;
   columnsToDisplay = ['operacion', 'monto', 'usuarioId', 'concepto', 'fecha'];
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
@@ -42,38 +36,11 @@ userProfile: User | undefined;
     private base:BaseServicesService
   ) { }
 
-  public pieChartOptions: ChartOptions<'doughnut'> = {
-    responsive: false,
-    plugins: {
-      legend: {
-        position: 'bottom',
-        labels: {
-          textAlign: 'left',
-        },
-      }
-    }
-  };
-
-  public pieChartLabels = ['Compras','Servicios', 'Restaurantes y bares' ];
-  public pieChartDatasets = [ {
-    data: [ 300, 500, 100 ]
-  } ];
-  public pieChartLegend = true;
-  public pieChartPlugins = [];
-
+  
   ngOnInit(): void {
     this.usuario()
   }
 
-
-
-
-
-
-
-  showCurrencyFn() {
-    this.hideCurrency = !this.hideCurrency;
-  }
   usuario(){
        this.base.getPerfil().subscribe(data => {
         this.dataUsuario = data

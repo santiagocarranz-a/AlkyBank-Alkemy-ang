@@ -1,10 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AccessToken } from '@core/model/interfaces';
 import { AuthService } from '@core/services/auth.service';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { AlertsComponent } from '../../shared/components/alerts/alerts.component';
 import * as Auth from '../auth-store/auth.actions/auth.actions';
 

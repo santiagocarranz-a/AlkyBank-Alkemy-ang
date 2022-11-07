@@ -2,10 +2,9 @@ import { UserAuth, AccessToken } from '@core/model/interfaces';
 import { Injectable } from "@angular/core";
 import { AuthService } from '@core/services/auth.service';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap } from 'rxjs';
+import { mergeMap, catchError, of, map, switchMap, tap } from 'rxjs';
 import * as AuthActions from '../auth.actions/auth.actions'
 import { Router } from '@angular/router';
-
 
 
 @Injectable()
@@ -55,6 +54,7 @@ export class AuthEffects {
       // catchError((error: any) => {
       //   return of({ type: '[LogIn] LogIn Error', payload: error });
       // })
+
 
   constructor(
     private actions$: Actions,

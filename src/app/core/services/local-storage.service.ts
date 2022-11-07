@@ -12,7 +12,6 @@ export class LocalStorageService {
   }
 
   getToken(){
-    debugger
     if(localStorage.getItem("user") !== null){
      const {accessToken} = JSON.parse(localStorage.getItem("user") as string)
      return accessToken

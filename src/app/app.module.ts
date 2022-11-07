@@ -24,7 +24,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
   declarations: [
     AppComponent,
     HomeComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

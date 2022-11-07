@@ -34,4 +34,12 @@ export class AlertsComponent {
       confirmButtonText: 'Aceptar'
     })
   }
+  datosDuplicadosAlert(){
+    Swal.fire({
+      title: '¡Error!',
+      text: 'Ya existe una cuenta con este email',
+      icon: 'error',
+      confirmButtonText: 'Volver'
+    })
+  }
 }

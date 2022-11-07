@@ -20,7 +20,7 @@ export const navbarData = [
         label: 'Plazos fijos'
     },
     {
-        ruta: '#',
+        ruta: 'banco/contacts',
         icon: 'folder_copy',
         label: 'Contactos'
     },
