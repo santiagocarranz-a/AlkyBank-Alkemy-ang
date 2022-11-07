@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, catchError, map, Observable, of } from 'rxjs';
+import { BehaviorSubject, catchError, map, Observable, of, tap} from 'rxjs';
 import { environment } from '@env/environment';
 import { UserRegister, UserAuth } from '../model/interfaces';
 import { LocalStorageService } from './local-storage.service';

@@ -1,0 +1,16 @@
+table{
+  width:100%;
+
+  .nombre{
+    @media(min-width:768px){
+      font-size:1rem;
+    }
+  }
+  .email{
+    font-size:0.8rem;
+    margin:1rem;
+    @media(min-width:768px){
+      font-size:auto;
+    }
+  }
+}

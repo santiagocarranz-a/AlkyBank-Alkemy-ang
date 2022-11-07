@@ -18,7 +18,7 @@ export class ErrorInterceptorService implements HttpInterceptor {
         if(
             [401, 403].indexOf(err.status) !== -1
         ) {
-            this.route.navigateByUrl(`/auth/login` + err.status);
+             this.route.navigateByUrl(`/auth/login` + err.status);
         }
         return throwError(() => err);
       })
