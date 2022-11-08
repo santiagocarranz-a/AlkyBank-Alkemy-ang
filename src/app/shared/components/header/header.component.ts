@@ -5,7 +5,7 @@ import { BaseServicesService } from '@core/services/base-service';
 import { navbarData } from '../navigation';
 import { Store } from '@ngrx/store';
 import * as Auth from '../../../auth/auth-store/auth.actions/auth.actions';
-import * as Option from '../../../auth/auth-store/auth.reducers/auth.reducers'
+import * as Select from '../../../auth/auth-store/auth.selectors/auth.selectors';
 import { Observable } from 'rxjs';
 
 
@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 
 export class HeaderComponent implements OnInit {
   navbarData = navbarData;
-  isLoggedIn: boolean = false
+  // isLoggedIn: boolean = false
   showSidebar: boolean = false;
   dataUsuario!: User;
   fullName!: string[]
@@ -31,17 +31,17 @@ export class HeaderComponent implements OnInit {
     private base: BaseServicesService,
     private activate: ActivatedRoute,
     private store: Store<any>) {
-    this.isLoggedIn = localStorage.getItem('user') ? true : false;
-    this.isLoggedIn$ = this.store.select(Option.getAuthenticationToken)
+    // this.isLoggedIn = localStorage.getItem('user') ? true : false;
+    this.isLoggedIn$ = this.store.select(Select.isLoggedSelector)
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
   }
 
   usuario() {
-    if (this.isLoggedIn) {
+    // if (this.isLoggedIn) {
       this.base.getPerfil().subscribe(data => {
         this.dataUsuario = data
       })
-    }
+    // }
   }
 
   logout() {

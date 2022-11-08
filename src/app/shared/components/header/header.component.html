@@ -8,10 +8,10 @@
   <div class="ml-10 text-white hidden lg:flex flex-auto gap-3">
     <button mat-button [routerLink]="'/home'">Inicio</button>
     <ng-container *ngFor="let navItem of navbarData">
-      <button mat-button [routerLink]="navItem.ruta" *ngIf="isLoggedIn === true">{{navItem.label}}</button>
+      <button mat-button [routerLink]="navItem.ruta" *ngIf="isLoggedIn$ | async">{{navItem.label}}</button>
     </ng-container>
   </div>
-  <div class="menu hidden lg:block px-10 text-white" *ngIf="isLoggedIn === true">
+  <div class="menu hidden lg:block px-10 text-white" *ngIf="isLoggedIn$ | async">
     <ab-avatar [name]="[dataUsuario.first_name, dataUsuario.last_name]" [responsiveIcon]="false" [matMenuTriggerFor]="menu"></ab-avatar>
     <mat-menu #menu="matMenu">
       <div class="flex flex-col items-start px-3 pt-2 pb-4">
@@ -33,14 +33,14 @@
       </button>
     </mat-menu>
   </div>
-  <div class="hidden lg:block px-10" *ngIf="isLoggedIn === false">
+  <div class="hidden lg:block px-10" *ngIf="showSideBar()">
     <a routerLink="/auth/login" class="whitespace-nowrap text-base font-medium text-gray-100 hover:text-white"> Ingresar
     </a>
     <button [routerLink]="'/auth/registro'" mat-raised-button color="primary"
       class="ml-8 px-4 py-2 bg-sky-700 text-base font-medium">Registrate gratis</button>
   </div>
 </nav>
-<div *ngIf="showSidebar === true"
+<div *ngIf="isLoggedIn$ | async"
   class="fixed left-0 top-0 w-72 bg-white h-screen shadow-2xl shadow-black z-50 block lg:hidden">
   <div class="h-full flex flex-col justify-between">
     <div class="flex flex-col px-4">
@@ -55,7 +55,7 @@
           </div>
         </button>
         <ng-container *ngFor="let navItem of navbarData">
-          <button mat-button [routerLink]="navItem.ruta" *ngIf="isLoggedIn === true" class="w-full py-2.5">
+          <button mat-button [routerLink]="navItem.ruta" *ngIf="isLoggedIn$ | async" class="w-full py-2.5">
             <div class="flex items-center gap-8">
               <mat-icon>home</mat-icon>
               <span>{{navItem.label}}</span>

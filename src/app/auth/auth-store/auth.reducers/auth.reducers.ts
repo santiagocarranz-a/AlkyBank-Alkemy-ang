@@ -5,10 +5,12 @@ import * as AuthActions from '../auth.actions/auth.actions';
 export const UserAuthStateKey = 'UserAuthState';
 export interface UserAuthState {
   isLoggedIn: boolean,
+  // token: []
 }
 
 export const initialUserState: UserAuthState = {
   isLoggedIn: false,
+  // token: []
 }
 
 export const authReducers = createReducer (
@@ -19,4 +21,5 @@ export const authReducers = createReducer (
 )
 
 export const getAuthenticationToken = (state: UserAuthState) => state.isLoggedIn;
+// export const getToken = (state: UserAuthState) => state.token;
 
