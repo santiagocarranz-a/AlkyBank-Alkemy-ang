@@ -8,6 +8,7 @@ import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
+import { TransactionsComponent } from './components/formTransactions/transactions.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { AvatarComponent } from './components/avatar/avatar.component';
     HomeComponent,
     FooterComponent,
     TituloComponent,
-    AvatarComponent
+    AvatarComponent,
+    TransactionsComponent
   ],
   imports: [
     CommonModule,
