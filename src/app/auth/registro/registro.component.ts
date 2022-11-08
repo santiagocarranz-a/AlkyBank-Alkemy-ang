@@ -11,47 +11,76 @@ import { AlertsComponent } from '../../shared/components/alerts/alerts.component
   templateUrl: './registro.component.html',
   styleUrls: ['./registro.component.scss']
 })
-export class RegistroComponent {
+export class RegistroComponent implements OnInit{
   sweetalert: AlertsComponent = new AlertsComponent
-
-
-  //variables
-  miFormulario: FormGroup = this.fb.group({
-    first_name: ['', [Validators.required]],
-    last_name:['', [Validators.required]],
-    email: ['', [Validators.required, Validators.email]],
-    password:['', [Validators.required]],
-  })
+  registerForm!: FormGroup;
   isSubmitted = false;
   resultado:boolean = false
+
   constructor(
-    private fb: FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router,
-    private auth:AuthService,
+    private authService:AuthService,
     public dialog:MatDialog) {
    }
 
+  ngOnInit(): void {
+    this.registerForm = this.formBuilder.group({
+      first_name: ['', [Validators.required]],
+      last_name: ['', [Validators.required]],
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(6)]],
+    })
+  }
 
-   register(){
-      this.isSubmitted = true;
-      if(this.miFormulario.invalid){
-        return;
-      }
-      this.auth.registro(this.miFormulario.value)
+  // //variables
+  // miFormulario: FormGroup = this.formBuilder.group({
+  //   first_name: ['', [Validators.required]],
+  //   last_name:['', [Validators.required]],
+  //   email: ['', [Validators.required, Validators.email]],
+  //   password:['', [Validators.required]],
+  // })
+
+
+  //  register(){
+  //     this.isSubmitted = true;
+  //     if(this.miFormulario.invalid){
+  //       return;
+  //     }
+  //     this.authService.registro(this.miFormulario.value)
+  //     .subscribe(data => {
+  //       if(data){
+  //       this.router.navigate(['/auth/login'])
+  //       console.log(data)
+  //       } else {
+  //         this.sweetalert.datosDuplicadosAlert()
+  //         return
+  //       }
+  //     })
+  //  }
+
+
+  register() {
+    this.isSubmitted = true;
+    if (this.registerForm.valid) {
+      this.authService.registro(this.registerForm.value)
       .subscribe(data => {
         if(data){
         this.router.navigate(['/auth/login'])
-        console.log(data)
         } else {
           this.sweetalert.datosDuplicadosAlert()
           return
         }
+      } , error => {
+        console.log(error)
       })
-   }
-
+    }
+  }
 
    openDialog(){
-    const dialogRef = this.dialog.open(TerminosComponent);
+    const dialogRef = this.dialog.open(TerminosComponent, {
+      width: '600px'
+    });
 
     dialogRef.afterClosed().subscribe(result => {
       if(result === true){
