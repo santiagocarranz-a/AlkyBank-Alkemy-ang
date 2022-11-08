@@ -8,10 +8,10 @@
   <div class="ml-10 text-white hidden lg:flex flex-auto gap-3">
     <button mat-button [routerLink]="'/home'">Inicio</button>
     <ng-container *ngFor="let navItem of navbarData">
-      <button mat-button [routerLink]="navItem.ruta" *ngIf="ifLoggedIn === true">{{navItem.label}}</button>
+      <button mat-button [routerLink]="navItem.ruta" *ngIf="isLoggedSelector$ | async">{{navItem.label}}</button>
     </ng-container>
   </div>
-  <div class="menu hidden lg:block px-10 text-white" *ngIf="ifLoggedIn === true">
+  <div class="menu hidden lg:block px-10 text-white" *ngIf="isLoggedIn === true">
     <ab-avatar [name]="[dataUsuario.first_name, dataUsuario.last_name]" [responsiveIcon]="false" [matMenuTriggerFor]="menu"></ab-avatar>
     <mat-menu #menu="matMenu">
       <div class="flex flex-col items-start px-3 pt-2 pb-4">
@@ -33,7 +33,7 @@
       </button>
     </mat-menu>
   </div>
-  <div class="hidden lg:block px-10" *ngIf="ifLoggedIn === false">
+  <div class="hidden lg:block px-10" *ngIf="isLoggedIn === false">
     <a routerLink="/auth/login" class="whitespace-nowrap text-base font-medium text-gray-100 hover:text-white"> Ingresar
     </a>
     <button [routerLink]="'/auth/registro'" mat-raised-button color="primary"
@@ -55,7 +55,7 @@
           </div>
         </button>
         <ng-container *ngFor="let navItem of navbarData">
-          <button mat-button [routerLink]="navItem.ruta" *ngIf="ifLoggedIn === true" class="w-full py-2.5">
+          <button mat-button [routerLink]="navItem.ruta" *ngIf="isLoggedIn === true" class="w-full py-2.5">
             <div class="flex items-center gap-8">
               <mat-icon>home</mat-icon>
               <span>{{navItem.label}}</span>

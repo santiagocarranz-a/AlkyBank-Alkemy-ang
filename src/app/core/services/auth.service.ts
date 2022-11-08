@@ -19,8 +19,8 @@ export class AuthService {
     )
   }
 
-  login(user: UserAuth): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, user)
+  login(email: string, password: string): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, {email, password})
       .pipe(tap(user => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user));
