@@ -1,8 +1,10 @@
+import { UserRegister } from './../../../core/model/interfaces';
+import { Register } from './../auth.actions/auth.actions';
 import { UserAuth, AccessToken } from '@core/model/interfaces';
 import { Injectable } from "@angular/core";
 import { AuthService } from '@core/services/auth.service';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap } from 'rxjs';
+import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap, concatMap } from 'rxjs';
 import * as AuthActions from '../auth.actions/auth.actions'
 import { Router } from '@angular/router';
 
@@ -29,6 +31,22 @@ export class AuthEffects {
       }),
     )
   })
+
+
+
+  // Register$ = createEffect(() => this.actions$.pipe(
+  //   ofType(AuthActions.Register),
+  //   concatMap((actions) => {
+  //     return this.authService.registro(actions.user).pipe(
+  //       map((user: UserRegister) => {
+  //         return {type: '[Register] Register Success', user};
+  //       }),
+  //       tap(() => {
+  //         this.route.navigate(['/auth/login']);
+  //       })
+  //     )
+  //   })
+  // ))
 
   Logout$ = createEffect(() => {
     return this.actions$.pipe(

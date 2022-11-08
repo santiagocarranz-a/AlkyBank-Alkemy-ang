@@ -18,3 +18,5 @@ export const authReducers = createReducer (
   on(AuthActions.Register, initialUserState => ({...initialUserState, isLoggedIn: false}))
 )
 
+export const getAuthenticationToken = (state: UserAuthState) => state.isLoggedIn;
+

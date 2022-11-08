@@ -3,10 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { User } from '@core/model/interfaces';
 import { BaseServicesService } from '@core/services/base-service';
 import { navbarData } from '../navigation';
-import { select, Store } from '@ngrx/store';
+import { Store } from '@ngrx/store';
 import * as Auth from '../../../auth/auth-store/auth.actions/auth.actions';
+import * as Option from '../../../auth/auth-store/auth.reducers/auth.reducers'
 import { Observable } from 'rxjs';
-import { isLoggedIn } from 'src/app/auth/auth-store/auth.selectors/auth.selectors';
+
+
 
 @Component({
   selector: 'ab-header',
@@ -20,22 +22,17 @@ export class HeaderComponent implements OnInit {
   showSidebar: boolean = false;
   dataUsuario!: User;
   fullName!: string[]
-  isLoggedIn$!: Observable<boolean>;
-
+  isLoggedIn$: Observable<any>;
   ngOnInit(): void {
     this.usuario()
-    this.initializeValues()
-  }
-
-public initializeValues(): void {
-    this.isLoggedIn$ = this.store.pipe(select(isLoggedIn))
   }
 
   constructor(private router: Router,
     private base: BaseServicesService,
     private activate: ActivatedRoute,
     private store: Store<any>) {
-
+    this.isLoggedIn = localStorage.getItem('user') ? true : false;
+    this.isLoggedIn$ = this.store.select(Option.getAuthenticationToken)
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
   }
 

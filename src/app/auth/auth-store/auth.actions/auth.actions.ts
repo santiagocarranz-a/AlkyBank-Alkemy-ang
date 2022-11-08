@@ -1,3 +1,4 @@
+import { UserRegister } from './../../../core/model/interfaces';
 import { createAction, props } from '@ngrx/store';
 
 
@@ -8,7 +9,7 @@ export const LogIn = createAction (
 
 export const Register = createAction (
   '[Register] Register',
-  props<{first_name: string, last_name: string, email: string, password: string}>
+  props<{user: UserRegister}>()
 )
 
 export const Logout = createAction (

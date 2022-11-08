@@ -36,9 +36,9 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
     HttpClientModule,
     IconsModule,
     InterceptorModule,
-    StoreModule.forRoot({'UserAuthStateKey': authReducers}),
+    StoreModule.forRoot({}),
     EffectsModule.forRoot([AuthEffects]),
-
+    StoreModule.forFeature('UserAuthStateKey', authReducers),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
       logOnly: environment.production
