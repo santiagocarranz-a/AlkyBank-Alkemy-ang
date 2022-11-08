@@ -13,18 +13,20 @@ import { PieChartComponent } from './pages/dashboard/components/pie-chart/pie-ch
 import { LineChartComponent } from './pages/dashboard/components/line-chart/line-chart.component';
 import { AddBankAccountComponent } from './pages/dashboard/components/bank-account/components/add-bank-account/add-bank-account.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
+import { TransactionsComponent } from './pages/dashboard/components/transactions/transactions.component';
 
 @NgModule({
   declarations: [
     DashboardComponent,
     UsuarioPerfilComponent,
     BalanceChartComponent,
-ProfileComponent,
+    ProfileComponent,
     BankAccountComponent,
     PieChartComponent,
     LineChartComponent,
     AddBankAccountComponent,
-    ContactsComponent
+    ContactsComponent,
+    TransactionsComponent
   ],
   imports: [
     CommonModule,
