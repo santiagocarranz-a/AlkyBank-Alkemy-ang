@@ -18,7 +18,6 @@ export class LocalStorageService {
    }
   }
 
-
   removeToken(){
     localStorage.removeItem('user')
   }

@@ -18,7 +18,6 @@ export class AuthEffects {
       switchMap((action: any) => {
         return this.authService.login(action.email, action.password).pipe(
           map((user: UserAuth) => {
-            localStorage.setItem('user', JSON.stringify(user))
             return { type: '[LogIn] LogIn Success', payload: user};
           }),
           tap(() => {
