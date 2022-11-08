@@ -22,7 +22,6 @@ export class AuthEffects {
           }),
           tap(() => {
             return this.route.navigate(['/banco/dashboard'])
-
           }),
           catchError((error) => {
             return of({ type: '[LogIn] LogIn Error', payload: error})
