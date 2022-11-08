@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
+import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,6 +28,12 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
     HttpClientModule,
     IconsModule,
     InterceptorModule,
+    //Modulo NGX-LOGGER
+    LoggerModule.forRoot({
+      serverLoggingUrl: '/api/logs',
+      level: NgxLoggerLevel.DEBUG,
+      serverLogLevel: NgxLoggerLevel.ERROR
+    }),
   ],
   providers: [],
   bootstrap: [AppComponent]
