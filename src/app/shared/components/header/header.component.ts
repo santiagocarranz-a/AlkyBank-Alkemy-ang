@@ -6,7 +6,7 @@ import { navbarData } from '../navigation';
 import { select, Store } from '@ngrx/store';
 import * as Auth from '../../../auth/auth-store/auth.actions/auth.actions';
 import { Observable } from 'rxjs';
-import { isLoggedSelector } from 'src/app/auth/auth-store/auth.selectors/auth.selectors';
+import { isLoggedIn } from 'src/app/auth/auth-store/auth.selectors/auth.selectors';
 
 @Component({
   selector: 'ab-header',
@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   showSidebar: boolean = false;
   dataUsuario!: User;
   fullName!: string[]
-  isLoggedSelector$!: Observable<boolean>;
+  isLoggedIn$!: Observable<boolean>;
 
   ngOnInit(): void {
     this.usuario()
@@ -28,14 +28,14 @@ export class HeaderComponent implements OnInit {
   }
 
 public initializeValues(): void {
-    this.isLoggedSelector$ = this.store.pipe(select(isLoggedSelector))
+    this.isLoggedIn$ = this.store.pipe(select(isLoggedIn))
   }
 
   constructor(private router: Router,
     private base: BaseServicesService,
     private activate: ActivatedRoute,
     private store: Store<any>) {
-    this.isLoggedIn = localStorage.getItem('user') ? true : false;
+
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
   }
 

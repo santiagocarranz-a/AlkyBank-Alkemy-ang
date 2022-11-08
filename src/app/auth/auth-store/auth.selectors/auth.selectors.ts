@@ -6,7 +6,7 @@ export interface AuthStateInterface {
 
 export const authFeatureSelector = createFeatureSelector<AuthStateInterface>('auth')
 
-export const isLoggedSelector = createSelector(
+export const isLoggedIn = createSelector(
   authFeatureSelector,
   (authState: AuthStateInterface): boolean => authState.isLoggedIn
 )

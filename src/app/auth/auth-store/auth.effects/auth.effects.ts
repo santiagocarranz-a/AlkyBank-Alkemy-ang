@@ -2,7 +2,7 @@ import { UserAuth, AccessToken } from '@core/model/interfaces';
 import { Injectable } from "@angular/core";
 import { AuthService } from '@core/services/auth.service';
 import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, catchError, of, map, switchMap, tap } from 'rxjs';
+import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap } from 'rxjs';
 import * as AuthActions from '../auth.actions/auth.actions'
 import { Router } from '@angular/router';
 
@@ -18,8 +18,9 @@ export class AuthEffects {
           map((user: UserAuth) => {
             return { type: '[LogIn] LogIn Success', payload: user};
           }),
-          tap((user) => {
+          tap(() => {
             return this.route.navigate(['/banco/dashboard'])
+
           }),
           catchError((error) => {
             return of({ type: '[LogIn] LogIn Error', payload: error})
@@ -34,26 +35,12 @@ export class AuthEffects {
       ofType(AuthActions.Logout),
       tap(() => {
         this.route.navigateByUrl('/auth/login')
-        return this.authService.logout();
+        return this.authService.logout()
       })
     )
   },
   { dispatch: false }
   )
-
-
-      // map((user: UserAuth) => {
-      //   return { type: '[LogIn] LogIn Success', payload: user };
-      // }),
-      // map(user => {
-      //   if (user) {
-      //     localStorage.setItem('user', JSON.stringify(user));
-      //   }
-      //   return user;
-      // }),
-      // catchError((error: any) => {
-      //   return of({ type: '[LogIn] LogIn Error', payload: error });
-      // })
 
 
   constructor(
