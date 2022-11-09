@@ -4,7 +4,6 @@ import { AlertsComponent } from './components/alerts/alerts.component';
 import { HeaderComponent } from './components/header/header.component';
 import { AuthRoutingModule } from '../auth/auth-routing.module';
 import { MaterialModule } from '../material/material.module';
-import { HomeComponent } from './components/home/home.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
@@ -15,7 +14,6 @@ import { TransactionsComponent } from './components/formTransactions/transaction
   declarations: [
     AlertsComponent,
     HeaderComponent,
-    HomeComponent,
     FooterComponent,
     TituloComponent,
     AvatarComponent,
@@ -28,7 +26,6 @@ import { TransactionsComponent } from './components/formTransactions/transaction
   ],
   exports: [
     HeaderComponent,
-    HomeComponent,
     FooterComponent,
     TituloComponent
   ]

@@ -1,28 +1,28 @@
 <div class="container m-auto max-w-sm pt-20 pb-5">
-    <div class="registerForm flex flex-col items-center">
-        <img src="assets/alkemyLogo.svg" alt="logo">
-        <img src="assets/user-icon.png" alt="user">
-        <h1>Registro</h1>
-        <form [formGroup]="miFormulario" (ngSubmit)="register(user)">
-            <div class="controls-form">
-                <mat-form-field appearance="fill" class="register-input">
-                    <input matInput placeholder="First name" value="" autocomplete="off" formControlName="first_name">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="register-input">
-                    <input matInput placeholder="Last name" value="" autocomplete="off" formControlName="last_name">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="register-input">
-                    <input matInput placeholder="Email" value="" autocomplete="off" formControlName="email">
-                </mat-form-field>
-                <mat-form-field appearance="fill" class="register-input">
-                    <input type="password" matInput placeholder="Password" value="" autocomplete="off"
-                        formControlName="password">
-                </mat-form-field>
-            </div>
-            <button type="submit" mat-raised-button color="primary" class="input register-btn"
-                [disabled]="miFormulario.invalid || resultado == false">Enviar</button>
-            <button type="button" mat-button (click)="openDialog()">Terminos y condiciones</button>
+  <div class="registerForm flex flex-col items-center">
+      <img src="assets/alkemyLogo.svg" alt="logo">
+      <img src="assets/user-icon.png" alt="user">
+      <h1>Registro</h1>
+      <form [formGroup]="miFormulario" (ngSubmit)="register()">
+          <div class="controls-form">
+              <mat-form-field appearance="fill" class="register-input">
+                  <input matInput placeholder="First name" value="" autocomplete="off" formControlName="first_name">
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="register-input">
+                  <input matInput placeholder="Last name" value="" autocomplete="off" formControlName="last_name">
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="register-input">
+                  <input matInput placeholder="Email" value="" autocomplete="off" formControlName="email">
+              </mat-form-field>
+              <mat-form-field appearance="fill" class="register-input">
+                  <input type="password" matInput placeholder="Password" value="" autocomplete="off"
+                      formControlName="password">
+              </mat-form-field>
+          </div>
+          <button type="submit" mat-raised-button color="primary" class="input register-btn"
+              [disabled]="miFormulario.invalid || resultado == false">Enviar</button>
+          <button type="button" mat-button (click)="openDialog()">Terminos y condiciones</button>
 
-        </form>
-    </div>
+      </form>
+  </div>
 </div>

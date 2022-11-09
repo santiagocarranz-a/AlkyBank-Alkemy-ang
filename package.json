@@ -29,6 +29,7 @@
     "chart.js": "^3.9.1",
     "chartjs-plugin-datalabels": "^2.1.0",
     "ng2-charts": "^4.0.1",
+    "ngx-logger": "^5.0.11",
     "rxjs": "~7.5.0",
     "sweetalert2": "^11.6.5",
     "tslib": "^2.4.1",
