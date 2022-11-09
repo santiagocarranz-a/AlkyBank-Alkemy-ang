@@ -4,7 +4,12 @@ import { createAction, props } from '@ngrx/store';
 
 export const LogIn = createAction (
   '[LogIn] LogIn',
-  props<{email: string, password: string}>()
+  props<{ user: UserAuth }>()
+)
+
+export const LogInFailure = createAction (
+  '[LogIn] LogIn Failure',
+  props<{ error: any }>()
 )
 
 export const Register = createAction (

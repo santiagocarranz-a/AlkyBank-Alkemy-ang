@@ -15,19 +15,19 @@ export class AuthEffects {
   LogIn$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(AuthActions.LogIn),
-      switchMap((action: any) => {
-        return this.authService.login(action.email, action.password).pipe(
+      switchMap((action) => {
+        return this.authService.login(action.user).pipe(
           map((user: UserAuth) => {
-            return { type: '[LogIn] LogIn Success', payload: user};
+            return { type: AuthActions.LogIn.type, user }
           }),
-          tap(() => {
-            return this.route.navigate(['/banco/dashboard'])
+          tap((user) => {
+            this.route.navigate(['/banco/dashboard'])
           }),
           catchError((error) => {
-            return of({ type: '[LogIn] LogIn Error', payload: error})
+            return of({ type: AuthActions.LogIn.type, error })
           })
-        );
-      }),
+        )
+      })
       )
     },
     { dispatch: false }
