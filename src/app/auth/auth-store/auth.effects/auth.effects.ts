@@ -3,8 +3,8 @@ import { Register } from './../auth.actions/auth.actions';
 import { UserAuth, AccessToken } from '@core/model/interfaces';
 import { Injectable } from "@angular/core";
 import { AuthService } from '@core/services/auth.service';
-import { createEffect, Actions, ofType } from '@ngrx/effects';
-import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap, concatMap } from 'rxjs';
+import { createEffect, Actions, ofType, defaultEffectsErrorHandler } from '@ngrx/effects';
+import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap, concatMap, defer } from 'rxjs';
 import * as AuthActions from '../auth.actions/auth.actions'
 import { Router } from '@angular/router';
 
@@ -29,8 +29,10 @@ export class AuthEffects {
         );
       }),
       )
-    }
-    )
+    },
+    { dispatch: false }
+  )
+
 
 
 

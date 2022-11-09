@@ -9,7 +9,6 @@ import * as Select from '../../../auth/auth-store/auth.selectors/auth.selectors'
 import { Observable } from 'rxjs';
 
 
-
 @Component({
   selector: 'ab-header',
   templateUrl: './header.component.html'
@@ -32,7 +31,7 @@ export class HeaderComponent implements OnInit {
     private activate: ActivatedRoute,
     private store: Store<any>) {
     // this.isLoggedIn = localStorage.getItem('user') ? true : false;
-    this.isLoggedIn$ = this.store.select(Select.isLoggedSelector)
+    this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
   }
 

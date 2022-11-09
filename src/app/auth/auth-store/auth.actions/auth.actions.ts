@@ -1,4 +1,4 @@
-import { UserRegister } from './../../../core/model/interfaces';
+import { UserAuth, UserRegister } from './../../../core/model/interfaces';
 import { createAction, props } from '@ngrx/store';
 
 
@@ -12,7 +12,9 @@ export const Register = createAction (
   props<{user: UserRegister}>()
 )
 
-export const Logout = createAction (
-  '[Logout] Logout Success'
-)
+export const Logout = createAction ('[Logout] Logout Success')
+
+export const browserReload = createAction(
+  '[Core Component] Browser Reload',
+  props<{user: UserAuth}>())
 
