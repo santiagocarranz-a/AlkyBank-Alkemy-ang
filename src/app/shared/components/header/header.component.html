@@ -1,7 +1,7 @@
 <nav class="h-20 flex justify-between items-center bg-sky-700">
   <img class="p-4 h-16 " src="assets/alkemyLogo.svg">
   <div class="flex items-center lg:hidden mr-5">
-    <button mat-icon-button aria-label="Open responsive nav" (click)="showSideBar()">
+    <button mat-icon-button aria-label="Open responsive nav" *ngIf="isLoggedIn$ | async">
       <mat-icon>menu</mat-icon>
     </button>
   </div>
@@ -33,8 +33,8 @@
       </button>
     </mat-menu>
   </div>
-  <div class="hidden lg:block px-10" *ngIf="showSideBar()">
-    <a routerLink="/auth/login" class="whitespace-nowrap text-base font-medium text-gray-100 hover:text-white"> Ingresar
+  <div class="hidden lg:block px-10" >
+    <a routerLink="/auth/login" class="whitespace-nowrap text-base font-medium text-gray-100 hover:text-white" > Ingresar
     </a>
     <button [routerLink]="'/auth/registro'" mat-raised-button color="primary"
       class="ml-8 px-4 py-2 bg-sky-700 text-base font-medium">Registrate gratis</button>

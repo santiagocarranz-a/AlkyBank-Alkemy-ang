@@ -16,5 +16,6 @@ export const Logout = createAction ('[Logout] Logout Success')
 
 export const browserReload = createAction(
   '[Core Component] Browser Reload',
-  props<{user: UserAuth}>())
+  props<{user: UserAuth}>()
+)
 
