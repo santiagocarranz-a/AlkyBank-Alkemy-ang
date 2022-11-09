@@ -14,6 +14,8 @@ import { LocalStorageService } from '../local-storage.service';
 @Injectable()
 export class AuthInterceptorService implements HttpInterceptor {
 
+  user: any;
+
   constructor(private authSVC: AuthService,
     private local:LocalStorageService) {}
 
@@ -24,7 +26,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       const currentUser = this.authSVC.userAuth;
       // const isAuthenticated = currentUser && currentUser.user;
 
-      const data = this.local.getToken()
+      const data = this.local.getToken(this.user)
       if(data) {
         // req = req.clone({
         //   setHeaders: {

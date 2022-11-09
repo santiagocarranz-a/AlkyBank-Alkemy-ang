@@ -1,3 +1,8 @@
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthEffects } from './auth/auth-store/auth.effects/auth.effects';
+import { EffectsModule } from '@ngrx/effects';
+import { authReducers } from './auth/auth-store/auth.reducers/auth.reducers';
+import { StoreModule } from '@ngrx/store';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
@@ -11,7 +16,10 @@ import { HomeComponent } from './pages/home/home.component';
 import { MaterialModule } from './material/material.module';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { InterceptorModule } from '@core/services/interceptors/interceptor-module';
+import { environment } from '../environments/environment';
+import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,6 +36,14 @@ import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
     HttpClientModule,
     IconsModule,
     InterceptorModule,
+    StoreRouterConnectingModule.forRoot(),
+    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forFeature('auth', authReducers),
+    StoreModule.forRoot({UserAuthStateKey: authReducers}),
+    StoreDevtoolsModule.instrument({
+      maxAge: 25,
+      logOnly: environment.production
+    }),
     //Modulo NGX-LOGGER
     LoggerModule.forRoot({
       serverLoggingUrl: '/api/logs',

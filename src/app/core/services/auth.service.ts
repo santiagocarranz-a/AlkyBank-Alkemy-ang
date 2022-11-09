@@ -1,9 +1,11 @@
+import { Store } from '@ngrx/store';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, map, Observable, of, tap} from 'rxjs';
 import { environment } from '@env/environment';
 import { UserRegister, UserAuth } from '../model/interfaces';
 import { LocalStorageService } from './local-storage.service';
+import { AppState } from 'src/app/auth/auth-store';
 
 @Injectable({
   providedIn: 'root',
@@ -19,11 +21,11 @@ export class AuthService {
     )
   }
 
-  login(user: UserAuth): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, user)
+  login(email: string, password: string): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, {email, password})
       .pipe(tap(user => {
         if (user) {
-          localStorage.setItem('user', JSON.stringify(user));
+          localStorage.setItem('user', JSON.stringify(user))
         }
         return user;
       }))
@@ -33,8 +35,8 @@ export class AuthService {
     return this.currentUserSubject.value;
   }
 
-  loggedIn() {
-    this.local.getToken()
+  loggedIn(user: any) {
+    this.local.getToken(user)
   }
 
   logout() {
