@@ -24,7 +24,7 @@ export class RegistroComponent implements OnInit{
 
 
   //variables
-  miFormulario: FormGroup = this.formBuilder.group({
+  form: FormGroup = this.formBuilder.group({
     first_name: ['', [Validators.required]],
     last_name:['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
@@ -79,7 +79,7 @@ export class RegistroComponent implements OnInit{
 
   register(user: UserRegister){
     this.isSubmitted = true;
-    if(this.miFormulario.invalid){
+    if(this.form.invalid){
       return;
     }
     this.store.dispatch(Auth.Register({user}))
