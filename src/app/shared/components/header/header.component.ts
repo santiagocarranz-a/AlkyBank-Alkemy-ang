@@ -51,8 +51,8 @@ export class HeaderComponent implements OnInit {
     // });
   }
 
-  // showSideBar() {
-  //   this.showSidebar$ = !this.showSidebar$;
-  // }
+  showSideBar() {
+    this.showSidebar = !this.showSidebar;
+  }
 
 }

@@ -39,6 +39,12 @@ export class AuthEffects {
       return this.authService.registro(action.user).pipe(
         map((user) => {
           return { type: '[Register] Register Success', payload: user}
+        }),
+        tap(() => {
+          return this.route.navigate(['/auth/login'])
+        }),
+        catchError((error) => {
+          return of({ type: '[Register] Register Error', payload: error})
         })
       )
     })

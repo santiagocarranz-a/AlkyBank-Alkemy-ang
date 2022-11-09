@@ -3,7 +3,7 @@
         <img src="https://www.alkemy.org/static/media/alkemyLogo.2daef856.svg">
     </mat-card-title>
     <mat-card-content>
-      <form [formGroup]="form" (ngSubmit)="send()">
+      <form [formGroup]="form" (ngSubmit)="login()">
             <p>
                 <mat-form-field>
                     <input type="text" matInput placeholder="Email" formControlName="email">
@@ -19,7 +19,6 @@
                 <button class="Login" type="submit" mat-button>Login</button>
                 <button class="Register" type="button" mat-button [routerLink]="'/auth/registro'">Register</button>
                 <button class="ForgotPass" type="button" mat-button [routerLink]="'/auth/reset'">Forgot Password</button>
-
             </div>
         </form>
     </mat-card-content>

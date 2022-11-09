@@ -20,6 +20,7 @@ export class RegistroComponent implements OnInit{
   sweetalert: AlertsComponent = new AlertsComponent
   isSubmitted = false;
   resultado:boolean = false
+  user: any;
 
 
   //variables
@@ -76,16 +77,17 @@ export class RegistroComponent implements OnInit{
   //     })
   //  }
 
-  register(){
+  register(user: UserRegister){
     this.isSubmitted = true;
     if(this.miFormulario.invalid){
       return;
     }
-    this.auth.registro(this.miFormulario.value)
-    .subscribe(data => {
-      this.router.navigate(['/auth/login'])
-      console.log(data)
-    })
+    this.store.dispatch(Auth.Register({user}))
+    // this.auth.registro(this.miFormulario.value)
+    // .subscribe(data => {
+    //   this.router.navigate(['/auth/login'])
+    //   console.log(data)
+    // })
  }
 
 

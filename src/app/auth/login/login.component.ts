@@ -25,7 +25,7 @@ export class LoginComponent {
     password: new FormControl('', [Validators.required, Validators.minLength(6)]),
   });
 
-  send() {
+  login() {
     const { email, password } = this.form.value
     if (email === '' || password === '') {
       this.sweetalert.ErrorAlert()
