@@ -41,14 +41,16 @@ export class AuthEffects {
           return { type: '[Register] Register Success', payload: user}
         }),
         tap(() => {
-          return this.route.navigate(['/auth/login'])
+          return this.route.navigate(['/auth/login']);
         }),
         catchError((error) => {
-          return of({ type: '[Register] Register Error', payload: error})
+          return of({ type: '[Register] Register Error', payload: error});
         })
       )
     })
-  ))
+  )
+  ,{ dispatch: false }
+  )
 
   // Register$ = createEffect(() => {
   //   return this.actions$.pipe(
