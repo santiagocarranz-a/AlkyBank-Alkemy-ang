@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { AddBankAccountComponent } from './components/add-bank-account/add-bank-account.component';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { TransactionsComponent } from '@shared/components/formTransactions/transactions.component';
+import { Accounts } from '@core/mock/interfaces';
 
 @Component({
   selector: 'ab-bank-account',
@@ -12,12 +13,20 @@ import { TransactionsComponent } from '@shared/components/formTransactions/trans
 export class BankAccountComponent implements OnInit {
   openTab = 1;
   hideCurrency: boolean = false;
+  Accounts:Accounts[] = [
+    {
+    creationDate: '2022-06-20',
+    money: 1300,
+    isBlocked: false,
+    userId: 993,
+    }
+  ]
   constructor(
     public dialog: MatDialog,
     private modalSS: TransactionsService,
   ) { }
 
-  
+
   //MODAL//
   modalRecargar(){
     this.modalSS.$modal.emit(true)

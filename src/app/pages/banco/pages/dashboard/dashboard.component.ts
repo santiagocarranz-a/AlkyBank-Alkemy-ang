@@ -3,6 +3,7 @@ import { User } from '@core/model/interfaces';
 import { AuthService } from 'src/app/core/services/auth.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import { BaseServicesService } from '@core/services/base-service';
+
 @Component({
   selector: 'ab-dashboard',
   templateUrl: './dashboard.component.html',
@@ -20,12 +21,13 @@ export class DashboardComponent implements OnInit {
     roleId:0
   }
 
+
   constructor(
     private authService: AuthService,
     private base:BaseServicesService
   ) { }
 
-  
+
   ngOnInit(): void {
     this.usuario()
   }
