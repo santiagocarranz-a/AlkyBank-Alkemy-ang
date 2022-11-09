@@ -21,14 +21,15 @@ export class AuthService {
     )
   }
 
-  login(email: string, password: string): Observable<UserAuth> {
-    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, {email, password})
-      .pipe(tap(user => {
+  login(user: UserAuth): Observable<UserAuth> {
+    return this.http.post<UserAuth>(`${this.baseUrl}/auth/login`, user).pipe(
+      tap((user) => {
         if (user) {
           localStorage.setItem('user', JSON.stringify(user))
         }
         return user;
-      }))
+      })
+    );
   }
 
   get userAuth() {

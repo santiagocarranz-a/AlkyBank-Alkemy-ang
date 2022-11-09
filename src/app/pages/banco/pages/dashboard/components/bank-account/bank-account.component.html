@@ -1,4 +1,4 @@
-<div class="bg-white rounded-t-lg border-t border-gray-200 shadow-md relative flex flex-col min-w-0 break-words w-full">
+<div  *ngFor="let datos of Accounts" class="bg-white rounded-t-lg border-t border-gray-200 shadow-md relative flex flex-col min-w-0 break-words w-full">
     <div class="px-4 py-5 flex-auto">
         <div class="tab-content tab-space">
             <div [ngClass]="{'hidden': openTab !== 1, 'block': openTab === 1}">
@@ -50,7 +50,7 @@
                     <div class="px-5 flex-1 py-3 lg:px-10 flex flex-col gap-6 lg:gap-0 lg:justify-between">
                         <div>
                             <h2 class="text-xl font-bold text-gray-400">ID de cuenta</h2>
-                            <p class="text-2xl font-bold text-gray-700">6234234234</p>
+                            <p class="text-2xl font-bold text-gray-700">{{datos.userId}}</p>
                         </div>
                         <div>
                             <h2 class="text-xl font-bold text-gray-400">Mi balance:</h2>
@@ -58,7 +58,7 @@
                                 <h3 *ngIf="hideCurrency === false" class="text-4xl font-bold">
                                 </h3>
                                 <h3 *ngIf="hideCurrency === true" class="text-4xl font-bold"> $
-                                    *** </h3>
+                                   {{datos.money}}  </h3>
                                 <button mat-icon-button (click)="showCurrencyFn()">
                                     <mat-icon
                                         [ngClass]="{'text-black': hideCurrency === true, 'text-gray-400': hideCurrency === false}">

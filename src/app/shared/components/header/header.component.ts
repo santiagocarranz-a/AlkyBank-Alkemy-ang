@@ -18,7 +18,7 @@ import { Observable } from 'rxjs';
 export class HeaderComponent implements OnInit {
   navbarData = navbarData;
   // isLoggedIn: boolean = false
-  showSidebar: boolean = false;
+  sidebarOpen: boolean = false;
   dataUsuario!: User;
   fullName!: string[]
   isLoggedIn$: Observable<any>;
@@ -30,7 +30,6 @@ export class HeaderComponent implements OnInit {
     private base: BaseServicesService,
     private activate: ActivatedRoute,
     private store: Store<any>) {
-    this.showSidebar = localStorage.getItem('user') ? true: false;
     this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
   }
@@ -52,7 +51,7 @@ export class HeaderComponent implements OnInit {
   }
 
   showSideBar() {
-    this.showSidebar === !this.showSidebar;
+    this.sidebarOpen = !this.sidebarOpen;
   }
 
 }
