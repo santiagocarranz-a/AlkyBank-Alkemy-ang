@@ -45,9 +45,10 @@ export class TransactionsComponent implements OnInit {
       estado:"aprobado"},
   ];
 
-  listTransaction:any
-  displayedColumns: string[] = [ 'operacion','destinatario','monto','concepto','fecha','estado','accion'];
-  dataSource = new MatTableDataSource(this.listUsuarios);
+  listTransaction!:any
+  displayedColumns: string[] = [ 'type','accountId','amount','concept','date','estado','accion'];
+  dataSource :any
+  //dataSource = new MatTableDataSource(this.listTransaction);
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
@@ -68,7 +69,11 @@ export class TransactionsComponent implements OnInit {
     
     const {data} = list
     this.listTransaction=data
+    this.dataSource = new MatTableDataSource(data)
     console.log(this.listTransaction)
+    /*dataSource se le envia la informacion desde àca y desde èse momento el error de paginator.
+    En la linea 51 figura el codigo previo, con el cual no tiraba error paginator.
+    */
     })
   }
 
