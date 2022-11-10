@@ -15,7 +15,6 @@ import { ProfileComponent } from './pages/dashboard/components/profile/profile.c
 import { BankAccountComponent } from './pages/dashboard/components/bank-account/bank-account.component';
 import { PieChartComponent } from './pages/dashboard/components/pie-chart/pie-chart.component';
 import { LineChartComponent } from './pages/dashboard/components/line-chart/line-chart.component';
-import { AddBankAccountComponent } from './pages/dashboard/components/bank-account/components/add-bank-account/add-bank-account.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { TransactionsComponent } from './pages/dashboard/components/transactions/transactions.component';
 import { SharedModule } from '@shared/shared.module';
@@ -29,7 +28,6 @@ import { SharedModule } from '@shared/shared.module';
     BankAccountComponent,
     PieChartComponent,
     LineChartComponent,
-    AddBankAccountComponent,
     ContactsComponent,
     TransactionsComponent
   ],
