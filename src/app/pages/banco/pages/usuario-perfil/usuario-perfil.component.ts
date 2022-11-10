@@ -1,8 +1,9 @@
+import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
 import { User } from '@core/model/interfaces';
-import { BaseServicesService } from '@core/services/base-service';
-
+import { Store } from '@ngrx/store';
+import * as UserActions from '../../../../core/state/user-actions/userData.actions';
+import * as UserSelectors from '../../../../core/state/user-selectors/userData.selectors';
 
 @Component({
   selector: 'ab-usuario-perfil',
@@ -10,25 +11,19 @@ import { BaseServicesService } from '@core/services/base-service';
   styleUrls: ['./usuario-perfil.component.scss'],
 })
 export class UsuarioPerfilComponent implements OnInit {
-  dataUsuario: User = {
-    id: 0,
-    first_name: '',
-    last_name: '',
-    email: '',
-    password: '',
-    points: 0,
-    roleId: 0,
-  };
 
-  constructor(
-    private base: BaseServicesService,
-    private activate: ActivatedRoute,
-  ) {}
+  userData$!: Observable<any>
+
+  constructor( private store: Store<any>) {
+    this.store.dispatch(UserActions.getUserData())
+
+  }
 
   ngOnInit(): void {
-    this.base.getPerfil().subscribe((data) => {
-      this.dataUsuario = data;
-      console.log(this.dataUsuario);
-    });
+    const userData$ = this.store.select(UserSelectors.dataUser)
   }
+
+
+
 }
+

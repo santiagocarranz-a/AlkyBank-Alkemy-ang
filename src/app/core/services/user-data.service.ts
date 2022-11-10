@@ -4,8 +4,10 @@ import { Observable } from 'rxjs';
 import { environment } from '@env/environment';
 import { Accounts,
          Transactions,
-         TransferAccount
+         TransferAccount,
+         FixedTerms,
        } from '@core/model/user.data';
+import { User } from '@core/model/interfaces';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +17,11 @@ export class UserDataService {
   private baseUrl = environment.apiBase;
 
   constructor(private http: HttpClient) { }
+
+  getAuthMe(user: User): Observable<User[]> {
+    const url = `${this.baseUrl}/auth/me`
+    return this.http.post<User[]>(url, user)
+  }
 
   // Accounts
 
@@ -60,14 +67,15 @@ export class UserDataService {
     return this.http.get<Transactions>(url)
   }
 
-  getTransactionsId(id: number): Observable<Transactions> {
+
+  getTransactionsId(id: number): Observable<any> {
     const url = `${this.baseUrl}/transactions/${id}`
-    return this.http.get<Transactions>(url)
+    return this.http.get<any>(url)
   }
 
-  putTransactions(id: number): Observable<Transactions> {
+  putTransactions(id: number): Observable<any> {
     const url = `${this.baseUrl}/transactions/${id}`
-    return this.http.put<Transactions>(url, {id})
+    return this.http.put<any>(url, id)
   }
 
   deleteTransactions(id: number): Observable<Transactions> {
@@ -77,9 +85,9 @@ export class UserDataService {
 
   //Fixed Terms Deposit
 
-  postFixedDeposits(): Observable<any> {
+  postFixedDeposits(FixedTerms: FixedTerms): Observable<FixedTerms> {
     const url = `${this.baseUrl}/fixedDeposits`
-    return this.http.post<Transactions>(url)
+    return this.http.post<FixedTerms>(url, FixedTerms)
   }
 
   getFixedDeposits(): Observable<any> {
@@ -94,7 +102,7 @@ export class UserDataService {
 
   putFixedDeposits(id: number): Observable<any> {
     const url = `${this.baseUrl}/fixedDeposits/${id}`
-    return this.http.put<any>(url, putFixedDeposits)
+    return this.http.put<any>(url, {id})
   }
 
   deleteFixedDeposits(id: number): Observable<any> {
