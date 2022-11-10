@@ -1,5 +1,7 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as Transaction from '../../../../../../core/state/user-actions/transactions.actions';
 
 @Component({
   selector: 'ab-transactions',
@@ -19,9 +21,11 @@ export class TransactionsComponent implements OnInit {
   columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
   expandedElement!: PeriodicElement | null;
 
-  constructor() { }
+  constructor( private store: Store<any>) { }
 
   ngOnInit(): void {
+    const transaction = this.store.dispatch(Transaction.allTransaction())
+    console.log(transaction)
   }
 
 }

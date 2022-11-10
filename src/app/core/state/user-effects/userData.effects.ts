@@ -1,9 +1,9 @@
 import { BaseServicesService } from '@core/services/base-service';
-import { UserDataService } from './../../services/user-data.service';
+import { UserDataService } from '../../services/user-data.service';
 import { Store } from '@ngrx/store';
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { Injectable } from "@angular/core";
-import { getUserData } from "../user-actions/user.actions";
+import { getUserData } from "../user-actions/userData.actions";
 import { exhaustMap, catchError, EmptyError, map, of, EMPTY, concatMap } from 'rxjs';
 import { UserDataActions, UserDataAPI } from '..';
 import { User } from '@core/model/interfaces';
@@ -25,6 +25,7 @@ export class UserEffects {
     )
   },
   {dispatch: false})
+
 
 
   constructor( private action$: Actions, private base: BaseServicesService) {}

@@ -11,6 +11,7 @@ import { BaseServicesService } from '@core/services/base-service';
 })
 
 export class DashboardComponent implements OnInit {
+
   dataUsuario:User = {
     id:0,
     first_name:'',
@@ -29,13 +30,7 @@ export class DashboardComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.usuario()
+
   }
 
-  usuario(){
-       this.base.getPerfil().subscribe(data => {
-        this.dataUsuario = data
-        console.log(this.dataUsuario)
-       })
-    }
-    }
+}

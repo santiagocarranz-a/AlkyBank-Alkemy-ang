@@ -19,7 +19,7 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
-import { UserEffects } from '@core/state/user-effects/user.effects';
+import { UserEffects } from '@core/state/user-effects/userData.effects';
 
 @NgModule({
   declarations: [

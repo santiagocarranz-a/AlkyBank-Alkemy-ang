@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { User } from '@core/model/interfaces';
 import { Store } from '@ngrx/store';
-import * as UserActions from '../../../../core/state/user-actions/user.actions';
+import * as UserActions from '../../../../core/state/user-actions/userData.actions';
 
 @Component({
   selector: 'ab-usuario-perfil',
