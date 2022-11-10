@@ -63,6 +63,7 @@ export class TransactionsComponent implements OnInit {
       accountId: 993,
       userId: this.dataUsuario.id,
       to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number 
+      
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
