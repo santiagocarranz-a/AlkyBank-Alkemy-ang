@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { Transactions } from '@core/model/interfacesTransactions';
+import { BaseServicesService } from '@core/services/base-service';
+import { User } from '@core/model/interfaces';
 
 @Component({
   selector: 'ab-transactions',
@@ -17,23 +19,23 @@ export class TransactionsComponent implements OnInit {
   hourAndDate:string=""
   UserID:number=0
 
-  constructor(public modalSS:TransactionsService) { }
+  constructor(public modalSS:TransactionsService,
+    private base:BaseServicesService) 
+    { }
 
-
-
-
-
-
-  funcASD(){
-    console.log("II")
-  }
-  
-  
+    dataUsuario:User = {
+      id:0,
+      first_name:'',
+      last_name:'',
+      email:'',
+      password:'',
+      points:0,
+      roleId:0
+    }
 
 
   sendDataForm(monto:any,concepto:string){
 
-    //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
     
     const formData : Transactions = {
       amount: monto,
@@ -41,17 +43,14 @@ export class TransactionsComponent implements OnInit {
       date: this.hourAndDate,
       type: 'payment',
       accountId: 23,
-      userId: 4,
+      userId: this.dataUsuario.id,
       to_account_id: 5
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
-      console.log(data)
     })
   }
   
-
-
 
   obtenerFecha (){
     //FECHA//
@@ -87,15 +86,20 @@ export class TransactionsComponent implements OnInit {
   }
 
 
-
-
   ngOnInit(): void {
+  /*
     this.modalSS.$modal.subscribe((valor)=>{
       console.log(valor)
       this.correspondeIngreso = valor
       console.log(this.correspondeIngreso)
     })
+  */
     this.obtenerFecha()
+    
+    this.base.getPerfil().subscribe(data => {
+      this.dataUsuario = data
+      console.log(this.dataUsuario)
+     })
   }
 
 }

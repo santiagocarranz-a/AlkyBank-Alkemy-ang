@@ -13,7 +13,7 @@ export class ListTransactionComponent implements OnInit {
   listTransaction:any 
 
   ngOnInit(): void {
-    this.toListTransaction()
+   // this.toListTransaction()
   }
 
   toListTransaction(){

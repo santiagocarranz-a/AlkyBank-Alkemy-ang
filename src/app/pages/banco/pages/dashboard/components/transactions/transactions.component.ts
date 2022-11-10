@@ -1,5 +1,20 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { TransactionsService } from '@core/services/banco/transactions.service';
+
+
+export interface PeriodicElement {
+  operacion: string
+  destinatario: number;
+  monto:number;
+  concepto:string;
+  fecha:string
+  estado:string
+}
+
 
 @Component({
   selector: 'ab-transactions',
@@ -14,66 +29,54 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class TransactionsComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['operacion', 'monto', 'usuarioId', 'concepto', 'fecha'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement!: PeriodicElement | null;
 
-  constructor() { }
+  listUsuarios: PeriodicElement[] = [
+    {operacion:"Transacción",
+     destinatario:903, 
+     monto:1000, 
+     concepto:"Cuota del curso",
+     fecha:"10/11/2022",estado:"Aprobado"
+    },
+    {operacion:"Transacción",
+     destinatario:564,
+      monto:3150,
+      concepto:"Cuota del curso",
+      fecha:"05/11/2022",
+      estado:"aprobado"},
+  ];
+
+  listTransaction:any
+  displayedColumns: string[] = [ 'operacion','destinatario','monto','concepto','fecha','estado','accion'];
+  dataSource = new MatTableDataSource(this.listUsuarios);
+
+    @ViewChild(MatPaginator) paginator!: MatPaginator;
+    @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(public ssTransaction:TransactionsService) { }
 
   ngOnInit(): void {
+    this.toListTransaction()
+  }
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
   }
 
-}
-
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
-}
-
-export interface TransaccionesAUsuarios {
-  operacion: string;
-  tipo: string;
-  estado: string;
-  fecha: string;
-  hora: string;
-  usuarioId: string;
-  concepto: string;
-  monto: string;
-}
-
-const ELEMENT_DATA: TransaccionesAUsuarios[] = [
-  {
-    operacion: 'Transferencia',
-    tipo: 'Transferencia',
-    estado: 'Aprobada',
-    fecha: '01/11/2022',
-    hora: '12:00',
-    concepto: 'Transferencia a cuenta de ahorros',
-    monto: '62000',
-    usuarioId: '23436235'
-  },
-  {
-    operacion: 'Transferencia',
-    tipo: 'Transferencia',
-    estado: 'Aprobada',
-    fecha: '02/11/2022',
-    hora: '12:00',
-    concepto: 'Transferencia a cuenta de ahorros',
-    monto: '1000',
-    usuarioId: '73253'
-  },
-  {
-    operacion: 'Transferencia',
-    tipo: 'Transferencia',
-    estado: 'Aprobada',
-    fecha: '03/11/2022',
-    hora: '12:00',
-    concepto: 'Transferencia a cuenta de ahorros',
-    monto: '72344',
-    usuarioId: '7235234'
+  toListTransaction(){
+    this.ssTransaction.getListTransaction().subscribe((list:any)=>{
+    
+    const {data} = list
+    this.listTransaction=data
+    console.log(this.listTransaction)
+    })
   }
-];
+
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
+
+

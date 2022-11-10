@@ -1,42 +1,63 @@
-<table mat-table [dataSource]="dataSource" multiTemplateDataRows class="mat-elevation-z8">
-    <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-        <th mat-header-cell *matHeaderCellDef> {{column}} </th>
-        <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
-    </ng-container>
-    <ng-container matColumnDef="expand">
-        <th mat-header-cell *matHeaderCellDef aria-label="row actions">&nbsp;</th>
-        <td mat-cell *matCellDef="let element">
-            <button mat-icon-button aria-label="expand row"
-                (click)="(expandedElement = expandedElement === element ? null : element); $event.stopPropagation()">
-                <mat-icon *ngIf="expandedElement !== element">keyboard_arrow_down</mat-icon>
-                <mat-icon *ngIf="expandedElement === element">keyboard_arrow_up</mat-icon>
-            </button>
+<mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+  </mat-form-field>
+<div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort>
+
+        <!--- Note that these columns can be defined in any order.
+            The actual rendered columns are set as a property on the row definition" -->
+    
+        <!-- Column -->
+
+        <ng-container matColumnDef="operacion">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Operacion </th>
+            <td mat-cell *matCellDef="let element"> {{element.operacion}} </td>
+        </ng-container>
+        <!-- Column -->
+
+        <ng-container matColumnDef="destinatario">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Destinatario </th>
+            <td mat-cell *matCellDef="let element"> {{element.destinatario}} </td>
+        </ng-container>
+        <!-- Column -->
+
+        <ng-container matColumnDef="monto">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
+            <td mat-cell *matCellDef="let element"> {{element.monto}} </td>
+        </ng-container>
+        <!-- Column -->
+        <ng-container matColumnDef="concepto">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Concepto </th>
+        <td mat-cell *matCellDef="let element"> {{element.concepto}} </td>
+        </ng-container>
+    
+        <!-- Column -->
+        <ng-container  matColumnDef="fecha">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
+        <td mat-cell *matCellDef="let element"> {{element.fecha}} </td>
+        </ng-container>
+        <!-- Column -->
+
+        <ng-container matColumnDef="estado">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
+            <td mat-cell *matCellDef="let element"> {{element.estado}} </td>
+        </ng-container>
+    <!-- Column -->
+    <ng-container matColumnDef="accion">
+        <th mat-header-cell *matHeaderCellDef style="text-align:right"> Editar</th>
+        <td mat-cell *matCellDef="let element" style="text-align:right">
+            <a class="pointer" matTooltip="Editar Concepto">
+                <mat-icon>edit</mat-icon>
+            </a>
         </td>
     </ng-container>
 
-    <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
-    <ng-container matColumnDef="expandedDetail">
-        <td mat-cell *matCellDef="let element" [attr.colspan]="columnsToDisplayWithExpand.length">
-            <div class="example-element-detail"
-                [@detailExpand]="element == expandedElement ? 'expanded' : 'collapsed'">
-                <div class="example-element-diagram">
-                    <div class="example-element-position"> {{element.position}} </div>
-                    <div class="example-element-symbol"> {{element.symbol}} </div>
-                    <div class="example-element-name"> {{element.name}} </div>
-                    <div class="example-element-weight"> {{element.weight}} </div>
-                </div>
-                <div class="example-element-description">
-                    {{element.description}}
-                    <span class="example-element-description-attribution"> -- Wikipedia </span>
-                </div>
-            </div>
-        </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="columnsToDisplayWithExpand"></tr>
-    <tr mat-row *matRowDef="let element; columns: columnsToDisplayWithExpand;"
-        class="example-element-row" [class.example-expanded-row]="expandedElement === element"
-        (click)="expandedElement = expandedElement === element ? null : element">
-    </tr>
-    <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
-</table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]"
+                    showFirstLastButtons 
+                    aria-label="Select page of periodic elements">
+    </mat-paginator>
+</div>
