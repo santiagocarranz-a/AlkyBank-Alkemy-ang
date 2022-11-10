@@ -1,5 +1,10 @@
 import { animate, state, style, transition, trigger } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { TransactionsService } from '@core/services/banco/transactions.service';
+
 
 @Component({
   selector: 'ab-transactions',
@@ -14,66 +19,43 @@ import { Component, OnInit } from '@angular/core';
   ],
 })
 export class TransactionsComponent implements OnInit {
-  dataSource = ELEMENT_DATA;
-  columnsToDisplay = ['operacion', 'monto', 'usuarioId', 'concepto', 'fecha'];
-  columnsToDisplayWithExpand = [...this.columnsToDisplay, 'expand'];
-  expandedElement!: PeriodicElement | null;
 
-  constructor() { }
+  displayedColumns: string[] = [ 'type','accountId','amount','concept','date','accion'];
+  dataSource :any = []
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(public ssTransaction:TransactionsService) { }
 
   ngOnInit(): void {
+    this.toListTransaction()
   }
 
-}
 
-export interface PeriodicElement {
-  name: string;
-  position: number;
-  weight: number;
-  symbol: string;
-  description: string;
-}
-
-export interface TransaccionesAUsuarios {
-  operacion: string;
-  tipo: string;
-  estado: string;
-  fecha: string;
-  hora: string;
-  usuarioId: string;
-  concepto: string;
-  monto: string;
-}
-
-const ELEMENT_DATA: TransaccionesAUsuarios[] = [
-  {
-    operacion: 'Transferencia',
-    tipo: 'Transferencia',
-    estado: 'Aprobada',
-    fecha: '01/11/2022',
-    hora: '12:00',
-    concepto: 'Transferencia a cuenta de ahorros',
-    monto: '62000',
-    usuarioId: '23436235'
-  },
-  {
-    operacion: 'Transferencia',
-    tipo: 'Transferencia',
-    estado: 'Aprobada',
-    fecha: '02/11/2022',
-    hora: '12:00',
-    concepto: 'Transferencia a cuenta de ahorros',
-    monto: '1000',
-    usuarioId: '73253'
-  },
-  {
-    operacion: 'Transferencia',
-    tipo: 'Transferencia',
-    estado: 'Aprobada',
-    fecha: '03/11/2022',
-    hora: '12:00',
-    concepto: 'Transferencia a cuenta de ahorros',
-    monto: '72344',
-    usuarioId: '7235234'
+  toListTransaction(){
+    this.ssTransaction.getListTransaction().subscribe((list:any)=>{
+    
+    const {data} = list
+    let dataArreglo
+    
+//    console.log(data)
+/*
+    for(let item of data){
+      dataArreglo = item.date.slice(0,-5)
+      console.log(dataArreglo)
+    }
+*/
+    this.dataSource = new MatTableDataSource(data)
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+    })
   }
-];
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+}
+
+

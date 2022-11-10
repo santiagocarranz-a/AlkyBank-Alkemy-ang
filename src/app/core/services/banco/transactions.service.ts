@@ -1,6 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Transactions } from '@core/model/interfacesTransactions';
+import { listTransaction, Transactions } from '@core/model/interfacesTransactions';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,10 @@ export class TransactionsService {
 
   postTransaction(transaction:Transactions):Observable<Transactions>{
     return this.http.post<Transactions>(this.URLtransactions, transaction)
+  }
+
+  getListTransaction():Observable<listTransaction>{
+    return this.http.get<listTransaction>(this.URLtransactions)
   }
 
 }

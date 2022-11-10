@@ -8,6 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
+import { ListTransactionComponent } from './components/listTransaction/list-transaction.component';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { TransactionsComponent } from './components/formTransactions/transaction
     FooterComponent,
     TituloComponent,
     AvatarComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    ListTransactionComponent
   ],
   imports: [
     CommonModule,
@@ -27,7 +29,8 @@ import { TransactionsComponent } from './components/formTransactions/transaction
   exports: [
     HeaderComponent,
     FooterComponent,
-    TituloComponent
+    TituloComponent,
+    ListTransactionComponent
   ]
 })
 export class SharedModule { }
