@@ -80,11 +80,11 @@
         </ng-container>
       </nav>
     </div>
-    <div class="flex-shrink-0 flex border-t border-gray-200 p-4 hover:bg-slate-300 cursor-pointer">
+    <div class="flex-shrink-0 flex border-t border-gray-200 p-4 hover:bg-slate-300 cursor-pointer" *ngIf="isLoggedIn$ | async">
       <div class="flex-shrink-0 w-full block" [matMenuTriggerFor]="menuResponsive">
         <div class="flex items-center">
           <div >
-            <ab-avatar [name]="[dataUsuario.first_name, dataUsuario.last_name]" [responsiveIcon]="true"></ab-avatar>
+            <ab-avatar [name]="[dataUsuario.first_name, dataUsuario.last_name]" [responsiveIcon]="true" ></ab-avatar>
           </div>
           <div class="ml-3">
             <p class="text-sm font-medium text-gray-700">{{dataUsuario.first_name}} {{dataUsuario.last_name}}</p>
@@ -93,16 +93,16 @@
         </div>
       </div>
     </div>
-    <mat-menu #menuResponsive="matMenu" class="ml-4 absolute bottom-0" xPosition="before" yPosition="below">
+    <mat-menu #menuResponsive="matMenu" class="ml-4 absolute bottom-0" xPosition="before" yPosition="below" >
       <button mat-menu-item routerLink="/banco/dashboard">
         <mat-icon>badge</mat-icon>
         <span>Perfil</span>
       </button>
-      <button mat-menu-item>
+      <button mat-menu-item *ngIf="isLoggedIn$ | async">
         <mat-icon>edit_note</mat-icon>
         <span>Editar perfil</span>
       </button>
-      <button mat-menu-item (click)="logout()">
+      <button mat-menu-item (click)="logout()" *ngIf="isLoggedIn$ | async">
         <mat-icon>logout</mat-icon>
         <span>Cerrar sesion</span>
       </button>

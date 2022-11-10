@@ -40,7 +40,6 @@ import { userDataReducers } from '@core/state/user-reducers/userData.reducers';
     HttpClientModule,
     IconsModule,
     InterceptorModule,
-    StateModule,
     StoreRouterConnectingModule.forRoot(),
     EffectsModule.forRoot([AuthEffects]),
     StoreModule.forFeature( 'auth', authReducers),

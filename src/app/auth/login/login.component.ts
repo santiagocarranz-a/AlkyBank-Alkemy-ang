@@ -7,6 +7,7 @@ import { AuthService } from '@core/services/auth.service';
 import { AlertsComponent } from '../../shared/components/alerts/alerts.component';
 import * as Auth from '../auth-store/auth.actions/auth.actions';
 import { Observable } from 'rxjs';
+import * as Select from '../auth-store/auth.selectors/auth.selectors';
 
 @Component({
   selector: 'ab-login',
@@ -18,12 +19,15 @@ export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
   checked: boolean = true;
   loading: boolean = false;
-  sweetalert: AlertsComponent = new AlertsComponent
+  sweetalert: AlertsComponent = new AlertsComponent;
+  isLoggedIn$: Observable<any>;
 
   constructor(
     private store: Store<any>,
-    private formBuilder: FormBuilder,
-    ) { }
+    private formBuilder: FormBuilder
+    ) {
+      this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
+     }
 
   // form: FormGroup = new FormGroup({
   //   email: new FormControl('', [Validators.required, Validators.email]),

@@ -21,10 +21,13 @@ export class AuthEffects {
             return { type: AuthActions.LogIn.type, user }
           }),
           tap((user) => {
+
             this.route.navigate(['/banco/dashboard'])
           }),
           catchError((error) => {
+            window.location.reload()
             return of({ type: AuthActions.LogIn.type, error })
+
           })
         )
       })
