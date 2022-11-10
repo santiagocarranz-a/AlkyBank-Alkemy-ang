@@ -59,7 +59,7 @@ export class TransactionsComponent implements OnInit {
       amount: monto,
       concept: concepto,
       date: this.hourAndDate,
-      type: "payment",
+      type: "payment", // se había colocado acá el tipo de cuenta
       accountId: 993,
       userId: this.dataUsuario.id,
       to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number 
