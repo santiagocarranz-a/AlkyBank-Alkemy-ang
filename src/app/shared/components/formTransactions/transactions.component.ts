@@ -1,8 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { Transactions } from '@core/model/interfacesTransactions';
-import { BaseServicesService } from '@core/services/base-service';
-import { User } from '@core/model/interfaces';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'ab-transactions',
@@ -10,6 +9,9 @@ import { User } from '@core/model/interfaces';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+  Transferencias:Transactions[] = []
+  enviarDinero!: FormGroup;
+
 
   @Input() tittle:string = ""
 
@@ -19,38 +21,32 @@ export class TransactionsComponent implements OnInit {
   hourAndDate:string=""
   UserID:number=0
 
-  constructor(public modalSS:TransactionsService,
-    private base:BaseServicesService) 
-    { }
+  constructor(public modalSS:TransactionsService, private formBuilder: FormBuilder) { }
 
-    dataUsuario:User = {
-      id:0,
-      first_name:'',
-      last_name:'',
-      email:'',
-      password:'',
-      points:0,
-      roleId:0
-    }
-
-
-  sendDataForm(monto:any,concepto:string){
-
-    
+  ngOnInit(): void {
+    this.enviarDinero = this.formBuilder.group({
+      monto:['', [Validators.required]],
+      tipocuenta:['', [Validators.required]],
+      concepto:['', [Validators.required]]
+    })
+  }
+  sendmoney(){
+    //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
+    const {monto, tipocuenta, concepto} = this.enviarDinero.value
     const formData : Transactions = {
       amount: monto,
       concept: concepto,
-      date: this.hourAndDate,
-      type: 'payment',
-      accountId: 23,
-      userId: this.dataUsuario.id,
-      to_account_id: 5
+      date: "2022-10-26 15:00:00",
+      type: tipocuenta,
+      accountId: 993,
+      userId: 1599,
+      to_account_id: 3
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
+      console.log(data)
     })
   }
-  
 
   obtenerFecha (){
     //FECHA//
@@ -58,7 +54,7 @@ export class TransactionsComponent implements OnInit {
     let day = date.getDate()
     let month = date.getMonth() + 1
     let year = date.getFullYear()
-    
+
     if(month < 10 && day < 10){
       this.fecha = `${year}-0${month}-0${day}`
       console.log(this.fecha)
@@ -71,13 +67,13 @@ export class TransactionsComponent implements OnInit {
     let timeMinutes = date.getMinutes().toString()
     let timeSecond = date.getSeconds().toString()
     let clockSet
-    
+
     if(timeHour.toString().length<2){
       let timeHourString = timeHour.toString()
       timeHourString = "0" + timeHourString
-      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}` 
+      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}`
     }else{
-      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}` 
+      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}`
     }
     console.log(clockSet)
 
@@ -86,20 +82,15 @@ export class TransactionsComponent implements OnInit {
   }
 
 
-  ngOnInit(): void {
-  /*
-    this.modalSS.$modal.subscribe((valor)=>{
-      console.log(valor)
-      this.correspondeIngreso = valor
-      console.log(this.correspondeIngreso)
-    })
-  */
-    this.obtenerFecha()
-    
-    this.base.getPerfil().subscribe(data => {
-      this.dataUsuario = data
-      console.log(this.dataUsuario)
-     })
-  }
+
+
+  // ngOnInit(): void {
+  //   this.modalSS.$modal.subscribe((valor)=>{
+  //     console.log(valor)
+  //     this.correspondeIngreso = valor
+  //     console.log(this.correspondeIngreso)
+  //   })
+  //   this.obtenerFecha()
+  // }
 
 }

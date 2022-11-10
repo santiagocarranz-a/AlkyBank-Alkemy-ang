@@ -9,7 +9,7 @@ import { TituloComponent } from './components/titulo/titulo.component';
 import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
 import { ListTransactionComponent } from './components/listTransaction/list-transaction.component';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -25,6 +25,7 @@ import { ListTransactionComponent } from './components/listTransaction/list-tran
     CommonModule,
     AuthRoutingModule,
     MaterialModule,
+    ReactiveFormsModule
   ],
   exports: [
     HeaderComponent,
