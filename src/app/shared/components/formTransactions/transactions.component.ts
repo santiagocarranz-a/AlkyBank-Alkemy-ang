@@ -2,6 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { Transactions } from '@core/model/interfacesTransactions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { BaseServicesService } from '@core/services/base-service';
+import { User } from '@core/model/interfaces';
 
 @Component({
   selector: 'ab-transactions',
@@ -21,13 +23,33 @@ export class TransactionsComponent implements OnInit {
   hourAndDate:string=""
   UserID:number=0
 
-  constructor(public modalSS:TransactionsService, private formBuilder: FormBuilder) { }
+  constructor(
+    public modalSS:TransactionsService,
+    private formBuilder: FormBuilder,
+    private base:BaseServicesService
+    ) { }
+
+    dataUsuario:User = {
+      id:0,
+      first_name: "string",
+      last_name: "string",
+      email: "string",
+      password: "string",
+      roleId: 0,
+      points: 0,
+      }
 
   ngOnInit(): void {
     this.enviarDinero = this.formBuilder.group({
       monto:['', [Validators.required]],
       tipocuenta:['', [Validators.required]],
       concepto:['', [Validators.required]]
+    })
+
+    this.obtenerFecha()
+    this.base.getPerfil().subscribe(data=>{
+      this.dataUsuario = data
+      console.log(this.dataUsuario)
     })
   }
   sendmoney(){
@@ -36,11 +58,11 @@ export class TransactionsComponent implements OnInit {
     const formData : Transactions = {
       amount: monto,
       concept: concepto,
-      date: "2022-10-26 15:00:00",
-      type: tipocuenta,
-      accountId: 993,
-      userId: 1599,
-      to_account_id: 3
+      date: this.hourAndDate,
+      type: "payment", // se había colocado acá el tipo de cuenta
+      accountId: 993 ,
+      userId: this.dataUsuario.id,
+      to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number 
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{
@@ -80,7 +102,6 @@ export class TransactionsComponent implements OnInit {
     this.hourAndDate = this.fecha +" "+ clockSet
     console.log(this.hourAndDate)
   }
-
 
 
 
