@@ -33,4 +33,10 @@ export class DashboardComponent implements OnInit {
 
   }
 
-}
+  usuario(){
+       this.base.getPerfil().subscribe(data => {
+        this.dataUsuario = data
+        console.log(this.dataUsuario)
+       })
+    }
+    }

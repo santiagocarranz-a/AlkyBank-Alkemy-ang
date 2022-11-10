@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '@core/model/interfaces';
 import { Store } from '@ngrx/store';
 import * as UserActions from '../../../../core/state/user-actions/userData.actions';
+import * as UserSelectors from '../../../../core/state/user-selectors/userData.selectors';
 
 @Component({
   selector: 'ab-usuario-perfil',
@@ -11,17 +12,18 @@ import * as UserActions from '../../../../core/state/user-actions/userData.actio
 })
 export class UsuarioPerfilComponent implements OnInit {
 
-  userData$!: Observable<User[]>
-  user: User[] = [];
+  userData$!: Observable<any>
 
-  constructor( private store: Store<any>) { this.store.dispatch(UserActions.getUserData()) }
+  constructor( private store: Store<any>) {
+    this.store.dispatch(UserActions.getUserData())
+
+  }
 
   ngOnInit(): void {
-    console.log(this.userData$)
+    const userData$ = this.store.select(UserSelectors.dataUser)
   }
 
-  dataUser(dataUser: any) {
-    this.userData$ = this.store.select(dataUser);
-  }
+
+
 }
 
