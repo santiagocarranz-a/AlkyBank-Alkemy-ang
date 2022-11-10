@@ -42,7 +42,7 @@ import { userDataReducers } from '@core/state/user-reducers/userData.reducers';
     InterceptorModule,
     StateModule,
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([UserEffects]),
+    EffectsModule.forRoot([AuthEffects]),
     StoreModule.forFeature( 'auth', authReducers),
     StoreModule.forRoot({UserAuthStateKey: userDataReducers}),
     StoreDevtoolsModule.instrument({
