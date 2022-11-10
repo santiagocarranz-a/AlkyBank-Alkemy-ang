@@ -26,7 +26,7 @@
         <button [routerLink]="'/auth/registro'" mat-raised-button color="primary"
           class="ml-8 px-4 py-2 bg-sky-700 text-base font-medium">Registrate gratis</button>
       </div>
-      <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0" *ngIf="isLoggedIn$ | async">
+      <div class="hidden md:flex items-center justify-end md:flex-1 lg:w-0" >
         <ab-avatar [name]="[dataUsuario.first_name, dataUsuario.last_name]" [responsiveIcon]="false"
           [matMenuTriggerFor]="menu"></ab-avatar>
       </div>
@@ -80,11 +80,10 @@
         </ng-container>
       </nav>
     </div>
-    <div class="flex-shrink-0 flex border-t border-gray-200 p-4 hover:bg-slate-300 cursor-pointer"
-      *ngIf="isLoggedIn$ | async">
+    <div class="flex-shrink-0 flex border-t border-gray-200 p-4 hover:bg-slate-300 cursor-pointer">
       <div class="flex-shrink-0 w-full block" [matMenuTriggerFor]="menuResponsive">
         <div class="flex items-center">
-          <div>
+          <div >
             <ab-avatar [name]="[dataUsuario.first_name, dataUsuario.last_name]" [responsiveIcon]="true"></ab-avatar>
           </div>
           <div class="ml-3">
@@ -108,11 +107,11 @@
         <span>Cerrar sesion</span>
       </button>
     </mat-menu>
-    <div class="flex flex-col items-center gap-5 py-5 px-2" *ngIf="!(isLoggedIn$ | async)" >
+    <div class="flex flex-col items-center gap-5 py-5 px-2"  >
       <button [routerLink]="'/auth/login'" mat-stroked-button color="primary"
-        class="w-full py-2 text-sky-700 text-base font-medium">Ingresar</button>
+        class="w-full py-2 text-sky-700 text-base font-medium" *ngIf="!(isLoggedIn$ | async)">Ingresar</button>
       <button [routerLink]="'/auth/registro'" mat-raised-button color="primary"
-        class="w-full py-2 bg-sky-700 text-base font-medium">Registrate gratis</button>
+        class="w-full py-2 bg-sky-700 text-base font-medium" *ngIf="!(isLoggedIn$ | async)">Registrate gratis</button>
     </div>
   </div>
 </div>

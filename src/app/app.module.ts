@@ -19,6 +19,7 @@ import { InterceptorModule } from '@core/services/interceptors/interceptor-modul
 import { environment } from '../environments/environment';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
+import { UserEffects } from '@core/state/user-effects/user.effects';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { LoggerModule, NgxLoggerLevel } from "ngx-logger";
     IconsModule,
     InterceptorModule,
     StoreRouterConnectingModule.forRoot(),
-    EffectsModule.forRoot([AuthEffects]),
+    EffectsModule.forRoot([UserEffects]),
     StoreModule.forFeature('auth', authReducers),
     StoreModule.forRoot({UserAuthStateKey: authReducers}),
     StoreDevtoolsModule.instrument({
