@@ -1,67 +1,66 @@
-<div class="mat-elevation-z8 p-5 bg-white rounded-t-lg border-t border-gray-200 shadow-md relative flex flex-col min-w-0 break-words w-full" >
-<div class="p-5">
+
+<div class="p-5 box-shadow px-6 bg-white rounded-lg border border-gray-200 shadow-md shadow-sm tw-shadow flex flex-col items-center divide-y marginTop">
+    
     <h2 class="text-xl font-bold tittleh2" >Listado de Transacciones</h2>
 
-<mat-form-field appearance="standard" class="filter">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
-  </mat-form-field>
+    <mat-form-field appearance="standard" class="filter">
+        <mat-label>Filter</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. ium" #input autocomplete="off">
+    </mat-form-field>
+
     <table mat-table [dataSource]="dataSource" matSort>
 
         <!--- Note that these columns can be defined in any order.
             The actual rendered columns are set as a property on the row definition" -->
     
-        <!-- Column -->
+        <!-- type Column -->
 
         <ng-container matColumnDef="type">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Operacion </th>
             <td mat-cell *matCellDef="let element"> {{element.type}} </td>
         </ng-container>
-        <!-- Column -->
+        <!-- accountId Column -->
 
         <ng-container matColumnDef="accountId">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Destinatario </th>
             <td mat-cell *matCellDef="let element"> {{element.accountId}} </td>
         </ng-container>
-        <!-- Column -->
+        <!-- amount Column -->
 
         <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef mat-sort-header> Monto </th>
             <td mat-cell *matCellDef="let element" > {{element.amount}} </td>
         </ng-container>
-        <!-- Column -->
+        <!-- concept Column -->
         <ng-container matColumnDef="concept">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Concepto </th>
         <td mat-cell *matCellDef="let element"> {{element.concept}} </td>
         </ng-container>
     
-        <!-- Column -->
+        <!-- date Column -->
         <ng-container  matColumnDef="date">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Fecha </th>
         <td mat-cell *matCellDef="let element"> {{element.date}} </td>
         </ng-container>
         <!-- Column -->
 
-        <ng-container matColumnDef="estado">
-            <th mat-header-cell *matHeaderCellDef mat-sort-header> Estado </th>
-            <td mat-cell *matCellDef="let element">Aprobado</td>
+        <!-- accion Column -->
+        <ng-container matColumnDef="accion" >
+            <th mat-header-cell *matHeaderCellDef  > Editar</th>
+            <td mat-cell *matCellDef="let element" >
+                <a class="pointer" matTooltip="Editar Concepto">
+                    <mat-icon>edit</mat-icon>
+                </a>
+            </td>
         </ng-container>
-    <!-- Column -->
-    <ng-container matColumnDef="accion" >
-        <th mat-header-cell *matHeaderCellDef style="text-align:right" > Editar</th>
-        <td mat-cell *matCellDef="let element" style="text-align:right">
-            <a class="pointer" matTooltip="Editar Concepto">
-                <mat-icon>edit</mat-icon>
-            </a>
-        </td>
-    </ng-container>
 
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+    
     <mat-paginator [pageSizeOptions]="[5, 10, 20]"
                     showFirstLastButtons 
                     aria-label="Select page of periodic elements">
     </mat-paginator>
 </div>
-</div>
+

@@ -6,16 +6,6 @@ import { MatTableDataSource } from '@angular/material/table';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 
 
-export interface PeriodicElement {
-  operacion: string
-  destinatario: number;
-  monto:number;
-  concepto:string;
-  fecha:string
-  estado:string
-}
-
-
 @Component({
   selector: 'ab-transactions',
   templateUrl: './transactions.component.html',
@@ -30,53 +20,37 @@ export interface PeriodicElement {
 })
 export class TransactionsComponent implements OnInit {
 
-  listUsuarios: PeriodicElement[] = [
-    {operacion:"Transacción",
-     destinatario:903, 
-     monto:1000, 
-     concepto:"Cuota del curso",
-     fecha:"10/11/2022",estado:"Aprobado"
-    },
-    {operacion:"Transacción",
-     destinatario:564,
-      monto:3150,
-      concepto:"Cuota del curso",
-      fecha:"05/11/2022",
-      estado:"aprobado"},
-  ];
+  displayedColumns: string[] = [ 'type','accountId','amount','concept','date','accion'];
+  dataSource :any = []
 
-  listTransaction!:any
-  displayedColumns: string[] = [ 'type','accountId','amount','concept','date','estado','accion'];
-  dataSource :any
-  //dataSource = new MatTableDataSource(this.listTransaction);
-
-    @ViewChild(MatPaginator) paginator!: MatPaginator;
-    @ViewChild(MatSort) sort!: MatSort;
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(public ssTransaction:TransactionsService) { }
 
   ngOnInit(): void {
     this.toListTransaction()
   }
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
 
-  }
 
   toListTransaction(){
     this.ssTransaction.getListTransaction().subscribe((list:any)=>{
     
     const {data} = list
-    this.listTransaction=data
+    let dataArreglo
+    
+//    console.log(data)
+/*
+    for(let item of data){
+      dataArreglo = item.date.slice(0,-5)
+      console.log(dataArreglo)
+    }
+*/
     this.dataSource = new MatTableDataSource(data)
-    console.log(this.listTransaction)
-    /*dataSource se le envia la informacion desde àca y desde èse momento el error de paginator.
-    En la linea 51 figura el codigo previo, con el cual no tiraba error paginator.
-    */
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     })
   }
-
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
