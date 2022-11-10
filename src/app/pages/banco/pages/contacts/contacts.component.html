@@ -18,10 +18,10 @@
     <td mat-cell *matCellDef="let element"> {{element.email}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="enviar">
+  <ng-container matColumnDef="enviar" >
     <th mat-header-cell *matHeaderCellDef> Transferir </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button color="primary">Enviar</button>
+      <button mat-button color="primary"(click)="modalTransferir()">Enviar</button>
     </td>
   </ng-container>
 
@@ -30,7 +30,7 @@
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
-<mat-paginator #paginator [length]="100"
+<mat-paginator (click)="getUser()"#paginator [length]="100"
               [pageSize]="10"
               [pageSizeOptions]="[5, 10]"
               aria-label="Select page">

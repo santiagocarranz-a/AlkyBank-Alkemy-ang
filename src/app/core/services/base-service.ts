@@ -29,7 +29,7 @@ export class BaseServicesService {
     return this.http.get<User>(url)
   }
   getUsers():Observable<User[]>{
-    const url = `${this.baseApi}/users`
+    const url = `${this.baseApi}/users`;
     return this.http.get<User[]>(url)
   }
   //  getUserId(id:number):Observable<User>{
