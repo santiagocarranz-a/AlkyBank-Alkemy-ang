@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BalanceChartComponent } from './pages/balance/balance-chart/balance-chart.component';
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { PlazoFijoComponent } from './pages/plazo-fijo/plazo-fijo.component';
 import { UsuarioPerfilComponent } from './pages/usuario-perfil/usuario-perfil.component';
 
 const routes: Routes = [
@@ -22,6 +23,10 @@ const routes: Routes = [
       {
         path:'contacts',
         component:ContactsComponent
+      },
+      {
+        path:'plazos',
+        component:PlazoFijoComponent
       }
     ]
 

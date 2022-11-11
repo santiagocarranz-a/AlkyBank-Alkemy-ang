@@ -4,3 +4,5 @@ export interface newBankAccount {
     isBlocked: boolean;
     userId: number;
 }
+
+

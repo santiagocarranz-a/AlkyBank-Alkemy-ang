@@ -2,11 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { BancoRoutingModule } from './banco-routing.module';
 import { MaterialModule } from '../../material/material.module';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatTableModule} from '@angular/material/table';
-import {MatSortModule} from '@angular/material/sort';
-
-
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { NgChartsModule } from 'ng2-charts';
 import { UsuarioPerfilComponent } from './pages/usuario-perfil/usuario-perfil.component';
@@ -18,6 +13,8 @@ import { LineChartComponent } from './pages/dashboard/components/line-chart/line
 import { ContactsComponent } from './pages/contacts/contacts.component';
 import { TransactionsComponent } from './pages/dashboard/components/transactions/transactions.component';
 import { SharedModule } from '@shared/shared.module';
+import { PlazoFijoComponent } from './pages/plazo-fijo/plazo-fijo.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -29,18 +26,16 @@ import { SharedModule } from '@shared/shared.module';
     PieChartComponent,
     LineChartComponent,
     ContactsComponent,
-    TransactionsComponent
+    TransactionsComponent,
+    PlazoFijoComponent
   ],
   imports: [
     CommonModule,
     BancoRoutingModule,
     MaterialModule,
-    MatTableModule,
-    MatSortModule,
-    
-    MatPaginatorModule,
     NgChartsModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class BancoModule { }
