@@ -33,24 +33,24 @@
     <label for="creacionDate" class="block text-sm font-medium text-gray-700"> Fecha del plazo fijo </label>
     <div class="mt-1">
       <mat-form-field appearance="outline">
-        <input matInput id="creationDate" name="creationDate" type="date" autocomplete="creationDate"
-          formControlName="creationDate" class="border focus:ring-sky-500 focus:border-sky-500">
+        <input matInput id="creation_date" name="creation_date" type="date" autocomplete="creationDate"
+          formControlName="creation_date" class="border focus:ring-sky-500 focus:border-sky-500">
       </mat-form-field>
     </div>
 
     <div class="space-y-1">
-      <label for="closeDate" class="block text-sm font-medium text-gray-700"> Cierre del plazo fijo </label>
+      <label for="closing_date" class="block text-sm font-medium text-gray-700"> Cierre del plazo fijo </label>
       <div class="mt-1">
         <mat-form-field appearance="outline">
-          <input matInput id="closeDate" name="closeDate" type="date" autocomplete="closeDate"
-            formControlName="closeDate" class="border focus:ring-sky-500 focus:border-sky-500">
+          <input matInput id="closing_date" name="closing_date" type="date" autocomplete="closing_date"
+            formControlName="closing_date" class="border focus:ring-sky-500 focus:border-sky-500">
         </mat-form-field>
 
       </div>
     </div>
   </div>
   <button  type="submit" (click)="plazosFijos()" mat-raised-button color="primary"
-  class="py-1 bg-sky-700">Registrar</button>
+  class="py-1 bg-sky-700">Crear plazo</button>
 </form>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 mt-5">
@@ -78,7 +78,7 @@
 
 
   <ng-container matColumnDef="amount">
-    <th mat-header-cell *matHeaderCellDef> Monto. </th>
+    <th mat-header-cell *matHeaderCellDef> Monto</th>
     <td mat-cell *matCellDef="let element"> {{element.amount | currency}} </td>
   </ng-container>
 
@@ -95,10 +95,6 @@
     <td mat-cell *matCellDef="let element"> {{element.creation_date | date}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="createdAt">
-    <th mat-header-cell *matHeaderCellDef> Creacion </th>
-    <td mat-cell *matCellDef="let element"> {{element.createdAt | date}} </td>
-  </ng-container>
 
   <ng-container matColumnDef="eliminar" >
     <th mat-header-cell *matHeaderCellDef  > Eliminar</th>

@@ -11,7 +11,7 @@ import { UserDataService } from '@core/services/user-data.service';
   styleUrls: ['./plazo-fijo.component.scss']
 })
 export class PlazoFijoComponent implements OnInit {
-  displayedColumns: string[] = ['accountId', 'userId', 'id', 'amount', 'closing_date', 'createdAt','creation_date', 'eliminar'];
+  displayedColumns: string[] = ['accountId', 'userId', 'id', 'amount', 'closing_date','creation_date', 'eliminar'];
   PlazosFijos!:FixedTerms
   plazosForm!: FormGroup;
   dataSource!:MatTableDataSource<FixedTerms[]>
@@ -28,8 +28,8 @@ export class PlazoFijoComponent implements OnInit {
       userId: ['', [Validators.required]],
       accountId: ['', [Validators.required]],
       amount: ['', [Validators.required]],
-      creationDate: ['', [Validators.required]],
-      closeDate: ['', [Validators.required]]
+      creation_date: ['', [Validators.required]],
+      closing_date: ['', [Validators.required]]
     })
 
     this.plazosFijos()
@@ -38,13 +38,13 @@ export class PlazoFijoComponent implements OnInit {
   plazosFijos(){
     const plazos: FixedTerms = this.plazosForm.value;
     this.plazos.postFixedDeposits(plazos).subscribe(data => {
-      console.log(data)
+      this.getPlazos()
     })
   }
 
   eliminarPlazo(id:number){
     this.plazos.deleteFixedDeposits(id).subscribe(data => {
-      location.reload()
+      this.getPlazos()
     })
   }
 
