@@ -7,10 +7,13 @@ import { createEffect, Actions, ofType, defaultEffectsErrorHandler } from '@ngrx
 import { mergeMap, catchError, of, map, switchMap, tap, exhaustMap, concatMap, defer, EmptyError, EMPTY } from 'rxjs';
 import * as AuthActions from '../auth.actions/auth.actions'
 import { Router } from '@angular/router';
+import { AlertsComponent } from '@shared/components/alerts/alerts.component';
 
 
 @Injectable()
 export class AuthEffects {
+  sweetalert: AlertsComponent = new AlertsComponent
+
 
   LogIn$ = createEffect(() => {
     return this.actions$.pipe(
@@ -25,7 +28,11 @@ export class AuthEffects {
             this.route.navigate(['/banco/dashboard'])
           }),
           catchError((error) => {
-            window.location.reload()
+            this.sweetalert.ErrorAlert()
+            setTimeout(function(){
+              window.location.reload();
+           }, 2500);
+
             return of({ type: AuthActions.LogIn.type, error })
 
           })
@@ -47,6 +54,10 @@ export class AuthEffects {
           return this.route.navigate(['/auth/login']);
         }),
         catchError((error) => {
+          this.sweetalert.datosDuplicadosAlert()
+          setTimeout(function(){
+            window.location.reload();
+         }, 2500);
           return of({ type: '[Register] Register Error', payload: error});
         })
       )

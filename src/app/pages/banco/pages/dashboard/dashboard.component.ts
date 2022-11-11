@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { User } from '@core/model/interfaces';
+import { BaseServicesService } from '@core/services/base-service';
 
 @Component({
   selector: 'ab-dashboard',
@@ -7,16 +8,21 @@ import { User } from '@core/model/interfaces';
   styleUrls: ['./dashboard.component.scss']
 })
 
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  dataUsuario!:User;
 
-  dataUsuario: User = {
-    id:0,
-    first_name:'',
-    last_name:'',
-    email:'',
-    password:'',
-    points:0,
-    roleId:0
+  constructor(private baseService:BaseServicesService){
+
   }
+
+  ngOnInit(): void {
+    this.baseService.getPerfil().subscribe(data => {
+      this.dataUsuario = data
+      console.log(this.dataUsuario)
+
+    })
+  }
+
+
 
 }
