@@ -60,9 +60,9 @@ export class TransactionsComponent implements OnInit {
       concept: concepto,
       date: this.hourAndDate,
       type: "payment", // se había colocado acá el tipo de cuenta
-      accountId: 993 ,
+      accountId: this.dataUsuario.id ,
       userId: this.dataUsuario.id,
-      to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number 
+      to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number
     }
 
     this.modalSS.postTransaction(formData).subscribe((data)=>{

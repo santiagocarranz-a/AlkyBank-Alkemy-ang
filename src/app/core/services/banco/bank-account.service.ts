@@ -12,7 +12,7 @@ export class BankAccountService {
     private http: HttpClient
   ) { }
 
-  newBAccount(account: newBankAccount) {
+  newBAccount(account: newBankAccount[]) {
     return this.http.post(`${this.apiUrl}/accounts`, account)
   }
 }

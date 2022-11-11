@@ -16,15 +16,9 @@ export class BankAccountComponent implements OnInit {
   @Input() userId!: number;
   openTab = 1;
   hideCurrency: boolean = false;
-  newAccountData!: newBankAccount;
-  Accounts:Accounts[] = [
-    {
-    creationDate: '2022-06-20',
-    money: 1300,
-    isBlocked: false,
-    userId: 993,
-    }
-  ]
+  newAccountData: newBankAccount[] = [];
+  transacciones:any
+
   constructor(
     public dialog: MatDialog,
     private modalSS: TransactionsService,
@@ -36,6 +30,7 @@ export class BankAccountComponent implements OnInit {
   modalRecargar(){
     this.modalSS.$modal.emit(true)
     this.dialog.open(TransactionsComponent)
+    this.transaccionesS()
   }
 
   modalTransferir(){
@@ -46,6 +41,18 @@ export class BankAccountComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.transaccionesS()
+  }
+
+  transaccionesS(){
+    this.modalSS.getListTransaction().subscribe((list:any) => {
+
+      const {data} = list
+      this.transacciones = data
+      this.transacciones =this.transacciones[0].amount
+      console.log(this.transacciones)
+
+    })
   }
 
   toggleTabs($tabNumber: number) {
@@ -57,12 +64,14 @@ export class BankAccountComponent implements OnInit {
   }
 
   addBankAccount() {
-    this.newAccountData = {
+    this.newAccountData = [ {
       creationDate: formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en'),
       money: 0,
       isBlocked: false,
       userId: this.userId
     }
+    ]
     this.bankAccountService.newBAccount(this.newAccountData)
+    console.log(this.newAccountData)
   }
 }
