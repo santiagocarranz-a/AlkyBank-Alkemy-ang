@@ -3,7 +3,12 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { listTransaction } from '@core/model/interfacesTransactions';
 import { TransactionsService } from '@core/services/banco/transactions.service';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import * as Transaction from '../../../../../../core/state/user-actions/transactions.actions';
+import * as SelectTransaction from '../../../../../../core/state/user-selectors/Transaction.Selectors';
 
 
 @Component({
@@ -23,22 +28,32 @@ export class TransactionsComponent implements OnInit {
   displayedColumns: string[] = [ 'type','accountId','amount','concept','date','accion'];
   dataSource :any = []
 
+  TransactionList$: Observable<any>;
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(public ssTransaction:TransactionsService) { }
+  constructor(public ssTransaction:TransactionsService, private store: Store<any>) {
+    this.TransactionList$ = this.store.select(SelectTransaction.dataTransaction)
+    this.store.dispatch(Transaction.allTransaction())
+   console.log(this.TransactionList$)
+
+}
 
   ngOnInit(): void {
     this.toListTransaction()
+
   }
+
+
 
 
   toListTransaction(){
     this.ssTransaction.getListTransaction().subscribe((list:any)=>{
-    
+
     const {data} = list
     let dataArreglo
-    
+
 //    console.log(data)
 /*
     for(let item of data){
@@ -57,5 +72,3 @@ export class TransactionsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }
-
-
