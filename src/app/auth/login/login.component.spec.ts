@@ -68,7 +68,6 @@ describe (`(1) TEST del componente "LoginComponent"`, () => {
   //   email.setValue('gaston2@gmail.com');
   //   password.setValue('123123');
 
-
   //   const btnSubmit = fixture.debugElement.query(By.css('#btn-login'));
   //   btnSubmit.nativeElement.click();
 

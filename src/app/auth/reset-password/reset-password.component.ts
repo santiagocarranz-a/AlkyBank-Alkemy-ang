@@ -10,8 +10,6 @@ import { passwordMatchingValidatior } from './passwordvalidator';
 })
 export class ResetPasswordComponent implements OnInit {
   sweetalert: AlertsComponent = new AlertsComponent
-
-
   idUsuario!:number
   resetForm!: FormGroup;
 
