@@ -15,7 +15,7 @@ import { TransactionsComponent } from '@shared/components/formTransactions/trans
   styleUrls: ['./contacts.component.scss']
 })
 export class ContactsComponent implements OnInit {
-displayedColumns: string[] = ['first_name', 'email', 'enviar'];
+displayedColumns: string[] = ['first_name', 'email','id'];
 length = 100;
 pageSize = 10;
 dataSource!:MatTableDataSource<User[]>
@@ -42,7 +42,10 @@ dataSource!:MatTableDataSource<User[]>
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 }
-  modalTransferir(){
+  modalTransferir(s:any){
+      let ss =s
+    
+    console.log(ss.text)
   this.modalS.$modal.emit(false)
   this.dialog.open(TransactionsComponent)
 }
