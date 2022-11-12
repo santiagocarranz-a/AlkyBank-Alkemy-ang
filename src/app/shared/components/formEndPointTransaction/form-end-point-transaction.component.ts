@@ -21,6 +21,8 @@ export class FormEndPointTransactionComponent implements OnInit {
   hourAndDate:string=""
   UserID:number=0
   banco:any
+  namesContactos:any
+
 
   constructor(
     public modalSS:TransactionsService,
@@ -28,7 +30,7 @@ export class FormEndPointTransactionComponent implements OnInit {
     private base:BaseServicesService,
     private userData:UserDataService) { }
 
-    dataUsuario:User = {
+  dataUsuario:User = {
       id:0,
       first_name: "string",
       last_name: "string",
@@ -36,46 +38,64 @@ export class FormEndPointTransactionComponent implements OnInit {
       password: "string",
       roleId: 0,
       points: 0,
-      }
+  }
 
   ngOnInit(): void {
     this.enviarDinero = this.formBuilder.group({
-      amount:['', [Validators.required]],
-      type:['', [Validators.required]],
-      concept:['', [Validators.required]]
+     amount:['', [Validators.required]],
+     type:["number", [Validators.required]],
+     concept:['', [Validators.required]]
     })
-
+    
     this.base.getPerfil().subscribe((data)=>{
       this.dataUsuario = data
       console.log(data)
     })
-
+    
     this.obtenerFecha()
+    //this.getContactos()
   }
 
 
-
-
-  sendTransaction(){
+  sendTransaction(form:any){
     const {type, concept, amount} = this.enviarDinero.value
 
     const formData :Transactions = {
       amount: amount,
-      concept: concept, // "Pago de honorarios"
-      date: this.hourAndDate,    // "2022-10-26 15:00:00"
-      type: "payment",    // "topup|payment"
-      accountId: 23,
+      concept: concept, 
+      date: this.hourAndDate,    
+      type: "payment",    
+      accountId: type,
       userId: this.dataUsuario.id,
-      to_account_id: 5
+      to_account_id: 1
     }
-    
+
     console.log(formData)
+    console.log(form.valid)
 
-    this.modalSS.postTransaction(formData).subscribe(data => {
-     console.log(data)
+    if(form.valid==false){
+      console.log("formulario invalido")
+
+    }else{
+      console.log("formulario valido")
+      this.modalSS.postTransaction(formData).subscribe(data => {
+       console.log(data)
+      })
+      
+    }
+  }
+
+
+// SERVICIO PARA OBTENER LISTA DE CONTACTOS
+/*
+  getContactos(){
+    this.base.getUsers().subscribe((res:any)=>{
+      const{data}=res
+      this.namesContactos=data
+      console.log(this.namesContactos)
     })
-
-}
+  }
+*/
 
 
   obtenerFecha (){

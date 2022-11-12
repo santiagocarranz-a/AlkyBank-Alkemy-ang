@@ -1,4 +1,4 @@
-<H1 mat-dialog-title>Transacción</H1>
+<H1 mat-dialog-title>Transferir</H1>
 
 <form [formGroup]="enviarDinero" class="host">
 <mat-form-field appearance="fill">
@@ -6,14 +6,33 @@
     <input matInput type="number" formControlName="amount" #idMonto ="">
 
 </mat-form-field>
+<mat-form-field appearance="fill">
+    <mat-label>Destinatario</mat-label>
+    <mat-select matInput type="number" formControlName="type" #idMonto ="">
+            <mat-option value=1 >Juan Perez</mat-option>
+            <mat-option value=2 >na podes-288</mat-option>
+            <mat-option value=3 >Lucas Carnero</mat-option>
+            <mat-option value=4 >Lucas Carnero</mat-option>
+            <mat-option value=5 >Francisco Garciarena</mat-option>
+            <mat-option value=6 >Fabian Portilla</mat-option>
+            <mat-option value=7 >Juan Perez</mat-option>
+            <mat-option value=11 >fran gar</mat-option>
+            <mat-option value=14 >Kevin Hernandez</mat-option>
+            <mat-option value=16 >Sebas Perez</mat-option>
+            <mat-option value=18 >Juan Perez</mat-option>
+        </mat-select>
+</mat-form-field>
+    
+<!--
 
 <mat-form-field appearance="fill">
-    <mat-label>Tipo</mat-label>
-    <input matInput type="text" formControlName="type" #idMonto ="">
-
-
-
+    <mat-label>Destinatario</mat-label>
+     <mat-select matInput type="number" formControlName="type" #idMonto ="">
+        <mat-option value=1 *ngFor="let item of namesContactos">{{namesContactos.first_name}} {{namesContactos.last_name}}</mat-option>
+    </mat-select>
 </mat-form-field>
+-->
+    
 
 <mat-form-field appearance="fill">
     <mat-label>Concepto</mat-label>
@@ -21,7 +40,7 @@
 </mat-form-field>
 <div class="button">
     <button mat-button color="warn" mat-dialog-close >Salir</button>
-    <button mat-button color="primary" (click)="sendTransaction()">Listo!</button>
+    <button mat-button color="primary" (click)="sendTransaction(enviarDinero)">Listo!</button>
 </div>
 </form>
 

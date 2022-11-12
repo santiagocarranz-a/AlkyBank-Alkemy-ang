@@ -39,7 +39,6 @@ export class BankAccountComponent implements OnInit {
 
   modalTransferir() {
     console.log("Desde banck")
-    this.modalSS.$modal.emit(false)
     this.dialog.open(FormEndPointTransactionComponent)
   }
 
