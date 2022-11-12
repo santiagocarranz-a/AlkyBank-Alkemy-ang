@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { User } from '@core/model/interfaces';
-import { Transactions, TransferAccount } from '@core/model/user.data';
+import { Transactions } from '@core/model/interfacesTransactions';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { BaseServicesService } from '@core/services/base-service';
 import { UserDataService } from '@core/services/user-data.service';
@@ -45,6 +45,11 @@ export class FormEndPointTransactionComponent implements OnInit {
       concept:['', [Validators.required]]
     })
 
+    this.base.getPerfil().subscribe((data)=>{
+      this.dataUsuario = data
+      console.log(data)
+    })
+
     this.obtenerFecha()
   }
 
@@ -53,14 +58,20 @@ export class FormEndPointTransactionComponent implements OnInit {
 
   sendTransaction(){
     const {type, concept, amount} = this.enviarDinero.value
-    const formData : TransferAccount = {
-      type:type,
-      concept:concept,
-      amount:amount
+
+    const formData :Transactions = {
+      amount: amount,
+      concept: concept, // "Pago de honorarios"
+      date: this.hourAndDate,    // "2022-10-26 15:00:00"
+      type: "payment",    // "topup|payment"
+      accountId: 23,
+      userId: this.dataUsuario.id,
+      to_account_id: 5
     }
+    
     console.log(formData)
 
-    this.userData.postAccountsId(214, formData).subscribe(data => {
+    this.modalSS.postTransaction(formData).subscribe(data => {
      console.log(data)
     })
 
