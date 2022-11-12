@@ -6,6 +6,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AuthService } from "@core/services/auth.service";
 import { LocalStorageService } from "@core/services/local-storage.service";
 import { MaterialModule } from "src/app/material/material.module";
+import { By } from '@angular/platform-browser';
 
 
 
@@ -19,8 +20,7 @@ describe (`(1) TEST del componente "ResetPasswordComponent"`, () => {
         FormsModule,
         HttpClientModule,
         MaterialModule,
-        BrowserAnimationsModule
-
+        BrowserAnimationsModule,
       ],
       declarations: [
        ResetPasswordComponent
@@ -41,5 +41,37 @@ describe (`(1) TEST del componente "ResetPasswordComponent"`, () => {
     const component = fixture.componentInstance
     expect(component).toBeTruthy();
   })
+
+  it('Debe retornar el formulario es invalido y un mensaje de error', () => {
+    const fixture = TestBed.createComponent(ResetPasswordComponent);
+    const resetPassword = fixture.componentInstance
+    fixture.detectChanges()
+
+    let password = resetPassword.resetForm.controls['password'];
+    password.setValue('123123')
+
+    expect(resetPassword.resetForm.invalid).toBeTrue();
+  })
+
+  // it('Debe retornar reseteo de contraseña realizado', () => {
+  //   const fixture = TestBed.createComponent(ResetPasswordComponent);
+  //   const resetPassword = fixture.componentInstance
+  //   fixture.detectChanges()
+
+  //   let email = resetPassword.resetForm.controls['email'];
+  //   let password = resetPassword.resetForm.controls['password'];
+  //   let confirmPassword = resetPassword.resetForm.controls['confirmPassword'];
+
+  //   email.setValue('gaston4@example.com');
+  //   password.setValue('123123');
+  //   confirmPassword.setValue('123123');
+
+
+  //   const btnSubmit = fixture.debugElement.query(By.css('#btn-reset'));
+  //   btnSubmit.nativeElement.click();
+
+
+  //   expect(resetPassword.onSubmit).toBeTrue();
+  // })
 
 })
