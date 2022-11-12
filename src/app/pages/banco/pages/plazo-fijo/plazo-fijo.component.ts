@@ -2,7 +2,8 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { FixedTerms } from '@core/model/user.data';
+import { FixedDepositCreated, FixedTerms } from '@core/model/user.data';
+import { BankAccountService } from '@core/services/banco/bank-account.service';
 import { UserDataService } from '@core/services/user-data.service';
 
 @Component({
@@ -11,17 +12,28 @@ import { UserDataService } from '@core/services/user-data.service';
   styleUrls: ['./plazo-fijo.component.scss']
 })
 export class PlazoFijoComponent implements OnInit {
-  displayedColumns: string[] = ['accountId', 'userId', 'id', 'amount', 'closing_date','creation_date', 'eliminar'];
-  PlazosFijos!:FixedTerms
+  displayedColumns: string[] = ['accountId', 'userId', 'id', 'amount', 'closing_date','creation_date', 'intereses', 'eliminar'];
+
+
+  plazosFijos!:FixedDepositCreated[]
+  total: number = 0
+
+
   plazosForm!: FormGroup;
   dataSource!:MatTableDataSource<FixedTerms[]>
+  dinero:any;
+  resultado:any
+  plata:any
+  days:any
+  interes:any = []
 
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator
 
 
 
 
-  constructor(private plazos:UserDataService, private formBuilder: FormBuilder) { }
+  constructor(private plazos:UserDataService, private formBuilder: FormBuilder,
+    private bankAccountService: BankAccountService) { }
 
   ngOnInit(): void {
     this.plazosForm = this.formBuilder.group({
@@ -32,13 +44,32 @@ export class PlazoFijoComponent implements OnInit {
       closing_date: ['', [Validators.required]]
     })
 
-    this.plazosFijos()
+    this.PostplazosFijos()
     this.getPlazos()
+    this.getMoneyAccount()
   }
-  plazosFijos(){
+  PostplazosFijos(){
     const plazos: FixedTerms = this.plazosForm.value;
     this.plazos.postFixedDeposits(plazos).subscribe(data => {
+      const {amount} = data
+      if(amount > this.dinero){
+      } else {
+        this.resultado = this.dinero - amount
+      }
       this.getPlazos()
+    })
+  }
+
+  getMoneyAccount() {
+    this.bankAccountService.BAccountsMe().subscribe((list: any) => {
+     this.dinero = list
+
+    //  this.dinero = this.dinero[0].money
+     this.dinero = this.dinero.forEach((cuenta:any) => {
+      const {money, id} = cuenta
+      this.plata = {money, id}
+      console.log(this.plata)
+     })
     })
   }
 
@@ -50,10 +81,35 @@ export class PlazoFijoComponent implements OnInit {
 
   getPlazos(){
     this.plazos.getFixedDeposits().subscribe(lista => {
+      this.plazosFijos = [...lista.data]
+      console.log(this.plazosFijos)
+      this.total = this.plazosFijos.reduce((counter, item) => Number(item.amount) + counter, 0);
+      console.log(this.total)
+
+      this.days = this.plazosFijos.map(item =>
+        Math.round(
+        Math.ceil(
+          new Date(item.closing_date).getTime() -
+          new Date(item.createdAt).getTime()
+          ) / (1000 * 60 * 60 * 24))
+        );
+        console.log(this.days)
+
+        this.interes = this.plazosFijos.map(item => {
+          return {
+            ...item,
+            interes: item.amount * 0.01 * Math.round(
+              Math.ceil(
+                new Date(item.closing_date).getTime() -
+                new Date(item.createdAt).getTime()
+                ) / (1000 * 60 * 60 * 24))
+
+          }
+        })
+        console.log(this.interes)
+
       const {data} = lista
-      this.dataSource = new MatTableDataSource(data)
-      console.log(data)
-      console.log(this.dataSource)
+      this.dataSource = new MatTableDataSource(this.interes)
     })
   }
 
