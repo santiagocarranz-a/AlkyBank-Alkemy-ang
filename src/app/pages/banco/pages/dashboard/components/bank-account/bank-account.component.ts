@@ -30,7 +30,7 @@ export class BankAccountComponent implements OnInit {
   modalRecargar() {
     this.modalSS.$modal.emit(true)
     this.dialog.open(TransactionsComponent)
-    this.transaccionesS()
+    this.getMoneyAccount()
   }
 
   modalTransferir() {
@@ -41,17 +41,22 @@ export class BankAccountComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.transaccionesS()
+    this.getMoneyAccount()
     this.getBankAccounts()
   }
 
-  transaccionesS() {
-    this.modalSS.getListTransaction().subscribe((list: any) => {
-      const { data } = list
-      this.transacciones = data
-      this.transacciones = this.transacciones[0].amount
-      console.log(this.transacciones)
+  // transaccionesS() {
+  //   this.modalSS.getListTransaction().subscribe((list: any) => {
+  //     const { data } = list
+  //     this.transacciones = data
+  //     this.transacciones = this.transacciones[0].amount
+  //     console.log(this.transacciones)
 
+  //   })
+  // }
+  getMoneyAccount() {
+    this.bankAccountService.BAccountsMe().subscribe((list: any) => {
+      console.log(list)
     })
   }
 
