@@ -18,6 +18,7 @@ export class PlazoFijoComponent implements OnInit {
   dataSource!:MatTableDataSource<FixedTerms[]>
   dinero:any;
   resultado:any
+  plata:any
 
   @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator
 
@@ -45,10 +46,8 @@ export class PlazoFijoComponent implements OnInit {
     this.plazos.postFixedDeposits(plazos).subscribe(data => {
       const {amount} = data
       if(amount > this.dinero){
-        console.log('NOOOOOOOOOOOOOOOOOOOOOOO pobreh ijo de mil PUTAS')
       } else {
         this.resultado = this.dinero - amount
-        console.log(this.resultado)
       }
       this.getPlazos()
     })
@@ -57,7 +56,13 @@ export class PlazoFijoComponent implements OnInit {
   getMoneyAccount() {
     this.bankAccountService.BAccountsMe().subscribe((list: any) => {
      this.dinero = list
-     this.dinero = this.dinero[0].money
+
+    //  this.dinero = this.dinero[0].money
+     this.dinero = this.dinero.forEach((cuenta:any) => {
+      const {money, id} = cuenta
+      this.plata = {money, id}
+      console.log(this.plata)
+     })
     })
   }
 
@@ -69,7 +74,6 @@ export class PlazoFijoComponent implements OnInit {
 
   getPlazos(){
     this.plazos.getFixedDeposits().subscribe(lista => {
-      console.log(lista)
       const {data} = lista
       this.dataSource = new MatTableDataSource(data)
       console.log(this.dataSource)

@@ -59,7 +59,7 @@
                   $ **
                 </h3>
                 <h3 *ngIf="hideCurrency === true" class="text-4xl font-bold"> $
-                  {{resultado === null ? accounts.money : resultado}} </h3>
+                  {{accounts.money}} </h3>
                 <button mat-icon-button (click)="showCurrencyFn()">
                   <mat-icon [ngClass]="{'text-black': hideCurrency === true, 'text-gray-400': hideCurrency === false}">
                     visibility</mat-icon>
