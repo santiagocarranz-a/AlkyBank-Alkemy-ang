@@ -21,10 +21,6 @@ export class ResetPasswordComponent implements OnInit {
   constructor(private base:BaseServicesService, private formBuilder: FormBuilder) { }
 
   ngOnInit(): void {
-    this.base.getPerfil().subscribe(data => {
-      const {id} = data
-      this.idUsuario = id
-    })
 
     this.resetForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.email]],

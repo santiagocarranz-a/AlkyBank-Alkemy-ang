@@ -14,3 +14,5 @@ export interface BankAccount {
     updatedAt: string;
     userId: number;
 }
+
+

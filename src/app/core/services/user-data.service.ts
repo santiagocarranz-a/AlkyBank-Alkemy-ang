@@ -91,7 +91,7 @@ export class UserDataService {
   }
 
   getFixedDeposits(): Observable<any> {
-    const url = `${this.baseUrl}/]fixedDeposits`
+    const url = `${this.baseUrl}/fixedDeposits`
     return this.http.get<any>(url)
   }
 

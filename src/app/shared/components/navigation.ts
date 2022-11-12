@@ -5,9 +5,9 @@ export const navbarData = [
         label: 'Enviar dinero'
     },
     {
-        ruta: '#',
+        ruta: 'banco/plazos',
         icon: 'folder_copy',
-        label: 'Plazos fijos'
+        label: 'Plazos'
     },
     {
         ruta: 'banco/contacts',
