@@ -7,6 +7,8 @@ import { User } from '@core/model/interfaces';
 import { UserDataService } from '@core/services/user-data.service';
 import { BankAccountService } from '@core/services/banco/bank-account.service';
 import { Accounts, TransferAccount } from '@core/model/user.data';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@env/environment';
 
 @Component({
   selector: 'ab-transactions',
@@ -14,26 +16,28 @@ import { Accounts, TransferAccount } from '@core/model/user.data';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
+
   Transferencias:Transactions[] = []
   enviarDinero!: FormGroup;
-
-
-  @Input() tittle:string = ""
 
   correspondeIngreso:any;
   idMonto: any;
   fecha:string = ''
   hourAndDate:string=""
-  UserID:number=0
+  UserID!:number
   banco:any
-
+  dialog: any;
+  cuentas:any
+  cuentaId!:Accounts
   constructor(
-    public modalSS:TransactionsService,
     private formBuilder: FormBuilder,
     private base:BaseServicesService,
     private bankAccountService: BankAccountService,
-    private userData:UserDataService
+    private userData:UserDataService,
+    private http:HttpClient,
+    private modal:TransactionsService
     ) { }
+
 
     dataUsuario:User = {
       id:0,
@@ -52,7 +56,7 @@ export class TransactionsComponent implements OnInit {
       concept:['', [Validators.required]]
     })
 
-    this.obtenerFecha()
+
     this.getAccount()
 
   }
@@ -63,61 +67,44 @@ export class TransactionsComponent implements OnInit {
       console.log(this.banco)
     })
   }
-  // sendTransaction(){
-  //   const {type, concept, amount} = this.enviarDinero.value
-  //   const formData : Transactions = {
-  //     type:type,
-  //     concept:concept,
-  //     amount:amount
-  //   }
-  // }
-  sendmoney(){
-       const {type, concept, amount} = this.enviarDinero.value
-       const formData : TransferAccount = {
-         type:type,
-         concept:concept,
-         amount:amount
-       }
-       console.log(formData)
 
-       this.userData.postAccountsId(214, formData).subscribe(data => {
+
+
+  sendmoney(){
+    const { type, concept, amount } = this.enviarDinero.value;
+    const formData: TransferAccount = {
+      type: type,
+      concept: concept,
+      amount: amount,
+    };
+       console.log(formData)
+       this.userData.postAccountsId(1, formData).subscribe(data => {
         console.log(data)
        })
 
   }
 
-  obtenerFecha (){
-    //FECHA//
-    let date = new Date()
-    let day = date.getDate()
-    let month = date.getMonth() + 1
-    let year = date.getFullYear()
 
-    if(month < 10 && day < 10){
-      this.fecha = `${year}-0${month}-0${day}`
-      console.log(this.fecha)
-    }else{
-      this.fecha = `${year}-${month}-${day}`
-      console.log(this.fecha)
+  obtener(){
+
+    return this.http.post(
+      `${environment.apiBase}/accounts/214`,
+      {
+        "type": this.enviarDinero.value.type,
+        "concept": this.enviarDinero.value.concept,
+        "amount": this.enviarDinero.value.amount
+      }).subscribe(data => {
+        console.log(data)
+      })
+
+
     }
-    //HORA//
-    let timeHour = date.getHours()
-    let timeMinutes = date.getMinutes().toString()
-    let timeSecond = date.getSeconds().toString()
-    let clockSet
 
-    if(timeHour.toString().length<2){
-      let timeHourString = timeHour.toString()
-      timeHourString = "0" + timeHourString
-      clockSet = `${timeHourString}:${timeMinutes}:${timeSecond}`
-    }else{
-      clockSet = `${timeHour}:${timeMinutes}:${timeSecond}`
-    }
-    console.log(clockSet)
+}
 
-    this.hourAndDate = this.fecha +" "+ clockSet
-    console.log(this.hourAndDate)
-  }
+
+
+
 
 
 
@@ -130,4 +117,3 @@ export class TransactionsComponent implements OnInit {
   //   this.obtenerFecha()
   // }
 
-}

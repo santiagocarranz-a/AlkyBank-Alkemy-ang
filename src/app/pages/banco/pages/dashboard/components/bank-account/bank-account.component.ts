@@ -99,6 +99,7 @@ export class BankAccountComponent implements OnInit {
       userId: this.userId
     }
     this.bankAccountService.newBAccount(newAccountData)
+    console.log(newAccountData)
   }
 
   getBankAccounts() {
@@ -108,7 +109,6 @@ export class BankAccountComponent implements OnInit {
       this.objetoDinero = this.ListBankAccounts.forEach((cuenta:any) => {
         const {money, id} = cuenta
         Number(this.money = {money, id})
-
        })
     })
   }
