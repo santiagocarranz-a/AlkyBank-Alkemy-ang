@@ -4,6 +4,9 @@ import { Transactions } from '@core/model/interfacesTransactions';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { BaseServicesService } from '@core/services/base-service';
 import { User } from '@core/model/interfaces';
+import { UserDataService } from '@core/services/user-data.service';
+import { BankAccountService } from '@core/services/banco/bank-account.service';
+import { Accounts, TransferAccount } from '@core/model/user.data';
 
 @Component({
   selector: 'ab-transactions',
@@ -22,11 +25,14 @@ export class TransactionsComponent implements OnInit {
   fecha:string = ''
   hourAndDate:string=""
   UserID:number=0
+  banco:any
 
   constructor(
     public modalSS:TransactionsService,
     private formBuilder: FormBuilder,
-    private base:BaseServicesService
+    private base:BaseServicesService,
+    private bankAccountService: BankAccountService,
+    private userData:UserDataService
     ) { }
 
     dataUsuario:User = {
@@ -41,33 +47,35 @@ export class TransactionsComponent implements OnInit {
 
   ngOnInit(): void {
     this.enviarDinero = this.formBuilder.group({
-      monto:['', [Validators.required]],
-      tipocuenta:['', [Validators.required]],
-      concepto:['', [Validators.required]]
+      amount:['', [Validators.required]],
+      type:['', [Validators.required]],
+      concept:['', [Validators.required]]
     })
 
     this.obtenerFecha()
-    this.base.getPerfil().subscribe(data=>{
-      this.dataUsuario = data
-      console.log(this.dataUsuario)
+    this.getAccount()
+
+  }
+
+  getAccount(){
+    this.bankAccountService.BAccountsMe().subscribe(data =>{
+      this.banco = data
+      console.log(this.banco)
     })
   }
   sendmoney(){
-    //console.log("monto: "+monto, "concepto: "+concepto, "fecha: "+this.hourAndDate)
-    const {monto, tipocuenta, concepto} = this.enviarDinero.value
-    const formData : Transactions = {
-      amount: monto,
-      concept: concepto,
-      date: this.hourAndDate,
-      type: "payment", // se había colocado acá el tipo de cuenta
-      accountId: this.dataUsuario.id ,
-      userId: this.dataUsuario.id,
-      to_account_id: 1 // la constante "tipocuenta" devuelve un string "one" y to_account_id espera un number
-    }
+       const {type, concept, amount} = this.enviarDinero.value
+       const formData : TransferAccount = {
+         type:type,
+         concept:concept,
+         amount:amount
+       }
+       console.log(formData)
 
-    this.modalSS.postTransaction(formData).subscribe((data)=>{
-      console.log(data)
-    })
+       this.userData.postAccountsId(214, formData).subscribe(data => {
+        console.log(data)
+       })
+
   }
 
   obtenerFecha (){

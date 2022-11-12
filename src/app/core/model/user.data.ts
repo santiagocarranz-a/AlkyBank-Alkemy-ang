@@ -8,7 +8,7 @@ export interface Accounts {
 }
 
 export interface TransferAccount {
-  type: string | string,
+  type: string,
   concept: string,
   amount: number
 }
