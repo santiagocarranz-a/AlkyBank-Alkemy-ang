@@ -58,7 +58,7 @@ describe (`(1) TEST del componente "RegisterComponent"`, () => {
     email.setValue('aaron@aaron.com');
 
 
-    expect(register.registerForm.getError('Error'))
+
     expect(register.registerForm.invalid).toBeTrue();
   })
 
