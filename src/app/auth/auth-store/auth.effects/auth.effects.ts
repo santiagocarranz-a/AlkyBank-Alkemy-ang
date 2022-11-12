@@ -48,7 +48,7 @@ export class AuthEffects {
     concatMap((action: any) => {
       return this.authService.registro(action.user).pipe(
         map((user) => {
-          return { type: '[Register] Register Success', payload: user}
+          return { type: AuthActions.Register, payload: user}
         }),
         tap(() => {
           return this.route.navigate(['/auth/login']);
@@ -58,7 +58,7 @@ export class AuthEffects {
           setTimeout(function(){
             window.location.reload();
          }, 2500);
-          return of({ type: '[Register] Register Error', payload: error});
+          return of({ type: AuthActions.Register, payload: error});
         })
       )
     })

@@ -17,7 +17,7 @@
                         </a>
                     </p>
                 </div>
-    
+
                 <div class="mt-6">
                     <form action="#" method="POST" class="space-y-1" [formGroup]="registerForm">
                         <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-3">
@@ -63,7 +63,7 @@
                                 </mat-form-field>
                             </div>
                         </div>
-        
+
                         <div class="grid grid-cols-1 lg:grid-cols-2 lg:gap-3">
                             <div class="space-y-1">
                                 <label for="password" class="block text-sm font-medium text-gray-700"> Contraseña </label>
@@ -109,12 +109,12 @@
                     <a (click)="openDialog()" class="hover:text-sky-500">Acepto los terminos y condiciones</a>
                 </mat-checkbox>
                     </div>
-    
+
                     <div>
                         <button [disabled]="loading" (click)="register()" type="submit" mat-raised-button color="primary"
-                    class="w-full py-1 bg-sky-700">Registrarse</button>
+                    class="w-full py-1 bg-sky-700" id="btn-register">Registrarse</button>
                     </div>
-    
+
                 </div>
             </div>
         </div>
