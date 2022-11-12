@@ -74,12 +74,12 @@ You can find much more about how to use this project in our [Wiki](https://githu
 
 ## Authors ✒️
 
-* **Ibañez Sebastian** - *Trabajo Inicial* - [Z3belek](https://github.com/Z3belek)
-* **Acosta Guillermo** - *Trabajo Inicial* - [Guille2000](https://github.com/Guille2000)
-* **Carranza Santiago** - *Trabajo Inicial* - [santiagocarranz-a](https://github.com/santiagocarranz-a)
-* **Francolino Aaron** - *Trabajo Inicial* - [aaron2494](https://github.com/aaron2494)
-* **Fernandez Octavio** - *Trabajo Inicial* - [aaron2494](https://github.com/octavioismael-fer)
-* **Gaitan Gaston** - *Gaston1905* - [octavioismael-fer](https://github.com/Gaston1905)
-* **Ruben** - *Trabajo Inicial* - [RaCode75](https://github.com/RaCode75)
+* **Ibañez Sebastian** - *Work Start* - [Z3belek](https://github.com/Z3belek)
+* **Acosta Guillermo** - *Work Start* - [Guille2000](https://github.com/Guille2000)
+* **Carranza Santiago** - *Work Start* - [santiagocarranz-a](https://github.com/santiagocarranz-a)
+* **Francolino Aaron** - *Work Start* - [aaron2494](https://github.com/aaron2494)
+* **Fernandez Octavio** - *Work Start* - [octavioismael-fer](https://github.com/octavioismael-fer)
+* **Gaitan Gaston** - *Work Start* - [gaston1905](https://github.com/Gaston1905)
+* **Ruben** - *Work Start* - [RaCode75](https://github.com/RaCode75)
 
 You can also look at the list of all the [contributors](https://github.com/Z3belek/Virtual-Bank-App-Angular/graphs/contributors) who have participated in this project. 
