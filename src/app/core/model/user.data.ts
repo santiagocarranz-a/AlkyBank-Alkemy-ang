@@ -1,6 +1,7 @@
 // Accounts
 
 export interface Accounts {
+  id:number,
   creationDate: Date,
   money : number,
   isBlocked: boolean,
