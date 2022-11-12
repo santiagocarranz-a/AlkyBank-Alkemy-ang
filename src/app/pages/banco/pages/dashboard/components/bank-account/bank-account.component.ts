@@ -52,15 +52,15 @@ export class BankAccountComponent implements OnInit {
 
   getPlazos() {
     this.user.getFixedDeposits().subscribe((list: any) => {
+      console.log(list)
       const { data } = list;
       this.plazos = data;
-      console.log(this.plazos)
       this.plazos = this.plazos.forEach((cuenta:any) => {
         const {amount, id} = cuenta
         Number(this.objetoDinero = {amount, id})
+        console.log(this.objetoDinero)
        })
 
-       console.log(this.money.money - this.objetoDinero.amount)
     });
   }
 
@@ -104,11 +104,11 @@ export class BankAccountComponent implements OnInit {
   getBankAccounts() {
     this.bankAccountService.BAccountsMe().subscribe((data: any) => {
       this.ListBankAccounts = data
-
+      console.log(this.ListBankAccounts)
       this.objetoDinero = this.ListBankAccounts.forEach((cuenta:any) => {
         const {money, id} = cuenta
         Number(this.money = {money, id})
-        console.log(this.money)
+
        })
     })
   }

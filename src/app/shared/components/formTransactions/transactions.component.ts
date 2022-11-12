@@ -63,6 +63,14 @@ export class TransactionsComponent implements OnInit {
       console.log(this.banco)
     })
   }
+  // sendTransaction(){
+  //   const {type, concept, amount} = this.enviarDinero.value
+  //   const formData : Transactions = {
+  //     type:type,
+  //     concept:concept,
+  //     amount:amount
+  //   }
+  // }
   sendmoney(){
        const {type, concept, amount} = this.enviarDinero.value
        const formData : TransferAccount = {

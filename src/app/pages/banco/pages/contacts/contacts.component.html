@@ -21,7 +21,7 @@
   <ng-container matColumnDef="enviar" >
     <th mat-header-cell *matHeaderCellDef> Transferir </th>
     <td mat-cell *matCellDef="let element">
-      <button mat-button color="primary"(click)="modalTransferir()">Enviar</button>
+      <button mat-button color="primary"(click)="modalTransferir(element.id)">Enviar</button>
     </td>
   </ng-container>
 
