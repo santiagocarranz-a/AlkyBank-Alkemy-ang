@@ -19,8 +19,9 @@ export class BankAccountComponent implements OnInit {
   hideCurrency: boolean = false;
   transacciones: any;
   plazos: any;
-  resultado!: number;
+  resultado!:number;
   ListBankAccounts: BankAccount[] = [];
+  money:any
 
   constructor(
     public dialog: MatDialog,
@@ -52,11 +53,17 @@ export class BankAccountComponent implements OnInit {
 
       const { data } = list;
       this.plazos = data;
-      this.plazos = this.plazos[0].amount;
-      console.log(this.plazos);
+      console.log()
+      this.plazos = Number(this.plazos[0].amount)
+      console.log(this.plazos)
+
+      this.resultado = this.money - this.plazos
+      console.log(this.resultado)
 
     });
   }
+
+
 
   transaccionesS() {
     this.modalSS.getListTransaction().subscribe((list: any) => {
@@ -69,15 +76,6 @@ export class BankAccountComponent implements OnInit {
     this.getBankAccounts()
   }
 
-  // transaccionesS() {
-  //   this.modalSS.getListTransaction().subscribe((list: any) => {
-  //     const { data } = list
-  //     this.transacciones = data
-  //     this.transacciones = this.transacciones[0].amount
-  //     console.log(this.transacciones)
-
-  //   })
-  // }
   getMoneyAccount() {
     this.bankAccountService.BAccountsMe().subscribe((list: any) => {
       console.log(list)
@@ -107,7 +105,8 @@ export class BankAccountComponent implements OnInit {
   getBankAccounts() {
     this.bankAccountService.BAccountsMe().subscribe((data: any) => {
       this.ListBankAccounts = data
-      console.log(this.ListBankAccounts)
+      this.money = Number(this.ListBankAccounts[0].money)
+      console.log(this.money)
     })
   }
 
