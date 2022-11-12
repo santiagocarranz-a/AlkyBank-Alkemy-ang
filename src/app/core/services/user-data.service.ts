@@ -35,9 +35,9 @@ export class UserDataService {
     return this.http.get<Accounts>(url)
   }
 
-  postAccountsId(id: number): Observable<TransferAccount> {
+  postAccountsId(id: number, cuenta:TransferAccount): Observable<TransferAccount> {
     const url = `${this.baseUrl}/accounts/${id}`
-    return this.http.post<TransferAccount>(url, {id})
+    return this.http.post<TransferAccount>(url, {cuenta})
   }
 
   getAccountsId(id: number): Observable<Accounts> {
@@ -91,7 +91,7 @@ export class UserDataService {
   }
 
   getFixedDeposits(): Observable<any> {
-    const url = `${this.baseUrl}/]fixedDeposits`
+    const url = `${this.baseUrl}/fixedDeposits`
     return this.http.get<any>(url)
   }
 
