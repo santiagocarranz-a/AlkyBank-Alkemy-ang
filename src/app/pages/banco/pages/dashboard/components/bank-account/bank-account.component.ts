@@ -21,7 +21,6 @@ export class BankAccountComponent implements OnInit {
   plazos: any;
   resultado!: number;
   ListBankAccounts: BankAccount[] = [];
-  transacciones: any
 
   constructor(
     public dialog: MatDialog,
@@ -93,17 +92,8 @@ export class BankAccountComponent implements OnInit {
     this.hideCurrency = !this.hideCurrency;
   }
 
+
   addBankAccount() {
-    this.newAccountData = [
-      {
-        creationDate: formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss', 'en'),
-        money: 0,
-        isBlocked: false,
-        userId: this.userId,
-      },
-    ];
-    this.bankAccountService.newBAccount(this.newAccountData);
-    console.log(this.newAccountData);
     const newAccountData: newBankAccount = {
       creationDate: formatDate(new Date(), 'yyyy-MM-dd HH:mm:ss' , 'en'),
       money: 0,
@@ -120,4 +110,6 @@ export class BankAccountComponent implements OnInit {
       console.log(this.ListBankAccounts)
     })
   }
+
+
 }
