@@ -19,8 +19,11 @@ export class BankAccountComponent implements OnInit {
   hideCurrency: boolean = false;
   transacciones: any;
   plazos: any;
-  resultado!: number;
+  resultado!:number;
   ListBankAccounts: BankAccount[] = [];
+  money:any
+  objetoDinero:any
+  cuentaResultado:any
 
   constructor(
     public dialog: MatDialog,
@@ -33,7 +36,6 @@ export class BankAccountComponent implements OnInit {
   modalRecargar() {
     this.modalSS.$modal.emit(true);
     this.dialog.open(TransactionsComponent);
-    this.transaccionesS();
   }
 
   modalTransferir() {
@@ -42,45 +44,41 @@ export class BankAccountComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.transaccionesS();
+    // this.transaccionesS();
     this.getPlazos();
+    this.getBankAccounts()
+
   }
 
   getPlazos() {
     this.user.getFixedDeposits().subscribe((list: any) => {
-      console.log(list);
-
+      console.log(list)
       const { data } = list;
       this.plazos = data;
-      this.plazos = this.plazos[0].amount;
-      console.log(this.plazos);
+      this.plazos = this.plazos.forEach((cuenta:any) => {
+        const {amount, id} = cuenta
+        Number(this.objetoDinero = {amount, id})
+        console.log(this.objetoDinero)
+       })
 
     });
   }
 
-  transaccionesS() {
-    this.modalSS.getListTransaction().subscribe((list: any) => {
-      console.log(list);
-      const { data } = list;
-      this.transacciones = data;
-      this.transacciones = this.transacciones[0].amount;
-    });
-    this.getMoneyAccount()
-    this.getBankAccounts()
-  }
+
 
   // transaccionesS() {
   //   this.modalSS.getListTransaction().subscribe((list: any) => {
-  //     const { data } = list
-  //     this.transacciones = data
-  //     this.transacciones = this.transacciones[0].amount
+  //     const { data } = list;
+  //     this.transacciones = data;
+  //     this.transacciones = this.transacciones[0].amount;
   //     console.log(this.transacciones)
-
-  //   })
+  //   });
+  //   this.getMoneyAccount()
+  //   this.getBankAccounts()
   // }
+
   getMoneyAccount() {
     this.bankAccountService.BAccountsMe().subscribe((list: any) => {
-      console.log(list)
     })
   }
 
@@ -101,13 +99,17 @@ export class BankAccountComponent implements OnInit {
       userId: this.userId
     }
     this.bankAccountService.newBAccount(newAccountData)
-    console.log(newAccountData)
   }
 
   getBankAccounts() {
     this.bankAccountService.BAccountsMe().subscribe((data: any) => {
       this.ListBankAccounts = data
       console.log(this.ListBankAccounts)
+      this.objetoDinero = this.ListBankAccounts.forEach((cuenta:any) => {
+        const {money, id} = cuenta
+        Number(this.money = {money, id})
+
+       })
     })
   }
 

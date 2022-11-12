@@ -21,7 +21,7 @@ pageSize = 10;
 dataSource!:MatTableDataSource<User[]>
 
 @ViewChild(MatPaginator, {static:true}) paginator!:MatPaginator
- 
+
 
   constructor(private base:BaseServicesService, private modalS:TransactionsService, public dialog:MatDialog) { }
 
@@ -33,16 +33,17 @@ dataSource!:MatTableDataSource<User[]>
     this.base.getUsers().subscribe((res:any)=>{
       console.log(res)
       const{data,nextPage}=res
-      this.dataSource = new MatTableDataSource(data)   
+      this.dataSource = new MatTableDataSource(data)
       this.dataSource.paginator = this.paginator
-        
+
     })
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = filterValue.trim().toLowerCase();
 }
-  modalTransferir(){
+  modalTransferir(id:number){
+  console.log(id)
   this.modalS.$modal.emit(false)
   this.dialog.open(TransactionsComponent)
 }
