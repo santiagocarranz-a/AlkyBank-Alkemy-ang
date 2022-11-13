@@ -1,43 +1,85 @@
-# e-wallet-Alkemy
+<h1 align="center">e-wallet-Alkemy</h1>
+<br>
+<p align ="center">
+  <img src="src/assets/alkemyLogo.svg" alt="alkemy-logo" width="320"/>
+  <br>
+I develop a Wallet that will
+Enable the bank's customers to transact virtually and facilitate
+operations between people. </p>
+<br>
+<hr>
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 14.2.1.
+## Starting 🚀
 
-## Development server
+_These instructions will allow you to obtain a copy of the running project on your local machine for development and testing purposes._
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
-
-## Dependencias y comandos de instalación
-
-- npm install
-- ng add @angular/material
+See Deployment to learn how to deploy the project.
 
 
-## Reglas
+### Prerequisites 📋
 
-- Debe estar registrado para poder utilizar la billetera.
+_What things do you need to work on this project and how to install them??_
 
-## Acerca de la App
+```
+- IDE development environment [example of: Visual Studio Code]
+- Install [Node.js] which includes [Node Package Manager][npm]
+- Angular CLI
+```
 
-- Creada con Angular v14
-- Utiliza Angular Material Framework para app compoments
-- CSS template engine is SCSS
+### Setting Up a Project 🔧
+
+_Step by step that you must execute to have a development environment running_
+
+```
+Download and install Node.js in [https://nodejs.org/en/download/)]
+```
+```
+Download and install IDE Visual Studio Code [https://code.visualstudio.com/]
+```
+```
+Intall Angular CLI [npm install] in your terminal 
+```
+
+_Clone Repository_
+
+```
+git clone https://github.com/Z3belek/Virtual-Bank-App-Angular.git
+gh repo clone Z3belek/Virtual-Bank-App-Angular
+```
+
+## Deployment 📦
+
+```
+ng build
+```
+
+## Built with 🛠️
+
+_Tools used to create your project_
+
+* [Angular](https://angular.io/) - Frameworks web development
+* [Angular Material](https://material.angular.io/) - Material Design components for Angular
+* [Tailwind CSS](https://tailwindcss.com/) - Frameworks css
+* [NGRX](https://ngrx.io/) - Store
+* [NGX-logger](https://github.com/dbfannin/ngx-logger) - logs
+* [ng2-charts](https://github.com/valor-software/ng2-charts) - Charts
+
+## Contributing 🖇️
+
+Please read the [CONTRIBUTING.md](https://gist.github.com/Z3belek/Virtual-Bank-App-Angular/xxxxxx) for details of our code of conduct, and the process for sending us pull requests.
+
+## Wiki 📖
+
+You can find much more about how to use this project in our [Wiki](https://github.com/tu/proyecto/wiki)
+
+## Authors ✒️
+
+* **Ibañez Sebastian** - *Work Start* - [Z3belek](https://github.com/Z3belek)
+* **Acosta Guillermo** - *Work Start* - [Guille2000](https://github.com/Guille2000)
+* **Carranza Santiago** - *Work Start* - [santiagocarranz-a](https://github.com/santiagocarranz-a)
+* **Francolino Aaron** - *Work Start* - [aaron2494](https://github.com/aaron2494)
+* **Fernandez Octavio** - *Work Start* - [octavioismael-fer](https://github.com/octavioismael-fer)
+* **Gaitan Gaston** - *Work Start* - [gaston1905](https://github.com/Gaston1905)
+* **Ruben** - *Work Start* - [RaCode75](https://github.com/RaCode75)
+
+You can also look at the list of all the [contributors](https://github.com/Z3belek/Virtual-Bank-App-Angular/graphs/contributors) who have participated in this project. 

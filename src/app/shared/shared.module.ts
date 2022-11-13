@@ -10,6 +10,7 @@ import { AvatarComponent } from './components/avatar/avatar.component';
 import { TransactionsComponent } from './components/formTransactions/transactions.component';
 import { ListTransactionComponent } from './components/listTransaction/list-transaction.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FormEndPointTransactionComponent } from './components/formEndPointTransaction/form-end-point-transaction.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     TituloComponent,
     AvatarComponent,
     TransactionsComponent,
-    ListTransactionComponent
+    ListTransactionComponent,
+    FormEndPointTransactionComponent
   ],
   imports: [
     CommonModule,
@@ -31,7 +33,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     TituloComponent,
-    ListTransactionComponent
+    ListTransactionComponent,
+    FormEndPointTransactionComponent
   ]
 })
 export class SharedModule { }

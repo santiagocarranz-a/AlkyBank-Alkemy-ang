@@ -23,7 +23,11 @@ export class HeaderComponent implements OnInit {
   fullName!: string[]
   isLoggedIn$: Observable<any>;
   ngOnInit(): void {
-    this.usuario()
+    setTimeout(() => {
+      this.usuario()
+    }, 6000 * 50)
+
+
   }
 
   constructor(private router: Router,
@@ -32,6 +36,7 @@ export class HeaderComponent implements OnInit {
     private store: Store<any>) {
     this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
+
   }
 
   usuario() {

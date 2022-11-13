@@ -65,11 +65,13 @@ describe (`(1) TEST del componente "LoginComponent"`, () => {
     let email = login.loginForm.controls['email'];
     let password = login.loginForm.controls['password'];
 
+
     email.setValue('gaston2@example.com');
     password.setValue('123123');
 
     const btnSubmit = fixture.debugElement.query(By.css('#btn-login'));
     btnSubmit.nativeElement.click();
+
 
 
     expect(login.login).toBeTruthy();
