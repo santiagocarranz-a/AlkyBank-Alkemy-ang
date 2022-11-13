@@ -4,6 +4,7 @@ import { User } from '@core/model/interfaces';
 import { Transactions } from '@core/model/interfacesTransactions';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { BaseServicesService } from '@core/services/base-service';
+import Swal from "sweetalert2"
 
 
 @Component({
@@ -12,6 +13,21 @@ import { BaseServicesService } from '@core/services/base-service';
   styleUrls: ['./form-end-point-transaction.component.scss']
 })
 export class FormEndPointTransactionComponent implements OnInit {
+
+  sweetalert = Swal.mixin({
+    toast: true,
+    position: 'bottom-end',
+    showConfirmButton: false,
+    timer: 1400,
+    timerProgressBar: true,
+    background:"black",
+    color:"white",
+    didOpen: (toast) => {
+    toast.addEventListener('mouseenter', Swal.stopTimer)
+    toast.addEventListener('mouseleave', Swal.resumeTimer)
+    }
+  })
+
 
   Transferencias:Transactions[] = []
   enviarDinero!: FormGroup;
@@ -70,8 +86,19 @@ export class FormEndPointTransactionComponent implements OnInit {
 
 
     if(form.valid==false){
+      this.sweetalert.fire({
+        icon: 'error',
+        title: 'Error!',
+        text: 'Ha habido un problema durante la operación.',
+      })
 
     }else{
+      this.sweetalert.fire({
+        icon: 'success',
+        title: 'Exito!',
+        text: 'Se ha realizado su operación!',
+      })
+
       this.modalSS.postTransaction(formData).subscribe(data => {
       })
 
