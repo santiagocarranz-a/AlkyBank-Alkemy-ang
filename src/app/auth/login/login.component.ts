@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { select, Store } from '@ngrx/store';
-import { Router } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngrx/store';
 import { UserAuth } from '@core/model/interfaces';
-import { AuthService } from '@core/services/auth.service';
 import { AlertsComponent } from '../../shared/components/alerts/alerts.component';
 import * as Auth from '../auth-store/auth.actions/auth.actions';
 import { Observable } from 'rxjs';
@@ -28,11 +26,6 @@ export class LoginComponent implements OnInit {
     ) {
       this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
      }
-
-  // form: FormGroup = new FormGroup({
-  //   email: new FormControl('', [Validators.required, Validators.email]),
-  //   password: new FormControl('', [Validators.required, Validators.minLength(6)]),
-  // });
 
   ngOnInit(): void {
     this.loginForm = this.formBuilder.group({

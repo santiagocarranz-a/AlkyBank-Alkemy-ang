@@ -1,16 +1,14 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { User } from '@core/model/interfaces';
-import { TransferAccount } from '@core/model/user.data';
 import { TransactionsService } from '@core/services/banco/transactions.service';
 import { BaseServicesService } from '@core/services/base-service';
 import { UserDataService } from '@core/services/user-data.service';
-import { environment } from '@env/environment';
 import { TransactionsComponent } from '@shared/components/formTransactions/transactions.component';
-import { EventEmitter, Injectable, Output } from '@angular/core';
+import { EventEmitter, Output } from '@angular/core';
 
 @Component({
   selector: 'ab-contacts',

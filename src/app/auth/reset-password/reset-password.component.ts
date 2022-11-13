@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {FormGroup, Validators, FormControl, FormBuilder, AbstractControl} from '@angular/forms';
+import {FormGroup, Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BaseServicesService } from '@core/services/base-service';
 import { AlertsComponent } from '@shared/components/alerts/alerts.component';
@@ -11,7 +11,6 @@ import { AlertsComponent } from '@shared/components/alerts/alerts.component';
 export class ResetPasswordComponent implements OnInit {
   sweetalert: AlertsComponent = new AlertsComponent
   resetForm!: FormGroup;
-  // resetPasswordForm: FormGroup = new FormGroup({});
 
   constructor(private base:BaseServicesService,
      private formBuilder: FormBuilder,

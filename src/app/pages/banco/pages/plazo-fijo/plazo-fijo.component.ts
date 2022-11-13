@@ -63,8 +63,6 @@ export class PlazoFijoComponent implements OnInit {
   getMoneyAccount() {
     this.bankAccountService.BAccountsMe().subscribe((list: any) => {
      this.dinero = list
-
-    //  this.dinero = this.dinero[0].money
      this.dinero = this.dinero.forEach((cuenta:any) => {
       const {money, id} = cuenta
       this.plata = {money, id}

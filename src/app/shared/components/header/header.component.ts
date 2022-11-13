@@ -17,42 +17,38 @@ import { Observable } from 'rxjs';
 
 export class HeaderComponent implements OnInit {
   navbarData = navbarData;
-  // isLoggedIn: boolean = false
   sidebarOpen: boolean = false;
   dataUsuario!: User;
   fullName!: string[]
   isLoggedIn$: Observable<any>;
   ngOnInit(): void {
-    setTimeout(() => {
+    if(this.isLoggedIn$) {
       this.usuario()
-    }, 6000 * 50)
-
-
+    } else {
+      setTimeout(() => {
+        this.usuario()
+      }, 6000 * 50)
+    }
   }
 
-  constructor(private router: Router,
-    private base: BaseServicesService,
-    private activate: ActivatedRoute,
-    private store: Store<any>) {
+  constructor(
+              private base: BaseServicesService,
+              private store: Store<any>
+            )
+  {
     this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
 
   }
 
   usuario() {
-    // if (this.isLoggedIn) {
       this.base.getPerfil().subscribe(data => {
         this.dataUsuario = data
       })
-    // }
   }
 
   logout() {
     this.store.dispatch(Auth.Logout())
-    // localStorage.removeItem('user')
-    // this.router.navigate(['auth/login']).then(() => {
-    //   window.location.reload();
-    // });
   }
 
   showSideBar() {
