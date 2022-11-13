@@ -1,5 +1,6 @@
+import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+
 import { User } from '@core/model/interfaces';
 import { BaseServicesService } from '@core/services/base-service';
 import { navbarData } from '../navigation';
@@ -22,7 +23,7 @@ export class HeaderComponent implements OnInit {
   fullName!: string[]
   isLoggedIn$: Observable<any>;
   ngOnInit(): void {
-    if(this.isLoggedIn$) {
+    if(this.local.getToken(this.dataUsuario)) {
       this.usuario()
     } else {
       setTimeout(() => {
@@ -33,7 +34,8 @@ export class HeaderComponent implements OnInit {
 
   constructor(
               private base: BaseServicesService,
-              private store: Store<any>
+              private store: Store<any>,
+              private local: LocalStorageService
             )
   {
     this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
