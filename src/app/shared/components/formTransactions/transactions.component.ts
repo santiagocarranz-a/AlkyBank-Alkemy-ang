@@ -66,7 +66,6 @@ export class TransactionsComponent implements OnInit {
   getAccount(){
     this.bankAccountService.BAccountsMe().subscribe(data =>{
       this.banco = data
-      console.log(this.banco)
 
     })
   }
@@ -80,10 +79,8 @@ export class TransactionsComponent implements OnInit {
       concept: concept,
       amount: amount,
     };
-       console.log(formData)
        this.userData.postAccountsId(1, formData).subscribe(data => {
         this.UserID = this.cuentaId
-        console.log(this.UserID)
        })
 
   }
@@ -98,7 +95,6 @@ export class TransactionsComponent implements OnInit {
         "concept": this.enviarDinero.value.concept,
         "amount": this.enviarDinero.value.amount
       }).subscribe(data => {
-        console.log(data)
       })
 
 
@@ -110,14 +106,4 @@ export class TransactionsComponent implements OnInit {
 
 
 
-
-
-  // ngOnInit(): void {
-  //   this.modalSS.$modal.subscribe((valor)=>{
-  //     console.log(valor)
-  //     this.correspondeIngreso = valor
-  //     console.log(this.correspondeIngreso)
-  //   })
-  //   this.obtenerFecha()
-  // }
 

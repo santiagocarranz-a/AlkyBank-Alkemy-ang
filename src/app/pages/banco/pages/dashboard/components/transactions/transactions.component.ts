@@ -36,7 +36,6 @@ export class TransactionsComponent implements OnInit {
   constructor(public ssTransaction:TransactionsService, private store: Store<any>) {
     this.TransactionList$ = this.store.select(SelectTransaction.dataTransaction)
     this.store.dispatch(Transaction.allTransaction())
-   console.log(this.TransactionList$)
 
 }
 
@@ -54,13 +53,6 @@ export class TransactionsComponent implements OnInit {
     const {data} = list
     let dataArreglo
 
-//    console.log(data)
-/*
-    for(let item of data){
-      dataArreglo = item.date.slice(0,-5)
-      console.log(dataArreglo)
-    }
-*/
     this.dataSource = new MatTableDataSource(data)
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;

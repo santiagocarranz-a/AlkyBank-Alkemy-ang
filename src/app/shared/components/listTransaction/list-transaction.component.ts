@@ -10,7 +10,7 @@ export class ListTransactionComponent implements OnInit {
 
   constructor(public ssTransaction:TransactionsService) { }
 
-  listTransaction:any 
+  listTransaction:any
 
   ngOnInit(): void {
    // this.toListTransaction()
@@ -18,11 +18,10 @@ export class ListTransactionComponent implements OnInit {
 
   toListTransaction(){
     this.ssTransaction.getListTransaction().subscribe((list:any)=>{
-    
+
 
     const {data} = list
     this.listTransaction=data
-    console.log(this.listTransaction)
 
     })
   }

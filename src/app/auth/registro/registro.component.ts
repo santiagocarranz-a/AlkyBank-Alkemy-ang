@@ -79,28 +79,6 @@ export class RegistroComponent implements OnInit {
     }
 }
 
-
-
-
-
-  // register() {
-  //   this.isSubmitted = true;
-  //   if (this.registerForm.valid) {
-  //     this.authService.registro(this.registerForm.value)
-  //     .subscribe(data => {
-  //       if(data){
-  //       // this.store.dispatch(Auth.Register({user}))
-  //       this.router.navigate(['/auth/login'])
-  //       } else {
-  //         this.sweetalert.datosDuplicadosAlert()
-  //         return
-  //       }
-  //     } , error => {
-  //       console.log(error)
-  //     })
-  //   }
-  // }
-
   openDialog() {
     const dialogRef = this.dialog.open(TerminosComponent, {
       width: '600px'
@@ -109,7 +87,6 @@ export class RegistroComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result => {
       if (result === true) {
         this.resultado = true
-        console.log(this.resultado)
       } else {
         this.sweetalert.noAceptoAlert();
         this.router.navigate([''])

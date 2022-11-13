@@ -49,7 +49,6 @@ export class FormEndPointTransactionComponent implements OnInit {
 
     this.base.getPerfil().subscribe((data)=>{
       this.dataUsuario = data
-      console.log(data)
     })
 
     this.obtenerFecha()
@@ -69,16 +68,11 @@ export class FormEndPointTransactionComponent implements OnInit {
       to_account_id: 1
     }
 
-    console.log(formData)
-    console.log(form.valid)
 
     if(form.valid==false){
-      console.log("formulario invalido")
 
     }else{
-      console.log("formulario valido")
       this.modalSS.postTransaction(formData).subscribe(data => {
-       console.log(data)
       })
 
     }
@@ -93,10 +87,8 @@ export class FormEndPointTransactionComponent implements OnInit {
 
     if(month < 10 && day < 10){
       this.fecha = `${year}-0${month}-0${day}`
-      console.log(this.fecha)
     }else{
       this.fecha = `${year}-${month}-${day}`
-      console.log(this.fecha)
     }
     //HORA//
     let timeHour = date.getHours()
@@ -111,9 +103,7 @@ export class FormEndPointTransactionComponent implements OnInit {
     }else{
       clockSet = `${timeHour}:${timeMinutes}:${timeSecond}`
     }
-    console.log(clockSet)
 
     this.hourAndDate = this.fecha +" "+ clockSet
-    console.log(this.hourAndDate)
   }
 }

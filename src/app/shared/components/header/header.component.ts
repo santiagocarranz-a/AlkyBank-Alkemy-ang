@@ -1,4 +1,3 @@
-import { LocalStorageService } from './../../../core/services/local-storage.service';
 import { Component, OnInit } from '@angular/core';
 
 import { User } from '@core/model/interfaces';
@@ -8,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as Auth from '../../../auth/auth-store/auth.actions/auth.actions';
 import * as Select from '../../../auth/auth-store/auth.selectors/auth.selectors';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from '@core/services/local-storage.service';
 
 
 @Component({
@@ -22,6 +22,7 @@ export class HeaderComponent implements OnInit {
   dataUsuario!: User;
   fullName!: string[]
   isLoggedIn$: Observable<any>;
+
   ngOnInit(): void {
     if(this.local.getToken(this.dataUsuario)) {
       this.usuario()
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnInit {
       }, 6000 * 50)
     }
   }
+
 
   constructor(
               private base: BaseServicesService,

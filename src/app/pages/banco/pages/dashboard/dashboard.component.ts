@@ -18,7 +18,6 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.baseService.getPerfil().subscribe(data => {
       this.dataUsuario = data
-      console.log(this.dataUsuario)
 
     })
   }

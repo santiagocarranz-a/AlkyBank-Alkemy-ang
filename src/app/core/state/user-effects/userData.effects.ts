@@ -17,7 +17,6 @@ export class UserEffects {
       concatMap((action: any) => {
         return this.base.getPerfil().pipe(
           map((user: User) => {
-            console.log(user)
             return UserDataAPI.loadUserDataSuccess(action.user),
             catchError( error => of( error))
 
