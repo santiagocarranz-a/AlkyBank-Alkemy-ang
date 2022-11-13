@@ -25,7 +25,8 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     setTimeout(() => {
       this.usuario()
-    }, 6000*50);
+    }, 6000 * 50)
+
 
   }
 
