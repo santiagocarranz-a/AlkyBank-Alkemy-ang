@@ -3,7 +3,6 @@ import {FormGroup, Validators, FormControl, FormBuilder, AbstractControl} from '
 import { Router } from '@angular/router';
 import { BaseServicesService } from '@core/services/base-service';
 import { AlertsComponent } from '@shared/components/alerts/alerts.component';
-import { passwordMatchingValidatior } from './passwordvalidator';
 @Component({
   selector: 'ab-reset-password',
   templateUrl: './reset-password.component.html',
@@ -11,9 +10,6 @@ import { passwordMatchingValidatior } from './passwordvalidator';
 })
 export class ResetPasswordComponent implements OnInit {
   sweetalert: AlertsComponent = new AlertsComponent
-
-
-  idUsuario!:number
   resetForm!: FormGroup;
 
 
