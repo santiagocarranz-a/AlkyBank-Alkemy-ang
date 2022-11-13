@@ -53,25 +53,25 @@ describe (`(1) TEST del componente "ResetPasswordComponent"`, () => {
     expect(resetPassword.resetForm.invalid).toBeTrue();
   })
 
-  // it('Debe retornar reseteo de contraseña realizado', () => {
-  //   const fixture = TestBed.createComponent(ResetPasswordComponent);
-  //   const resetPassword = fixture.componentInstance
-  //   fixture.detectChanges()
+ it('Debe retornar reseteo de contraseña realizado', () => {
+    const fixture = TestBed.createComponent(ResetPasswordComponent);
+    const resetPassword = fixture.componentInstance
+    fixture.detectChanges()
 
-  //   let email = resetPassword.resetForm.controls['email'];
-  //   let password = resetPassword.resetForm.controls['password'];
-  //   let confirmPassword = resetPassword.resetForm.controls['confirmPassword'];
+    let userId = resetPassword.resetForm.controls['userId'];
+    let password = resetPassword.resetForm.controls['password'];
+    let confirmPassword = resetPassword.resetForm.controls['confirmPassword'];
 
-  //   email.setValue('gaston4@example.com');
-  //   password.setValue('123123');
-  //   confirmPassword.setValue('123123');
-
-
-  //   const btnSubmit = fixture.debugElement.query(By.css('#btn-reset'));
-  //   btnSubmit.nativeElement.click();
+    userId.setValue('1995');
+    password.setValue('123123');
+    confirmPassword.setValue('123123');
 
 
-  //   expect(resetPassword.onSubmit).toBeTrue();
-  // })
+    const btnSubmit = fixture.debugElement.query(By.css('#btn-reset'));
+    btnSubmit.nativeElement.click();
+
+
+    expect(resetPassword.resetPassword).toBeTruthy();
+  })
 
 })
