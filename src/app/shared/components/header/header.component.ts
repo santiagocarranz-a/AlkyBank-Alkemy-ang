@@ -7,6 +7,7 @@ import { Store } from '@ngrx/store';
 import * as Auth from '../../../auth/auth-store/auth.actions/auth.actions';
 import * as Select from '../../../auth/auth-store/auth.selectors/auth.selectors';
 import { Observable } from 'rxjs';
+import { LocalStorageService } from '@core/services/local-storage.service';
 
 
 @Component({
@@ -21,8 +22,9 @@ export class HeaderComponent implements OnInit {
   dataUsuario!: User;
   fullName!: string[]
   isLoggedIn$: Observable<any>;
+
   ngOnInit(): void {
-    if(this.isLoggedIn$) {
+    if(this.local.getToken(this.dataUsuario)) {
       this.usuario()
     } else {
       setTimeout(() => {
@@ -31,9 +33,11 @@ export class HeaderComponent implements OnInit {
     }
   }
 
+
   constructor(
               private base: BaseServicesService,
-              private store: Store<any>
+              private store: Store<any>,
+              private local:LocalStorageService
             )
   {
     this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);

@@ -48,7 +48,6 @@ export class ContactsComponent implements OnInit {
 
   getUser() {
     this.base.getUsers().subscribe((res: any) => {
-      console.log(res);
       const { data, nextPage } = res;
       this.dataSource = new MatTableDataSource(data);
       this.dataSource.paginator = this.paginator;

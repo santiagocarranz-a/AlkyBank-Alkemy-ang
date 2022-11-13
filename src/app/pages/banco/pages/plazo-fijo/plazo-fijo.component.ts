@@ -66,7 +66,6 @@ export class PlazoFijoComponent implements OnInit {
      this.dinero = this.dinero.forEach((cuenta:any) => {
       const {money, id} = cuenta
       this.plata = {money, id}
-      console.log(this.plata)
      })
     })
   }
@@ -80,9 +79,7 @@ export class PlazoFijoComponent implements OnInit {
   getPlazos(){
     this.plazos.getFixedDeposits().subscribe(lista => {
       this.plazosFijos = [...lista.data]
-      console.log(this.plazosFijos)
       this.total = this.plazosFijos.reduce((counter, item) => Number(item.amount) + counter, 0);
-      console.log(this.total)
 
       this.days = this.plazosFijos.map(item =>
         Math.round(
@@ -91,7 +88,6 @@ export class PlazoFijoComponent implements OnInit {
           new Date(item.createdAt).getTime()
           ) / (1000 * 60 * 60 * 24))
         );
-        console.log(this.days)
 
         this.interes = this.plazosFijos.map(item => {
           return {
@@ -104,7 +100,6 @@ export class PlazoFijoComponent implements OnInit {
 
           }
         })
-        console.log(this.interes)
 
       const {data} = lista
       this.dataSource = new MatTableDataSource(this.interes)
