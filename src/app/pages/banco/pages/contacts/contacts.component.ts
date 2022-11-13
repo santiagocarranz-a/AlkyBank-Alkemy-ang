@@ -27,9 +27,7 @@ export class ContactsComponent implements OnInit {
   animal!: string;
   name!: string;
 
-  @Output()
-  Idcuenta = new EventEmitter<number>()
-
+  @Output() onId = new EventEmitter<number>()
 
   @ViewChild(MatPaginator, { static: true }) paginator!: MatPaginator;
 
@@ -63,7 +61,7 @@ export class ContactsComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   modalTransferir(id:any) {
-    this.Idcuenta.emit(id)
+    this.idAccount = id
     this.dialog.open(TransactionsComponent);
   }
 }

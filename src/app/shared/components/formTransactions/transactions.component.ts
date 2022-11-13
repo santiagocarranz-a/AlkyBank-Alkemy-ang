@@ -17,6 +17,9 @@ import { environment } from '@env/environment';
 })
 export class TransactionsComponent implements OnInit {
 
+  @Input() cuentaId:number = 0
+
+
   Transferencias:Transactions[] = []
   enviarDinero!: FormGroup;
 
@@ -28,7 +31,6 @@ export class TransactionsComponent implements OnInit {
   banco:any
   dialog: any;
   cuentas:any
-  cuentaId!:Accounts
   constructor(
     private formBuilder: FormBuilder,
     private base:BaseServicesService,
@@ -59,12 +61,13 @@ export class TransactionsComponent implements OnInit {
 
     this.getAccount()
 
-  }
 
+  }
   getAccount(){
     this.bankAccountService.BAccountsMe().subscribe(data =>{
       this.banco = data
       console.log(this.banco)
+
     })
   }
 
@@ -79,7 +82,8 @@ export class TransactionsComponent implements OnInit {
     };
        console.log(formData)
        this.userData.postAccountsId(1, formData).subscribe(data => {
-        console.log(data)
+        this.UserID = this.cuentaId
+        console.log(this.UserID)
        })
 
   }
@@ -88,7 +92,7 @@ export class TransactionsComponent implements OnInit {
   obtener(){
 
     return this.http.post(
-      `${environment.apiBase}/accounts/214`,
+      `${environment.apiBase}/accounts/$`,
       {
         "type": this.enviarDinero.value.type,
         "concept": this.enviarDinero.value.concept,

@@ -23,7 +23,9 @@ export class HeaderComponent implements OnInit {
   fullName!: string[]
   isLoggedIn$: Observable<any>;
   ngOnInit(): void {
-    this.usuario()
+    setTimeout(() => {
+      this.usuario()
+    }, 6000 * 50)
   }
 
   constructor(private router: Router,

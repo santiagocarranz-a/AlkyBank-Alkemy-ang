@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, Validators, FormControl, FormBuilder, AbstractControl} from '@angular/forms';
+import { Router } from '@angular/router';
 import { BaseServicesService } from '@core/services/base-service';
 import { AlertsComponent } from '@shared/components/alerts/alerts.component';
 import { passwordMatchingValidatior } from './passwordvalidator';
@@ -18,40 +19,47 @@ export class ResetPasswordComponent implements OnInit {
 
   // resetPasswordForm: FormGroup = new FormGroup({});
 
-  constructor(private base:BaseServicesService, private formBuilder: FormBuilder) { }
+  constructor(private base:BaseServicesService,
+     private formBuilder: FormBuilder,
+     private router:Router) { }
 
   ngOnInit(): void {
 
     this.resetForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.email]],
+      userId: ['', [Validators.required]],
       password: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', [Validators.required]],
-    }, {validators: passwordMatchingValidatior})
-
+    },
+    {
+      validators: this.passwordMatch('password', 'confirmPassword')
+    } )
 }
 
+passwordMatch(password: string, confirmPassword: string) {
+  return (formGroup: FormGroup) => {
+    const control = formGroup.controls[password];
+    const matchingControl = formGroup.controls[confirmPassword];
 
-get f() { return this.resetForm.controls; }
+    if (matchingControl.errors && !matchingControl.errors['passwordMatch']) {
+      return;
+    }
 
-public onSubmit() {
-  this.resetForm.markAllAsTouched();
-  if (this.resetForm.valid) {
-    console.log(this.resetForm.value);
+    if (control.value !== matchingControl.value) {
+      matchingControl.setErrors({ passwordMatch: true });
+    } else {
+      matchingControl.setErrors(null);
+    }
   }
 }
 
-get confirmPassword(){
-  return this.resetForm.get('confirmPassword')
-}
-
-
-
-
   resetPassword(){
-    const {password} = this.resetForm.value
+    const {password, userId} = this.resetForm.value
     if(this.resetForm.valid){
-      this.base.resetPasswordById(this.idUsuario, password).subscribe(data =>  {
-        console.log(data)
+      this.base.resetPasswordById(userId, password).subscribe(data =>  {
+        this.sweetalert.ResetSucces()
+        setTimeout(() => {
+          this.router.navigate(['auth/login'])
+        }, 2000)
       })
     } else  {
       this.sweetalert.ErrorAlert()

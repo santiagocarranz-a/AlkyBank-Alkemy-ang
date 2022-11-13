@@ -31,7 +31,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     HeaderComponent,
     FooterComponent,
     TituloComponent,
-    ListTransactionComponent
+    ListTransactionComponent,
+
   ]
 })
 export class SharedModule { }

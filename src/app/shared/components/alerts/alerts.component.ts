@@ -18,6 +18,16 @@ export class AlertsComponent {
     })
   }
 
+
+  ResetSucces(){
+    Swal.fire({
+      icon: 'success',
+      title: 'Se ha reseteado tu contraseña correctamente',
+      showConfirmButton: false,
+      timer: 1500
+    })
+  }
+
   ErrorAlert() {
     Swal.fire({
       title: 'Error!',
