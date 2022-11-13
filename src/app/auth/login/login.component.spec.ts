@@ -57,23 +57,22 @@ describe (`(1) TEST del componente "LoginComponent"`, () => {
     expect(login.loginForm.invalid).toBeTrue();
   })
 
-  // it('Debe retornar usuario logueado', () => {
-  //   const fixture = TestBed.createComponent(LoginComponent);
-  //   const login = fixture.componentInstance
-  //   fixture.detectChanges()
+  it('Debe retornar usuario logueado', () => {
+    const fixture = TestBed.createComponent(LoginComponent);
+    const login = fixture.componentInstance
+    fixture.detectChanges()
 
-  //   let email = login.loginForm.controls['email'];
-  //   let password = login.loginForm.controls['password'];
+    let email = login.loginForm.controls['email'];
+    let password = login.loginForm.controls['password'];
 
-  //   email.setValue('gaston2@gmail.com');
-  //   password.setValue('123123');
+    email.setValue('gaston2@example.com');
+    password.setValue('123123');
+
+    const btnSubmit = fixture.debugElement.query(By.css('#btn-login'));
+    btnSubmit.nativeElement.click();
 
 
-  //   const btnSubmit = fixture.debugElement.query(By.css('#btn-login'));
-  //   btnSubmit.nativeElement.click();
-
-
-  //   expect(login.login).toBeTrue();
-  // })
+    expect(login.login).toBeTruthy();
+  })
 
 })
