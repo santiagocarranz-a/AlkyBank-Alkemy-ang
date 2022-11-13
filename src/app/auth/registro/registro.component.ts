@@ -60,7 +60,10 @@ export class RegistroComponent implements OnInit {
     }
     if (this.registerForm.valid && this.resultado === true) {
       this.store.dispatch(Auth.Register({ user }))
-    }
+    } else {
+            this.sweetalert.IncompletDataAlert()
+            return
+          }
   }
 
   passwordMatch(password: string, confirmPassword: string) {
@@ -79,6 +82,8 @@ export class RegistroComponent implements OnInit {
       }
     }
 }
+
+
 
 
 

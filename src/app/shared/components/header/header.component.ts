@@ -26,6 +26,8 @@ export class HeaderComponent implements OnInit {
     setTimeout(() => {
       this.usuario()
     }, 6000 * 50)
+
+
   }
 
   constructor(private router: Router,
@@ -34,6 +36,7 @@ export class HeaderComponent implements OnInit {
     private store: Store<any>) {
     this.isLoggedIn$ = this.store.select(Select.isLoggedSelector);
     this.dataUsuario = { id: 0, first_name: '', last_name: '', email: '', password: '', roleId: 0, points: 0 }
+
   }
 
   usuario() {

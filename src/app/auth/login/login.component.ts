@@ -46,6 +46,8 @@ export class LoginComponent implements OnInit {
     if(this.loginForm.valid) {
       this.loading = true;
       this.store.dispatch(Auth.LogIn({ user }));
+    } else {
+      this.sweetalert.IncompletDataAlert()
     }
   }
 }

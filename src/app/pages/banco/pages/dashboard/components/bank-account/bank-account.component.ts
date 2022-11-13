@@ -7,6 +7,7 @@ import { newBankAccount, BankAccount } from '@core/model/bank-account.interface'
 import { BankAccountService } from '@core/services/banco/bank-account.service';
 import { formatDate } from '@angular/common';
 import { UserDataService } from '@core/services/user-data.service';
+import { FormEndPointTransactionComponent } from '@shared/components/formEndPointTransaction/form-end-point-transaction.component';
 
 @Component({
   selector: 'ab-bank-account',
@@ -39,8 +40,8 @@ export class BankAccountComponent implements OnInit {
   }
 
   modalTransferir() {
-    this.modalSS.$modal.emit(false)
-    this.dialog.open(TransactionsComponent)
+    console.log("Desde banck")
+    this.dialog.open(FormEndPointTransactionComponent)
   }
 
   ngOnInit(): void {

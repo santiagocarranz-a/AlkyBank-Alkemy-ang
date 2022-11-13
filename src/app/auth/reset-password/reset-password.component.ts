@@ -11,8 +11,6 @@ import { AlertsComponent } from '@shared/components/alerts/alerts.component';
 export class ResetPasswordComponent implements OnInit {
   sweetalert: AlertsComponent = new AlertsComponent
   resetForm!: FormGroup;
-
-
   // resetPasswordForm: FormGroup = new FormGroup({});
 
   constructor(private base:BaseServicesService,

@@ -36,6 +36,16 @@ export class AlertsComponent {
       confirmButtonText: 'Reintentar'
     })
   }
+
+  IncompletDataAlert() {
+    Swal.fire({
+      title: 'Información!',
+      text: 'Por favor rellene todos los campos',
+      icon: 'info',
+      confirmButtonText: 'Reintentar'
+    })
+  }
+
   noAceptoAlert() {
     Swal.fire({
       title: '¡Que pena!',
