@@ -89,7 +89,7 @@ export class TransactionsComponent implements OnInit {
   obtener(){
 
     return this.http.post(
-      `${environment.apiBase}/accounts/$`,
+      `${environment.apiBase}/accounts/214`,
       {
         "type": this.enviarDinero.value.type,
         "concept": this.enviarDinero.value.concept,

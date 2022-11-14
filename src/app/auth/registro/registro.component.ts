@@ -71,10 +71,7 @@ export class RegistroComponent implements OnInit {
         matchingControl.setErrors({ passwordMatch: true });
       } else {
         matchingControl.setErrors(null);
-        this.sweetalert.datosDuplicadosAlert()
-        setTimeout(function(){
-          window.location.reload();
-       }, 2500);
+
       }
     }
 }
