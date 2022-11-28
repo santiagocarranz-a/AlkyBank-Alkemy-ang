@@ -1,24 +1,22 @@
-<h1 align="center">e-wallet-Alkemy</h1>
+<h1 align="center">Alkybank e-wallet</h1>
 <br>
 <p align ="center">
-  <img src="src/assets/alkemyLogo.svg" alt="alkemy-logo" width="320"/>
+  <img src="https://github.com/santiagocarranz-a/AlkyBank-Alkemy-ang/blob/2cde34b0f20b1b47117c2ca347149a0c44c01b8f/alkemybankfondo.png" alt="alkemy-logo"/>
   <br>
-I develop a Wallet that will
-Enable the bank's customers to transact virtually and facilitate
-operations between people. </p>
+</p>
 <br>
 <hr>
 
-## Starting 🚀
+## Comenzando 🚀
 
-_These instructions will allow you to obtain a copy of the running project on your local machine for development and testing purposes._
+_Estas instrucciones le permitirán obtener una copia del proyecto en ejecución en su máquina local para fines de desarrollo y prueba._
 
-See Deployment to learn how to deploy the project.
+Consulte Implementación para obtener información sobre cómo implementar el proyecto.
 
 
-### Prerequisites 📋
+### requisitos previos 📋
 
-_What things do you need to work on this project and how to install them??_
+_¿Qué cosas necesitas para trabajar en este proyecto y cómo instalarlas?_
 
 ```
 - IDE development environment [example of: Visual Studio Code]
@@ -26,9 +24,9 @@ _What things do you need to work on this project and how to install them??_
 - Angular CLI
 ```
 
-### Setting Up a Project 🔧
+### Configuración de un proyecto 🔧
 
-_Step by step that you must execute to have a development environment running_
+_Paso a paso que debes ejecutar para tener un entorno de desarrollo funcionando_
 
 ```
 Download and install Node.js in [https://nodejs.org/en/download/)]
@@ -40,22 +38,22 @@ Download and install IDE Visual Studio Code [https://code.visualstudio.com/]
 Intall Angular CLI [npm install] in your terminal 
 ```
 
-_Clone Repository_
+_Repositorio de clones_
 
 ```
 git clone https://github.com/Z3belek/Virtual-Bank-App-Angular.git
 gh repo clone Z3belek/Virtual-Bank-App-Angular
 ```
 
-## Deployment 📦
+## Despliegue 📦
 
 ```
 ng build
 ```
 
-## Built with 🛠️
+## construido con 🛠️
 
-_Tools used to create your project_
+_Herramientas utilizadas para crear su proyecto_
 
 * [Angular](https://angular.io/) - Frameworks web development
 * [Angular Material](https://material.angular.io/) - Material Design components for Angular
@@ -64,22 +62,22 @@ _Tools used to create your project_
 * [NGX-logger](https://github.com/dbfannin/ngx-logger) - logs
 * [ng2-charts](https://github.com/valor-software/ng2-charts) - Charts
 
-## Contributing 🖇️
+## contribuyendo 🖇️
 
-Please read the [CONTRIBUTING.md](https://gist.github.com/Z3belek/Virtual-Bank-App-Angular/xxxxxx) for details of our code of conduct, and the process for sending us pull requests.
+Lea [CONTRIBUTING.md](https://gist.github.com/Z3belek/Virtual-Bank-App-Angular/xxxxxx) para conocer los detalles de nuestro código de conducta y el proceso para enviarnos solicitudes de incorporación de cambios.
 
 ## Wiki 📖
 
-You can find much more about how to use this project in our [Wiki](https://github.com/tu/proyecto/wiki)
+Puede encontrar mucho más sobre cómo usar este proyecto en nuestro [Wiki](https://github.com/tu/proyecto/wiki)
 
-## Authors ✒️
+## Autores ✒️
 
+* **Carranza Santiago** - *Work Start* - [santiagocarranz-a](https://github.com/santiagocarranz-a)
 * **Ibañez Sebastian** - *Work Start* - [Z3belek](https://github.com/Z3belek)
 * **Acosta Guillermo** - *Work Start* - [Guille2000](https://github.com/Guille2000)
-* **Carranza Santiago** - *Work Start* - [santiagocarranz-a](https://github.com/santiagocarranz-a)
 * **Francolino Aaron** - *Work Start* - [aaron2494](https://github.com/aaron2494)
 * **Fernandez Octavio** - *Work Start* - [octavioismael-fer](https://github.com/octavioismael-fer)
 * **Gaitan Gaston** - *Work Start* - [gaston1905](https://github.com/Gaston1905)
 * **Ruben** - *Work Start* - [RaCode75](https://github.com/RaCode75)
 
-You can also look at the list of all the [contributors](https://github.com/Z3belek/Virtual-Bank-App-Angular/graphs/contributors) who have participated in this project. 
+También puede consultar la lista de todos los [contributors](https://github.com/Z3belek/Virtual-Bank-App-Angular/graphs/contributors) que han participado en este proyecto. 
