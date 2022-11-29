@@ -2,10 +2,12 @@
 <br>
 <p align ="center">
   <img src="https://github.com/santiagocarranz-a/AlkyBank-Alkemy-ang/blob/2cde34b0f20b1b47117c2ca347149a0c44c01b8f/alkemybankfondo.png" alt="alkemy-logo"/>
-  <br>
 </p>
+
+Demo:
 <br>
-<hr>
+
+App Alkybank es una wallet digital donde se integro el home banking para los clientes de Alkybank. Con el objetivo de brindarles un servicio de transacciones de manera rápida, fluida y segura.
 
 ## Comenzando 🚀
 
