@@ -4,7 +4,7 @@
   <img src="https://github.com/santiagocarranz-a/AlkyBank-Alkemy-ang/blob/2cde34b0f20b1b47117c2ca347149a0c44c01b8f/alkemybankfondo.png" alt="alkemy-logo"/>
 </p>
 
-Alkybank app es una wallet digital, donde se integro el home banking para los clientes de Alkybank con el objetivo de brindarles un servicio de transacciones de manera rápida, fluida y segura.
+**Alkybank e-wallet** es una aplicación de home banking desarrollada como parte de una práctica en Alkemy. Este proyecto está diseñado para ofrecer una experiencia de usuario completa en la gestión de cuentas bancarias, permitiendo a los clientes registrarse, consultar el estado de su cuenta, administrar transacciones y realizar operaciones bancarias.
 
 Mira una [demostración en YouTube](https://www.youtube.com/watch?v=OP3Zat0ImV4).
 
